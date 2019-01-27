@@ -132,16 +132,12 @@ void sort_by_finish_time(Job* jobs, int size) {
 
 }
 
-// function to get the response time
 int get_job_response_time(Job j) {
 	return (j.start_time - j.arrival_time);
 }
 
-// function to get the average response time
 double avg_response_time_in_job_array(Job* jobs, int numJobs) {
-	// value to hold the average
 	double avg = 0;
-	// value to track jobs not run
 	int notRunJobs = 0;
 	// add up all of the response times
 	for(int i = 0; i < numJobs; i++) {
@@ -156,11 +152,8 @@ double avg_response_time_in_job_array(Job* jobs, int numJobs) {
 	return (avg / (numJobs - notRunJobs));
 }
 
-// function to get the average turnaround time
 double avg_turnaround_time(Job* jobs, int numJobs) {
-	// value to hold the average
 	double avg = 0;
-	// value to track jobs not run
 	int notRunJobs = 0;
 	// add up all of the turnaround times
 	for(int i = 0; i < numJobs; i++) {
@@ -175,11 +168,8 @@ double avg_turnaround_time(Job* jobs, int numJobs) {
 	return (avg / (numJobs - notRunJobs));
 }
 
-// function to get the average waiting time
 double avg_wait_time(Job* jobs, int numJobs) {
-	// value to hold the average
 	double avg = 0;
-	// value to track jobs not run
 	int notRunJobs = 0;
 	// add up all of the wait times
 	for(int i = 0; i < numJobs; i++) {
