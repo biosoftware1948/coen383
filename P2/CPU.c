@@ -22,6 +22,10 @@ void freeCPU(CPU* cpu) {
     cpu->cpuState = available;
 }
 
+void runIdle(CPU *cpu, unsigned time_delta) {
+    cpu->global_time += time_delta;
+}
+
 // Return amount of time ran
 int runCurrentJob(CPU *cpu, unsigned time_delta) {
     cpu->job->remaining_service_time -= time_delta;

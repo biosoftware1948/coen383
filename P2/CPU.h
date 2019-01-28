@@ -17,6 +17,8 @@ void giveCPUJob(CPU* cpu, Job *job);
 
 void freeCPU(CPU* cpu);
 
+void runIdle(CPU *cpu, unsigned time_delta);
+
 int runCurrentJob(CPU *cpu, unsigned time_delta);
 
 # endif /* CPU_H */
