@@ -20,6 +20,9 @@ typedef struct Job {
 //create array of jobs
 struct Job* createJobs(int number_of_jobs);
 
+//create a new array opy of jobs
+struct Job* copyJobs(Job *jobs, int number_of_jobs);
+
 // prints job info
 void jobInfo(struct Job job);
 

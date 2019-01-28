@@ -3,6 +3,7 @@
 #include "CPU.h"
 #include <stdlib.h>
 #include "schedulingAlgorithms/SJF.h"
+#include "schedulingAlgorithms/SRT.h"
 
 int main() {
     int NUM_JOBS = 3;
@@ -14,7 +15,7 @@ int main() {
     Job* jobs = createJobs(NUM_JOBS);
     printAllJobs(jobs, NUM_JOBS);
 
-    CPU* cpu = createCPU();
+    //CPU* cpu = createCPU();
 
     //Have a function for each algo here that
     //takes the jobs and cpu
@@ -25,7 +26,8 @@ int main() {
     //RunHPF(jobs, cpu)
     //....
     //...
-    RunSJF(cpu, jobs, NUM_JOBS);
+    RunSJF(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
+    RunSRT(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
 
     return 0;
 }

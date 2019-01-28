@@ -39,6 +39,26 @@ struct Job* createJobs(int number_of_jobs) {
 	return jobs;
 }
 
+void copyJob(Job *job, Job *jobCopy) {
+	jobCopy->pid = job->pid;
+	jobCopy->arrival_time = job->arrival_time;
+	jobCopy->service_time = job->service_time;
+	jobCopy->priority = job->priority;
+
+	jobCopy->remaining_service_time = job->service_time;
+	jobCopy->start_time = -1;
+	jobCopy->finish_time = -1;
+	jobCopy->age = 0;
+}
+
+struct Job* copyJobs(Job *jobs, int number_of_jobs) {
+	struct Job* jobsCopy = malloc(sizeof(Job) * number_of_jobs);
+	for (int i = 0; i < number_of_jobs; ++i) {
+		copyJob(&jobs[i], &jobsCopy[i]);
+	}
+	return jobsCopy;
+}
+
 //print job info
 void jobInfo(struct Job job) {
 	printf("----------------------------\n");

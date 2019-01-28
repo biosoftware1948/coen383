@@ -4,7 +4,7 @@
 # include "SJF.h"
 
 void RunSJF(CPU *cpu, Job *jobs, unsigned jobsCount) {
-    int completed = 0;
+    unsigned completed = 0;
 
     sort_by_arrival_time(jobs, jobsCount);
 
@@ -33,6 +33,6 @@ void RunSJF(CPU *cpu, Job *jobs, unsigned jobsCount) {
         assert(next != NULL);
         giveCPUJob(cpu, next);
         runCurrentJob(cpu, cpu->job->remaining_service_time);
-        completed++;
+        if (next->remaining_service_time == 0) completed++;
     }
 }
