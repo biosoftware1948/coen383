@@ -65,7 +65,7 @@ void swap_jobs_in_array(Job* job_array, int pos_1, int pos_2) {
 	tmp.remaining_service_time = job_array[pos_1].remaining_service_time;
 	tmp.start_time = job_array[pos_1].start_time;
 	tmp.finish_time = job_array[pos_1].finish_time;
-	
+
 	job_array[pos_1].pid = job_array[pos_2].pid;
 	job_array[pos_1].arrival_time = job_array[pos_2].arrival_time;
 	job_array[pos_1].service_time = job_array[pos_2].service_time;
@@ -73,7 +73,7 @@ void swap_jobs_in_array(Job* job_array, int pos_1, int pos_2) {
 	job_array[pos_1].remaining_service_time = job_array[pos_2].remaining_service_time;
 	job_array[pos_1].start_time = job_array[pos_2].start_time;
 	job_array[pos_1].finish_time = job_array[pos_2].finish_time;
-	
+
 	job_array[pos_2].pid = tmp.pid;
 	job_array[pos_2].arrival_time = tmp.arrival_time;
 	job_array[pos_2].service_time = tmp.service_time;
@@ -113,7 +113,7 @@ void sort_by_priority(Job* jobs, int size) {
 	}
 }
 
-void sort_by_remaining_service_time(Job* jobs, int size) { 
+void sort_by_remaining_service_time(Job* jobs, int size) {
 	for(int i = 0; i < size; i++) {
 		for(int j = i+1; j < size; j++) {
 			if(jobs[i].remaining_service_time > jobs[j].remaining_service_time) {
