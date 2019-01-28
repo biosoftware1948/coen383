@@ -1,25 +1,46 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
 #include "Job.h"
 
-struct Queue
-{
-	int front;
-	int rear;
+typedef struct Node {
+	Job job;
+	struct Node* next;
+} Node;
+
+
+typedef struct Queue {
+	struct Node* head;
+	struct Node* tail;
 	int size;
-	unsigned capacity;
-	struct Job** jobs;
-};
+} Queue;
 
-struct Queue* createQueue(unsigned capacity);
+// create an initializer for the queue
+Queue* createQueue();
 
-int isFull(struct Queue* Q);
+// check if the queue is empty
+bool isEmpty(struct Queue* q);
 
-int isEmpty(struct Queue* Q);
+// get the queue size
+int getQueueSize(struct Queue* q);
 
-int enqueue(struct Queue* q, struct Job* j);
+// create a function to get the front element from the queue
+struct Job getFrontQueueElement(struct Queue* q);
 
-struct Job* dequeue(struct Queue* q);
+void deQueue(struct Queue* q);
+
+// create a function that adds an element to the queue
+void enQueue(struct Queue* q, Job job);
+
+// print each element in the queue
+void printQueue(struct Queue* q);
+
+// empty the queue
+void removeContents(struct Queue* q);
+
 
 #endif

@@ -1,58 +1,87 @@
-#include "queue.h"
-#include "Job.h"
-#include <stdlib.h>
+#include <stdbool.h>
 
-struct Queue* createQueue(unsigned capacity)
-{
-        struct Queue* q = (struct Queue*) malloc(sizeof(struct Queue));
-	q->capacity = capacity;
-	q->front = 0;
+#include "Queue.h"
+
+// create an initializer for the queue
+Queue* createQueue() {
+	Queue* q =  (Queue*) malloc(sizeof(Queue));
+	q->head = NULL;
+	q->tail = NULL;
 	q->size = 0;
-	q->rear = capacity - 1;
-	q->jobs = (struct Job**) malloc(sizeof(struct Job*) * capacity);
-	
 	return q;
 }
 
-int isFull(struct  Queue* q)
-{
-	if (q->size == q->capacity)
-	{
-		return 1;
-	}
-	return 0;
+bool isEmpty(struct Queue* q) {
+	return (q->size == 0);
 }
 
-int isEmpty(struct Queue* q)
-{
-	return q->size == 0;
-}
-
-int enqueue(struct Queue* q, struct Job* j)
-{
-	if (isFull(q))
-	{
+int getQueueSize(struct Queue* q) {
+	if(NULL == q->head) {
 		return 0;
 	}
-	q->rear = (++q->rear) % q->capacity;
-	q->jobs[q->rear] = j;
-	++q->size;
-	return 1;
+	else {
+		return q->size;
+	}
 }
 
-struct Job* dequeue(struct Queue* q)
-{
-	struct Job* j = q->jobs[q->front];
-	q->front = (++q->front) % q->capacity;
-	q->size = --q->size;
-	return j;
+struct Job getFrontQueueElement(struct Queue* q) {
+	return q->head->job;
 }
 
-	
 
+void deQueue(struct Queue* q) {
+	if(isEmpty(q)) {
+		return;
+	}
 
+	struct Node* temp = q->head;
+	q->head = q->head->next;	
 
+	free(temp);
 
+	q->size--;
+	if(q->size == 0) {
+		q->head = NULL;
+		q->tail = NULL;
+	}
+}
 
+// create a function that adds an element to the queue
+void enQueue(struct Queue* q, Job job) {
+	if(q->head == NULL) {
+		q->head = (struct Node*)malloc(sizeof(struct Node));
+		q->head->job = job;
+		q->head->next = NULL;
+		q->tail = q->head;
+	}
+	else {
+		q->tail->next = (struct Node*)malloc(sizeof(struct Node));
+		q->tail->next->job = job;
+		q->tail->next->next = NULL;
+		q->tail = q->tail->next;
+	}
+	q->size++;
+}
 
+void printQueue(struct Queue* q) {
+	if(isEmpty(q)) {
+		printf("There are not items in the queue\n");
+	}
+	else {
+		struct Node* node = q->head;
+		while(node != NULL) {
+			jobInfo(node->job);
+			node = node->next;
+		}
+	}
+}
 
+// empty the queue
+void removeContents(struct Queue* q) {
+	while(q->head != NULL) {
+		struct Node* temp = q->head;
+		q->head = q->head->next;
+		free(temp);
+	}
+	q->size = 0;
+}

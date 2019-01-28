@@ -16,21 +16,16 @@ typedef struct Job {
 	int age;
 } Job;
 
-typedef struct CPU {
-	bool available;
-	Job* job;
-} CPU;
-
-// initialize the job struct
+//create array of jobs
 struct Job* createJobs(int number_of_jobs);
 
-// print the order of the jobs
+// prints job info
 void jobInfo(struct Job job);
 
 // swap position of the jobs in the array
 void swap_jobs_in_array(Job* job_array, int pos_1, int pos_2);
 
-// function to get the response time
+// function to get the response time of a job
 int response_time(Job j);
 
 // function to get the average response time
@@ -42,7 +37,6 @@ double avg_turnaround_time(Job* j, int numJobs);
 // function to get the average waiting time
 double avg_wait_time(Job* j, int numJobs);
 
-struct Job* createJob(int arrivalTime, float runTime, int priority);
 
 void sort_by_arrival_time(Job* jobs, int size);
 

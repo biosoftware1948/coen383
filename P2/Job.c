@@ -1,6 +1,6 @@
 #include "Job.h"
 
-//job utils
+//job utils to create a service time
 int newServiceTime() {
 	int service_time = rand() %11;
 	if (service_time == 0) {
@@ -8,7 +8,7 @@ int newServiceTime() {
 	}
 	return service_time;
 }
-//job utils
+//job utils to create priority
 int newPriority() {
 	int priority = rand() % 5;
 	if (priority == 0) {
@@ -41,14 +41,16 @@ struct Job* createJobs(int number_of_jobs) {
 
 //print job info
 void jobInfo(struct Job job) {
+	printf("----------------------------\n");
 	printf("Job id: %d\n", job.pid);
 	printf("\tArrival Time: %d\n", job.arrival_time);
-	printf("\tPriority: %d", job.priority);
-	printf("\tService Time: %d", job.service_time);
-	printf("\tRemaining Service Time: %d", job.remaining_service_time);
-	printf("\tStart Time: %d", job.start_time);
-	printf("\tFinish Time: %d", job.finish_time);
-	printf("\tAge: %d", job.age);
+	printf("\tPriority: %d\n", job.priority);
+	printf("\tService Time: %d\n", job.service_time);
+	printf("\tRemaining Service Time: %d\n", job.remaining_service_time);
+	printf("\tStart Time: %d\n", job.start_time);
+	printf("\tFinish Time: %d\n", job.finish_time);
+	printf("\tAge: %d\n", job.age);
+	printf("----------------------------\n");
 }
 
 
@@ -129,7 +131,6 @@ void sort_by_finish_time(Job* jobs, int size) {
 			}
 		}
 	}
-
 }
 
 int get_job_response_time(Job j) {
