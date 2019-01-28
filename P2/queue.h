@@ -43,4 +43,4 @@ void printQueue(struct Queue* q);
 void removeContents(struct Queue* q);
 
 
-#endif
+#endif /* QUEUE_H */

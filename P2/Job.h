@@ -1,5 +1,6 @@
 #ifndef JOB_H
 #define JOB_H
+
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,4 +51,4 @@ void sort_by_remaining_service_time(Job* jobs, int size);
 
 void sort_by_finish_time(Job* jobs, int size);
 
-#endif
+#endif /* JOB_H */
