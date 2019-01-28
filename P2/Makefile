@@ -25,7 +25,4 @@ all:		$(PROG)
 $(PROG):	$(OBJS)
 		$(CC) $(CFLAGS) -o $(PROG) $(OBJS)
 
-$(TARGET):	$(OBJS)
-		$(CC) $(CLFAGS) -o $(TARGET) $(addprefix $(BUILD_DIR), $(OBJS))
-
 clean:;		$(RM) -f $(PROG) core *.o
