@@ -10,5 +10,11 @@ int main() {
 
     CPU* cpu = createCPU();
     
+
+    //Have a function for each algo here thatr
+    //takes the jobs and cpu
+    //the algos can sort the jobs then use the queue
+    //to put things on and off the cpu
+
     return 0;
 }
