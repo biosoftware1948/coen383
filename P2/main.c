@@ -16,5 +16,10 @@ int main() {
     //the algos can sort the jobs then use the queue
     //to put things on and off the cpu
 
+    //RunRoundRobin(jobs, cpu)
+    //RunHPF(jobs, cpu)
+    //....
+    //...
+
     return 0;
 }
