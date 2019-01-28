@@ -61,6 +61,11 @@ int main()
 	freeCPU(cpu);
 	printf("cpu state: %d\n", cpu->cpuState);
 
+	printf("Making a jobs copy:\n");
+	Job* new_jobs = copyJobs(jobs, NUM_JOBS);
+	printf("printing that copy\n");
+	printAllJobs(new_jobs, NUM_JOBS);
+
 
 
 	return 0;
