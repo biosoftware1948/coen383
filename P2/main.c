@@ -9,7 +9,6 @@ int main() {
     printAllJobs(jobs, NUM_JOBS);
 
     CPU* cpu = createCPU();
-    
 
     //Have a function for each algo here thatr
     //takes the jobs and cpu
