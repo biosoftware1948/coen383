@@ -22,6 +22,8 @@ struct Job* createJobs(int number_of_jobs);
 // prints job info
 void jobInfo(struct Job job);
 
+void printAllJobs(Job* jobs, int num_jobs);
+
 // swap position of the jobs in the array
 void swap_jobs_in_array(Job* job_array, int pos_1, int pos_2);
 

@@ -185,3 +185,8 @@ double avg_wait_time(Job* jobs, int numJobs) {
 	return (avg / (numJobs - notRunJobs));
 }
 
+void printAllJobs(Job* jobs, int num_jobs) {
+	for(int i = 0; i < num_jobs; ++i) {
+		jobInfo(jobs[i]);
+	}
+}
