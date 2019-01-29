@@ -8,14 +8,14 @@
 #include "Job.h"
 
 typedef struct Node {
-	Job job;
-	struct Node* next;
+	Job *job;
+	struct Node *next;
 } Node;
 
 
 typedef struct Queue {
-	struct Node* head;
-	struct Node* tail;
+	Node *head;
+	Node *tail;
 	int size;
 } Queue;
 
@@ -29,12 +29,12 @@ bool isEmpty(struct Queue* q);
 int getQueueSize(struct Queue* q);
 
 // create a function to get the front element from the queue
-struct Job getFrontQueueElement(struct Queue* q);
+Job *getFrontQueueElement(struct Queue* q);
 
-void deQueue(struct Queue* q);
+Job *deQueue(struct Queue* q);
 
 // create a function that adds an element to the queue
-void enQueue(struct Queue* q, Job job);
+void enQueue(struct Queue* q, Job *job);
 
 // print each element in the queue
 void printQueue(struct Queue* q);

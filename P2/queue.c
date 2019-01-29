@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdbool.h>
 
 #include "Queue.h"
@@ -16,45 +17,42 @@ bool isEmpty(struct Queue* q) {
 }
 
 int getQueueSize(struct Queue* q) {
-	if(NULL == q->head) {
-		return 0;
-	}
-	else {
-		return q->size;
-	}
+	if (q->head == NULL) return 0;
+	return q->size;
 }
 
-struct Job getFrontQueueElement(struct Queue* q) {
+Job *getFrontQueueElement(struct Queue* q) {
 	return q->head->job;
 }
 
 
-void deQueue(struct Queue* q) {
-	if(isEmpty(q)) {
-		return;
-	}
+Job *deQueue(struct Queue* q) {
+	assert(!isEmpty(q));
 
-	struct Node* temp = q->head;
-	q->head = q->head->next;	
+	Node *temp = q->head;
+	Job *job = q->head->job;
+	q->head = q->head->next;
 
 	free(temp);
 
 	q->size--;
+
 	if(q->size == 0) {
 		q->head = NULL;
 		q->tail = NULL;
 	}
+
+	return job;
 }
 
 // create a function that adds an element to the queue
-void enQueue(struct Queue* q, Job job) {
+void enQueue(struct Queue* q, Job *job) {
 	if(q->head == NULL) {
 		q->head = (struct Node*)malloc(sizeof(struct Node));
 		q->head->job = job;
 		q->head->next = NULL;
 		q->tail = q->head;
-	}
-	else {
+	} else {
 		q->tail->next = (struct Node*)malloc(sizeof(struct Node));
 		q->tail->next->job = job;
 		q->tail->next->next = NULL;
@@ -68,9 +66,9 @@ void printQueue(struct Queue* q) {
 		printf("There are not items in the queue\n");
 	}
 	else {
-		struct Node* node = q->head;
+		Node *node = q->head;
 		while(node != NULL) {
-			jobInfo(node->job);
+			jobInfo(*node->job);
 			node = node->next;
 		}
 	}

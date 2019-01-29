@@ -27,8 +27,14 @@ int main() {
     //RunHPF(jobs, cpu)
     //....
     //...
+
+    //Shortest Job First
     //RunSJF(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
+
+    //Shortest Remaining Time
     //RunSRT(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
-    RunHPFNP(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
+
+    //Highest Priority First (Non-preemptive)
+    //RunHPFNP(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
     return 0;
 }
