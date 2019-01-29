@@ -29,9 +29,9 @@ bool isEmpty(struct Queue* q);
 int getQueueSize(struct Queue* q);
 
 // create a function to get the front element from the queue
-Job *getFrontQueueElement(struct Queue* q);
+struct Job getFrontQueueElement(struct Queue* q);
 
-Job *deQueue(struct Queue* q);
+void deQueue(struct Queue* q);
 
 // create a function that adds an element to the queue
 void enQueue(struct Queue* q, Job job);
