@@ -23,6 +23,9 @@ void freeCPU(CPU* cpu) {
 }
 
 void runIdle(CPU *cpu, unsigned time_delta) {
+    for (int i = 0; i < time_delta; i++)
+        printf("%d:\tIdle.\n", cpu->global_time + i);
+
     cpu->global_time += time_delta;
 }
 
@@ -33,6 +36,9 @@ int runCurrentJob(CPU *cpu, unsigned time_delta) {
         time_delta += cpu->job->remaining_service_time;
         cpu->job->remaining_service_time = 0;
     }
+
+    for (int i = 0; i < time_delta; i++)
+        printf("%d:\tJob %d\n", cpu->global_time + i, cpu->job->pid);
 
     if (cpu->job->start_time == -1)
         cpu->job->start_time = cpu->global_time;

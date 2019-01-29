@@ -6,7 +6,7 @@
 #include "schedulingAlgorithms/SRT.h"
 
 int main() {
-    int NUM_JOBS = 3;
+    int NUM_JOBS = 10;
 
     // Not working for some reason
     int seed = time(NULL);
@@ -26,7 +26,7 @@ int main() {
     //RunHPF(jobs, cpu)
     //....
     //...
-    RunSJF(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
+    //RunSJF(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
     RunSRT(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
 
     return 0;
