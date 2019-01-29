@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "schedulingAlgorithms/SJF.h"
 #include "schedulingAlgorithms/SRT.h"
+#include "schedulingAlgorithms/HPFNP.h"
 
 int main() {
     int NUM_JOBS = 10;
@@ -27,7 +28,7 @@ int main() {
     //....
     //...
     //RunSJF(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
-    RunSRT(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
-
+    //RunSRT(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
+    RunHPFNP(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
     return 0;
 }

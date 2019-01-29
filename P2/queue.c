@@ -1,3 +1,4 @@
+# include <assert.h>
 #include <stdbool.h>
 
 #include "Queue.h"
@@ -24,18 +25,18 @@ int getQueueSize(struct Queue* q) {
 	}
 }
 
-struct Job getFrontQueueElement(struct Queue* q) {
-	return q->head->job;
+Job *getFrontQueueElement(struct Queue* q) {
+	return &q->head->job;
 }
 
 
-void deQueue(struct Queue* q) {
-	if(isEmpty(q)) {
-		return;
-	}
+Job *deQueue(struct Queue* q) {
+	struct Job *front = getFrontQueueElement(q);
+
+	assert(!isEmpty(q));
 
 	struct Node* temp = q->head;
-	q->head = q->head->next;	
+	q->head = q->head->next;
 
 	free(temp);
 
@@ -44,6 +45,8 @@ void deQueue(struct Queue* q) {
 		q->head = NULL;
 		q->tail = NULL;
 	}
+
+	return front;
 }
 
 // create a function that adds an element to the queue
