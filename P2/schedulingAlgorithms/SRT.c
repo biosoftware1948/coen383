@@ -3,7 +3,7 @@
 # include "../Job.h"
 # include "SJF.h"
 
-void RunSRT(CPU *cpu, Job *jobs, unsigned jobsCount) {
+void RunSRT(CPU *cpu, Job *jobs, unsigned jobsCount, int output) {
     unsigned completed = 0;
     unsigned time_delta;
 
@@ -17,7 +17,7 @@ void RunSRT(CPU *cpu, Job *jobs, unsigned jobsCount) {
             if (jobs[i].remaining_service_time == 0) continue;
             else if (jobs[i].arrival_time <= cpu->global_time) break;
             else  {
-                runIdle(cpu, jobs[i].arrival_time - cpu->global_time);
+                runIdle(cpu, jobs[i].arrival_time - cpu->global_time, output);
                 break;
             }
         }
@@ -45,7 +45,7 @@ void RunSRT(CPU *cpu, Job *jobs, unsigned jobsCount) {
 
         assert(next != NULL);
         giveCPUJob(cpu, next);
-        runCurrentJob(cpu, time_delta);
+        runCurrentJob(cpu, time_delta, output);
         if (next->remaining_service_time == 0) completed++;
     }
 }

@@ -4,7 +4,7 @@
 # include "../queue.h"
 # include "RR.h"
 
-void RunRR(CPU *cpu, Job *jobs, unsigned jobsCount){
+void RunRR(CPU *cpu, Job *jobs, unsigned jobsCount, int output){
     int completed = 0, i = 0;
     unsigned slice = 1;
 
@@ -27,7 +27,7 @@ void RunRR(CPU *cpu, Job *jobs, unsigned jobsCount){
 
             // run job for 1 slice
             giveCPUJob(cpu, job);
-            runCurrentJob(cpu, slice);
+            runCurrentJob(cpu, slice, output);
 
             // put job back in queue if still not completed
             if (job->remaining_service_time > 0)
@@ -42,6 +42,6 @@ void RunRR(CPU *cpu, Job *jobs, unsigned jobsCount){
 
         // if any jobs left, run idle until next job
         if (i < jobsCount)
-            runIdle(cpu, jobs[i].arrival_time - cpu->global_time);
+            runIdle(cpu, jobs[i].arrival_time - cpu->global_time, output);
     }
 }

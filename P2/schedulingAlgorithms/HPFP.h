@@ -4,6 +4,6 @@
 # include "../CPU.h"
 # include "../Job.h"
 
-void RunHPFP(CPU *cpu, Job *jobs, unsigned jobsCount);
+void RunHPFP(CPU *cpu, Job *jobs, unsigned jobsCount, int output);
 
 # endif /* HPFNP_H */

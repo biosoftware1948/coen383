@@ -1,4 +1,5 @@
 #include "Job.h"
+#include <math.h>
 
 //job utils to create a service time
 int newServiceTime() {
@@ -153,6 +154,19 @@ void sort_by_finish_time(Job* jobs, int size) {
 	}
 }
 
+void printAllJobs(Job* jobs, int num_jobs) {
+	for(int i = 0; i < num_jobs; ++i) {
+		jobInfo(jobs[i]);
+	}
+}
+
+void report_print(Job * jobs, int size) {
+	for (int i = 0; i < size; i++) {
+		printf("Job %d,   Arrival Time=%d,   Service Time=%d,   priority %d\n",
+			jobs[i].pid, jobs[i].arrival_time, jobs[i].service_time, jobs[i].priority);
+	}
+}
+
 int get_job_response_time(Job j) {
 	return (j.start_time - j.arrival_time);
 }
@@ -173,6 +187,56 @@ double avg_response_time_in_job_array(Job* jobs, int numJobs) {
 	return (avg / (numJobs - notRunJobs));
 }
 
+void print_response_time(Job* jobs, int numJobs) {
+	double avg = 0;
+	int notRunJobs = 0;
+	// add up all of the response times
+	for(int i = 0; i < numJobs; i++) {
+		if(jobs[i].start_time != -1) {
+			printf("      - Job %d: %d,\t", jobs[i].pid, (jobs[i].start_time - jobs[i].arrival_time));
+			avg += (jobs[i].start_time - jobs[i].arrival_time);
+		}
+		else {
+			notRunJobs++;
+		}
+	}
+	// find the average response time
+	printf("\n      AVERAGE: %f\n", (avg / (numJobs - notRunJobs)));
+}
+
+double avg_wait_time(Job* jobs, int numJobs) {
+	double avg = 0;
+	int notRunJobs = 0;
+	// add up all of the wait times
+	for(int i = 0; i < numJobs; i++) {
+		if(-1 != jobs[i].start_time) {
+			avg += jobs[i].finish_time - jobs[i].arrival_time - jobs[i].service_time;
+		}
+		else {
+			notRunJobs++;
+		}
+	}
+	// find the average wait time
+	return (avg / (numJobs - notRunJobs));
+}
+
+void print_avg_wait_time(Job* jobs, int numJobs) {
+	double avg = 0;
+	int notRunJobs = 0;
+	// add up all of the wait times
+	for(int i = 0; i < numJobs; i++) {
+		if(-1 != jobs[i].start_time) {
+			printf("      - Job %d: %d,\t", jobs[i].pid, jobs[i].finish_time - jobs[i].arrival_time - jobs[i].service_time);
+			avg += jobs[i].finish_time - jobs[i].arrival_time - jobs[i].service_time;
+		}
+		else {
+			notRunJobs++;
+		}
+	}
+	// find the average wait time
+	printf("\n      AVERAGE: %f\n", (avg / (numJobs - notRunJobs)));
+}
+
 double avg_turnaround_time(Job* jobs, int numJobs) {
 	double avg = 0;
 	int notRunJobs = 0;
@@ -189,31 +253,97 @@ double avg_turnaround_time(Job* jobs, int numJobs) {
 	return (avg / (numJobs - notRunJobs));
 }
 
-double avg_wait_time(Job* jobs, int numJobs) {
+void print_turn_arounds(Job * jobs, int numJobs) {
 	double avg = 0;
 	int notRunJobs = 0;
 	// add up all of the wait times
 	for(int i = 0; i < numJobs; i++) {
 		if(-1 != jobs[i].start_time) {
-			avg += (jobs[i].finish_time - jobs[i].service_time);
+			avg += (jobs[i].finish_time - jobs[i].arrival_time);
+			printf("      - Job %d: %d,\t", jobs[i].pid, jobs[i].finish_time - jobs[i].arrival_time);
 		}
 		else {
 			notRunJobs++;
 		}
 	}
 	// find the average wait time
-	return (avg / (numJobs - notRunJobs));
+	printf("\n      AVERAGE: %f\n", (avg / (numJobs - notRunJobs)));
 }
 
-void printAllJobs(Job* jobs, int num_jobs) {
-	for(int i = 0; i < num_jobs; ++i) {
-		jobInfo(jobs[i]);
-	}
+double avg_5tat(Job *j1, Job *j2, Job *j3, Job *j4, Job *j5, int size) {
+	int count = 5;
+
+	double a1 = avg_turnaround_time(j1, size);
+	double a2 = avg_turnaround_time(j2, size);
+	double a3 = avg_turnaround_time(j3, size);
+	double a4 = avg_turnaround_time(j4, size);
+	double a5 = avg_turnaround_time(j5, size);
+
+
+	if (fabs(a1) <= 0.0001) count --;
+	if (fabs(a2) == 0.0001) count --;
+	if (fabs(a3) == 0.0001) count --;
+	if (fabs(a4) == 0.0001) count --;
+	if (fabs(a5) == 0.0001) count --;
+
+	if (count == 0) return 0;
+	return (a1 + a2 + a3 + a4 + a5) / count;
 }
 
-void report_print(Job * jobs, int size) {
+double avg_5wait(Job *j1, Job *j2, Job *j3, Job *j4, Job *j5, int size) {
+	int count = 5;
+
+	double a1 = avg_wait_time(j1, size);
+	double a2 = avg_wait_time(j2, size);
+	double a3 = avg_wait_time(j3, size);
+	double a4 = avg_wait_time(j4, size);
+	double a5 = avg_wait_time(j5, size);
+
+	return (a1 + a2 + a3 + a4 + a5) / count;
+}
+
+double avg_5response(Job *j1, Job *j2, Job *j3, Job *j4, Job *j5, int size) {
+	int count = 5;
+
+	double a1 = avg_response_time_in_job_array(j1, size);
+	double a2 = avg_response_time_in_job_array(j2, size);
+	double a3 = avg_response_time_in_job_array(j3, size);
+	double a4 = avg_response_time_in_job_array(j4, size);
+	double a5 = avg_response_time_in_job_array(j5, size);
+
+	return (a1 + a2 + a3 + a4 + a5) / count;
+}
+
+void print_avg_5throughput(Job *j1, Job *j2, Job *j3, Job *j4, Job *j5, int size) {
+	int count = 0;
+
 	for (int i = 0; i < size; i++) {
-		printf("Job %d,   Arrival Time=%d,   Service Time=%d,   priority %d\n",
-			jobs[i].pid, jobs[i].arrival_time, jobs[i].service_time, jobs[i].priority);
+		if (j1[i].start_time != -1) count++;
+		if (j2[i].start_time != -1) count++;
+		if (j3[i].start_time != -1) count++;
+		if (j4[i].start_time != -1) count++;
+		if (j5[i].start_time != -1) count++;
 	}
+
+	printf("  Average Over 5 Runs: %f percent    %d out of %d.\n", (count * 1.0) / (size * 5) * 100, count, size * 5);
+}
+
+void print_metrics(Job *j1, Job *j2, Job *j3, Job *j4, Job *j5, int size) {
+	printf("-Turn Around Time:\n");
+	printf("    For Shown Run:\n");
+	print_turn_arounds(j1, size);
+	printf("  Average Over 5 Runs: %f\n", avg_5tat(j1, j2, j3, j4, j5, size));
+
+	printf("-Waiting Time:\n");
+	printf("    For Shown Run:\n");
+	print_avg_wait_time(j1, size);
+	printf("  Average Over 5 Runs: %f\n", avg_5wait(j1, j2, j3, j4, j5, size));
+
+	printf("-Response Time:\n");
+	printf("    For Shown Run:\n");
+	print_response_time(j1, size);
+	printf("  Average Over 5 Runs: %f\n", avg_5response(j1, j2, j3, j4, j5, size));
+
+	printf("-Throughput Rate:\n");
+	print_avg_5throughput(j1, j2, j3, j4, j5, size);
 }

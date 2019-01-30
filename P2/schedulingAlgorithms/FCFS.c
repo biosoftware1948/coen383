@@ -4,7 +4,7 @@
 # include "../queue.h"
 # include "FCFS.h"
 
-void RunFCFS(CPU *cpu, Job *jobs, unsigned jobsCount){
+void RunFCFS(CPU *cpu, Job *jobs, unsigned jobsCount, int output){
 
     int completed = 0, i = 0;
     Queue *q = createQueue();
@@ -18,7 +18,7 @@ void RunFCFS(CPU *cpu, Job *jobs, unsigned jobsCount){
 
         if(isEmpty(q)){
             if(i >= jobsCount) break;
-            runIdle(cpu, jobs[i].arrival_time - cpu->global_time);
+            runIdle(cpu, jobs[i].arrival_time - cpu->global_time, output);
 
         } else {
             while(!isEmpty(q) && cpu->global_time < 100){
@@ -27,7 +27,7 @@ void RunFCFS(CPU *cpu, Job *jobs, unsigned jobsCount){
 
                 giveCPUJob(cpu, j);
                 j->start_time = cpu->global_time;
-                runCurrentJob(cpu, j->remaining_service_time);
+                runCurrentJob(cpu, j->remaining_service_time, output);
                 j->finish_time = cpu->global_time;
                 completed++;
             }

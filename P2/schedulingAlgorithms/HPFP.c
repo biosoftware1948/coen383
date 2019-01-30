@@ -58,7 +58,7 @@ static void removeCompleted(
     return;
 }
 
-void RunHPFP(CPU *cpu, Job *jobs, unsigned jobsCount) {
+void RunHPFP(CPU *cpu, Job *jobs, unsigned jobsCount, int output) {
     sort_by_arrival_time(jobs, jobsCount);
 
     Queue *priority1 = createQueue();
@@ -90,10 +90,10 @@ void RunHPFP(CPU *cpu, Job *jobs, unsigned jobsCount) {
             !isComplete(priority1, priority2, priority3, priority4)) {
         Job *next = getNextJob(cpu, priority1, priority2, priority3, priority4);
         int tti = timeToIdle(cpu, next);
-        runIdle(cpu, tti);
+        runIdle(cpu, tti, output);
         giveCPUJob(cpu, next);
         //jobInfo(*next);
-        runCurrentJob(cpu, 1);
+        runCurrentJob(cpu, 1, output);
         //jobInfo(*next);
         removeCompleted(priority1, priority2, priority3, priority4);
     }

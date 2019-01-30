@@ -4,6 +4,6 @@
 # include "../CPU.h"
 # include "../Job.h"
 
-void RunSRT(CPU *cpu, Job *jobs, unsigned jobsCount);
+void RunSRT(CPU *cpu, Job *jobs, unsigned jobsCount, int output);
 
 # endif /* SRT_H */
