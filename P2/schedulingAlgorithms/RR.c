@@ -35,7 +35,9 @@ void RunRR(CPU *cpu, Job *jobs, unsigned jobsCount, int output){
             deQueue(queue);
 
             // run job for 1 slice
-            job->start_time = cpu->global_time;
+            if (job->remaining_service_time == job->service_time)
+                job->start_time = cpu->global_time;
+
             giveCPUJob(cpu, job);
             runCurrentJob(cpu, slice, output);
 
