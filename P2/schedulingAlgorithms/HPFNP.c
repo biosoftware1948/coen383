@@ -5,17 +5,17 @@
 # include "../queue.h"
 # include "HPFNP.h"
 
-bool isComplete(
+static bool isComplete(
         struct Queue *p1, struct Queue *p2, struct Queue *p3, struct Queue *p4) {
     return isEmpty(p1) && isEmpty(p2) && isEmpty(p3) && isEmpty(p4);
 }
 
-int getMinArrival(int a, int b) {
+static int getMinArrival(int a, int b) {
     if (a == -1) return b;
     return a < b ? a : b;
 }
 
-Job *getNextJob(
+static Job *getNextJob(
         CPU *cpu, struct Queue *p1, struct Queue *p2, struct Queue *p3, struct Queue *p4) {
     Job *j1 = NULL, *j2 = NULL, *j3 = NULL, *j4 = NULL;
     if (!isEmpty(p1)) j1 = (getFrontQueueElement(p1));
@@ -43,7 +43,7 @@ Job *getNextJob(
     return NULL;
 }
 
-unsigned timeToIdle(CPU *cpu, Job *nextJob) {
+static unsigned timeToIdle(CPU *cpu, Job *nextJob) {
     return cpu->global_time >= nextJob->arrival_time
         ? 0
         : nextJob->arrival_time - cpu->global_time;
