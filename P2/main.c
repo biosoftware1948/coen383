@@ -28,20 +28,29 @@ int main() {
     report_print(jobs, NUM_JOBS); // Printing out each job's name, arrival time, expected run time & priority
 
     // First Come First Serve
-    //RunFCFS(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
-
-    // Shortest Job First
-    printf("\n\n\n===== Running Shortest Jobs First: =====\n");
     Job *jobsCopy = copyJobs(jobs, NUM_JOBS),
         *jc2 = copyJobs(j2, NUM_JOBS), *jc3 = copyJobs(j3, NUM_JOBS),
         *jc4 = copyJobs(j4, NUM_JOBS), *jc5 = copyJobs(j5, NUM_JOBS);
+    RunFCFS(createCPU(), jobsCopy, NUM_JOBS, 1);
+    RunFCFS(createCPU(), jc2, NUM_JOBS, 0);
+    RunFCFS(createCPU(), jc3, NUM_JOBS, 0);
+    RunFCFS(createCPU(), jc4, NUM_JOBS, 0);
+    RunFCFS(createCPU(), jc5, NUM_JOBS, 0);
+    printf("\nMETRICS:\n");
+    print_metrics(jobsCopy, jc2, jc3, jc4, jc5, NUM_JOBS, 0);
+
+    // Shortest Job First
+    printf("\n\n\n===== Running Shortest Jobs First: =====\n");
+    jobsCopy = copyJobs(jobs, NUM_JOBS),
+        jc2 = copyJobs(j2, NUM_JOBS), jc3 = copyJobs(j3, NUM_JOBS),
+        jc4 = copyJobs(j4, NUM_JOBS), jc5 = copyJobs(j5, NUM_JOBS);
     RunSJF(createCPU(), jobsCopy, NUM_JOBS, 1);
     RunSJF(createCPU(), jc2, NUM_JOBS, 0);
     RunSJF(createCPU(), jc3, NUM_JOBS, 0);
     RunSJF(createCPU(), jc4, NUM_JOBS, 0);
     RunSJF(createCPU(), jc5, NUM_JOBS, 0);
     printf("\nMETRICS:\n");
-    print_metrics(jobsCopy, jc2, jc3, jc4, jc5, NUM_JOBS);
+    print_metrics(jobsCopy, jc2, jc3, jc4, jc5, NUM_JOBS, 0);
 
     // Shortest Remaining Time
     printf("\n\n\n===== Running Shortest Remaining Time: =====\n");
@@ -54,25 +63,46 @@ int main() {
     RunSRT(createCPU(), jc4, NUM_JOBS, 0);
     RunSRT(createCPU(), jc5, NUM_JOBS, 0);
     printf("\nMETRICS:\n");
-    print_metrics(jobsCopy, jc2, jc3, jc4, jc5, NUM_JOBS);
+    print_metrics(jobsCopy, jc2, jc3, jc4, jc5, NUM_JOBS, 0);
 
     // Round Robin
-    //RunRR(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
+    printf("\n\n\n===== Running Round Robin: =====\n");
+    jobsCopy = copyJobs(jobs, NUM_JOBS),
+        jc2 = copyJobs(j2, NUM_JOBS), jc3 = copyJobs(j3, NUM_JOBS),
+        jc4 = copyJobs(j4, NUM_JOBS), jc5 = copyJobs(j5, NUM_JOBS);
+    RunRR(createCPU(), jobsCopy, NUM_JOBS, 1);
+    RunRR(createCPU(), jc2, NUM_JOBS, 0);
+    RunRR(createCPU(), jc3, NUM_JOBS, 0);
+    RunRR(createCPU(), jc4, NUM_JOBS, 0);
+    RunRR(createCPU(), jc5, NUM_JOBS, 0);
+    printf("\nMETRICS:\n");
+    print_metrics(jobsCopy, jc2, jc3, jc4, jc5, NUM_JOBS, 0);
 
     //Highest Priority First (non-preemptive)
-    //RunHPFNP(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
+    printf("\n\n\n===== Running Highest Priority First (non-preemptive): =====\n");
+    jobsCopy = copyJobs(jobs, NUM_JOBS),
+        jc2 = copyJobs(j2, NUM_JOBS), jc3 = copyJobs(j3, NUM_JOBS),
+        jc4 = copyJobs(j4, NUM_JOBS), jc5 = copyJobs(j5, NUM_JOBS);
+    RunHPFNP(createCPU(), jobsCopy, NUM_JOBS, 1);
+    RunHPFNP(createCPU(), jc2, NUM_JOBS, 0);
+    RunHPFNP(createCPU(), jc3, NUM_JOBS, 0);
+    RunHPFNP(createCPU(), jc4, NUM_JOBS, 0);
+    RunHPFNP(createCPU(), jc5, NUM_JOBS, 0);
+    printf("\nMETRICS:\n");
+    print_metrics(jobsCopy, jc2, jc3, jc4, jc5, NUM_JOBS, 1);
 
     //Highest Priority First (preemptive)
-    //RunHPFP(createCPU(), j1, NUM_JOBS);
-
-
-    // TODO: Report Outputs
-    //time chart
-    //Average turn around time
-    //Avereage waiting time
-    //Average response time
-    //Algorithm Throughput (HPF for priority level and all together)
-    // ensure calculation is only on jobs that ran
+    printf("\n\n\n===== Running Highest Priority First (preemptive): =====\n");
+    jobsCopy = copyJobs(jobs, NUM_JOBS),
+        jc2 = copyJobs(j2, NUM_JOBS), jc3 = copyJobs(j3, NUM_JOBS),
+        jc4 = copyJobs(j4, NUM_JOBS), jc5 = copyJobs(j5, NUM_JOBS);
+    RunHPFP(createCPU(), jobsCopy, NUM_JOBS, 1);
+    RunHPFP(createCPU(), jc2, NUM_JOBS, 0);
+    RunHPFP(createCPU(), jc3, NUM_JOBS, 0);
+    RunHPFP(createCPU(), jc4, NUM_JOBS, 0);
+    RunHPFP(createCPU(), jc5, NUM_JOBS, 0);
+    printf("\nMETRICS:\n");
+    print_metrics(jobsCopy, jc2, jc3, jc4, jc5, NUM_JOBS, 1);
 
     return 0;
 }

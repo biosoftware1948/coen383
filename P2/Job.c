@@ -176,7 +176,7 @@ double avg_response_time_in_job_array(Job* jobs, int numJobs) {
 	int notRunJobs = 0;
 	// add up all of the response times
 	for(int i = 0; i < numJobs; i++) {
-		if(jobs[i].start_time != -1) {
+		if(jobs[i].finish_time != -1) {
 			avg += (jobs[i].start_time - jobs[i].arrival_time);
 		}
 		else {
@@ -192,7 +192,7 @@ void print_response_time(Job* jobs, int numJobs) {
 	int notRunJobs = 0;
 	// add up all of the response times
 	for(int i = 0; i < numJobs; i++) {
-		if(jobs[i].start_time != -1) {
+		if(jobs[i].finish_time != -1) {
 			printf("      - Job %d: %d,\t", jobs[i].pid, (jobs[i].start_time - jobs[i].arrival_time));
 			avg += (jobs[i].start_time - jobs[i].arrival_time);
 		}
@@ -209,7 +209,7 @@ double avg_wait_time(Job* jobs, int numJobs) {
 	int notRunJobs = 0;
 	// add up all of the wait times
 	for(int i = 0; i < numJobs; i++) {
-		if(-1 != jobs[i].start_time) {
+		if(-1 != jobs[i].finish_time) {
 			avg += jobs[i].finish_time - jobs[i].arrival_time - jobs[i].service_time;
 		}
 		else {
@@ -225,7 +225,7 @@ void print_avg_wait_time(Job* jobs, int numJobs) {
 	int notRunJobs = 0;
 	// add up all of the wait times
 	for(int i = 0; i < numJobs; i++) {
-		if(-1 != jobs[i].start_time) {
+		if(-1 != jobs[i].finish_time) {
 			printf("      - Job %d: %d,\t", jobs[i].pid, jobs[i].finish_time - jobs[i].arrival_time - jobs[i].service_time);
 			avg += jobs[i].finish_time - jobs[i].arrival_time - jobs[i].service_time;
 		}
@@ -242,7 +242,7 @@ double avg_turnaround_time(Job* jobs, int numJobs) {
 	int notRunJobs = 0;
 	// add up all of the turnaround times
 	for(int i = 0; i < numJobs; i++) {
-		if(jobs[i].start_time != -1) {
+		if(jobs[i].finish_time != -1) {
 			avg += (jobs[i].finish_time - jobs[i].arrival_time);
 		}
 		else {
@@ -258,7 +258,7 @@ void print_turn_arounds(Job * jobs, int numJobs) {
 	int notRunJobs = 0;
 	// add up all of the wait times
 	for(int i = 0; i < numJobs; i++) {
-		if(-1 != jobs[i].start_time) {
+		if(-1 != jobs[i].finish_time) {
 			avg += (jobs[i].finish_time - jobs[i].arrival_time);
 			printf("      - Job %d: %d,\t", jobs[i].pid, jobs[i].finish_time - jobs[i].arrival_time);
 		}
@@ -318,17 +318,84 @@ void print_avg_5throughput(Job *j1, Job *j2, Job *j3, Job *j4, Job *j5, int size
 	int count = 0;
 
 	for (int i = 0; i < size; i++) {
-		if (j1[i].start_time != -1) count++;
-		if (j2[i].start_time != -1) count++;
-		if (j3[i].start_time != -1) count++;
-		if (j4[i].start_time != -1) count++;
-		if (j5[i].start_time != -1) count++;
+		if (j1[i].finish_time != -1) count++;
+		if (j2[i].finish_time != -1) count++;
+		if (j3[i].finish_time != -1) count++;
+		if (j4[i].finish_time != -1) count++;
+		if (j5[i].finish_time != -1) count++;
 	}
 
 	printf("  Average Over 5 Runs: %f percent    %d out of %d.\n", (count * 1.0) / (size * 5) * 100, count, size * 5);
 }
 
-void print_metrics(Job *j1, Job *j2, Job *j3, Job *j4, Job *j5, int size) {
+void print_avg_5throughput_hpf(Job *j1, Job *j2, Job *j3, Job *j4, Job *j5, int size) {
+	int p1 = 0, p2 = 0, p3 = 0, p4 = 0, t1 = 0, t2 = 0, t3 = 0, t4 = 0;
+
+	for (int i = 0; i < size; i++) {
+		if (j1[i].priority == 1) {
+			t1++;
+			if (j1[i].finish_time != -1) p1++;
+		} else if (j1[i].priority == 2) {
+			t2++;
+			if (j1[i].finish_time != -1) p2++;
+		} else if (j1[i].priority == 3) {
+			t3++;
+			if (j1[i].finish_time != -1) p3++;
+		} else if (j1[i].priority == 4) {
+			t4++;
+			if (j1[i].finish_time != -1) p4++;
+		}
+
+		if (j2[i].priority == 1) {
+			t1++;
+			if (j2[i].finish_time != -1) p1++;
+		} else if (j2[i].priority == 2) {
+			t2++;
+			if (j2[i].finish_time != -1) p2++;
+		} else if (j2[i].priority == 3) {
+			t3++;
+			if (j2[i].finish_time != -1) p3++;
+		} else if (j2[i].priority == 4) {
+			t4++;
+			if (j2[i].finish_time != -1) p4++;
+		}
+
+		if (j3[i].priority == 1) {
+			t1++;
+			if (j3[i].finish_time != -1) p1++;
+		} else if (j3[i].priority == 2) {
+			t2++;
+			if (j3[i].finish_time != -1) p2++;
+		} else if (j3[i].priority == 3) {
+			t3++;
+			if (j3[i].finish_time != -1) p3++;
+		} else if (j3[i].priority == 4) {
+			t4++;
+			if (j3[i].finish_time != -1) p4++;
+		}
+
+		if (j4[i].priority == 1) {
+			t1++;
+			if (j4[i].finish_time != -1) p1++;
+		} else if (j4[i].priority == 2) {
+			t2++;
+			if (j4[i].finish_time != -1) p2++;
+		} else if (j4[i].priority == 3) {
+			t3++;
+			if (j4[i].finish_time != -1) p3++;
+		} else if (j4[i].priority == 4) {
+			t4++;
+			if (j4[i].finish_time != -1) p4++;
+		}
+	}
+	printf("  Average Over 5 Runs:\n");
+	printf("  - Priority 1: %f percent    %d out of %d.\n", (p1 * 1.0) / (t1 * 1.0) * 100, p1, t1);
+	printf("  - Priority 2: %f percent    %d out of %d.\n", (p2 * 1.0) / (t2 * 1.0) * 100, p2, t2);
+	printf("  - Priority 3: %f percent    %d out of %d.\n", (p3 * 1.0) / (t3 * 1.0) * 100, p3, t3);
+	printf("  - Priority 4: %f percent    %d out of %d.\n", (p4 * 1.0) / (t4 * 1.0) * 100, p4, t4);
+}
+
+void print_metrics(Job *j1, Job *j2, Job *j3, Job *j4, Job *j5, int size, int hpf) {
 	printf("-Turn Around Time:\n");
 	printf("    For Shown Run:\n");
 	print_turn_arounds(j1, size);
@@ -345,5 +412,6 @@ void print_metrics(Job *j1, Job *j2, Job *j3, Job *j4, Job *j5, int size) {
 	printf("  Average Over 5 Runs: %f\n", avg_5response(j1, j2, j3, j4, j5, size));
 
 	printf("-Throughput Rate:\n");
-	print_avg_5throughput(j1, j2, j3, j4, j5, size);
+	if (hpf == 0) print_avg_5throughput(j1, j2, j3, j4, j5, size);
+	else print_avg_5throughput_hpf(j1, j2, j3, j4, j5, size);
 }

@@ -4,6 +4,6 @@
 # include "../CPU.h"
 # include "../Job.h"
 
-void RunFSFS(CPU *cpu, Job *jobs, unsigned jobsCount, int output);
+void RunFCFS(CPU *cpu, Job *jobs, unsigned jobsCount, int output);
 
 # endif
