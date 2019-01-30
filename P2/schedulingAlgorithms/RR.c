@@ -13,6 +13,10 @@ bool processStarted(Job * jobs, int count){
     return false;
 }
 
+bool jobInProcess(Job * job){
+    return job->remaining_service_time != job->service_time;
+}
+
 void RunRR(CPU *cpu, Job *jobs, unsigned jobsCount, int output){
     int completed = 0, i = 0;
     unsigned slice = 1;
@@ -38,8 +42,10 @@ void RunRR(CPU *cpu, Job *jobs, unsigned jobsCount, int output){
             if (job->remaining_service_time == job->service_time)
                 job->start_time = cpu->global_time;
 
-            giveCPUJob(cpu, job);
-            runCurrentJob(cpu, slice, output);
+            if (cpu->global_time < 100 || jobInProcess(job)){
+                giveCPUJob(cpu, job);
+                runCurrentJob(cpu, slice, output);
+            } else { break;}
 
             // put job back in queue if still not completed
             if (job->remaining_service_time > 0)
