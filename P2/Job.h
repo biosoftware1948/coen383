@@ -56,6 +56,6 @@ void sort_by_finish_time(Job* jobs, int size);
 
 void report_print(Job * jobs, int size);
 
-void print_metrics(Job *j1, Job *j2, Job *j3, Job *j4, Job *j5, int size);
+void print_metrics(Job *j1, Job *j2, Job *j3, Job *j4, Job *j5, int size, int hpf);
 
 #endif /* JOB_H */
