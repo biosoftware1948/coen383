@@ -39,21 +39,24 @@ void RunRR(CPU *cpu, Job *jobs, unsigned jobsCount, int output){
             deQueue(queue);
 
             // run job for 1 slice
-            if (job->remaining_service_time == job->service_time)
-                job->start_time = cpu->global_time;
+            // if (job->remaining_service_time == job->service_time)
+                // job->start_time = cpu->global_time;
 
             if (cpu->global_time < 100 || jobInProcess(job)){
                 giveCPUJob(cpu, job);
                 runCurrentJob(cpu, slice, output);
-            } else { break;}
+            } else {
+                break;
+            }
 
             // put job back in queue if still not completed
-            if (job->remaining_service_time > 0)
+            if (job->remaining_service_time > 0){
                 enQueue(queue, job);
-            else
+            }
+            else {
                 completed++;
-                job->finish_time = cpu->global_time;
-
+                // job->finish_time = cpu->global_time;
+            }
             // update queue
             while(jobs[i].arrival_time <= cpu->global_time && i < jobsCount)
                 enQueue(queue, &jobs[i++]);

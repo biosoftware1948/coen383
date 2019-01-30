@@ -26,9 +26,9 @@ void RunFCFS(CPU *cpu, Job *jobs, unsigned jobsCount, int output){
                 deQueue(q);
 
                 giveCPUJob(cpu, j);
-                j->start_time = cpu->global_time;
+                // j->start_time = cpu->global_time;
                 runCurrentJob(cpu, j->remaining_service_time, output);
-                j->finish_time = cpu->global_time;
+                // j->finish_time = cpu->global_time;
                 completed++;
             }
         }
