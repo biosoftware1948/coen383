@@ -114,7 +114,7 @@ static void addJobs(
         int *c1, int *c2, int *c3, int *c4) {
 
     for (int i = 0; i < jobsCount; i++) {
-        if (cpu->global_time == jobs[i].arrival_time) {
+        if (cpu->global_time < 100 && cpu->global_time == jobs[i].arrival_time) {
             if (jobs[i].priority == 1) {
                 p1[*c1] = &jobs[i];
                 *c1 = *c1 + 1;
@@ -132,6 +132,26 @@ static void addJobs(
     }
 }
 
+static bool incompleteJobs(Job **p1, Job **p2, Job **p3, Job **p4, int *c1, int *c2, int *c3, int *c4) {
+    for (int i = 0; i < *c1; i++) {
+        if (p1[i]->start_time != -1) return true;
+    }
+
+    for (int i = 0; i < *c2; i++) {
+        if (p2[i]->start_time != -1) return true;
+    }
+
+    for (int i = 0; i < *c3; i++) {
+        if (p3[i]->start_time != -1) return true;
+    }
+
+    for (int i = 0; i < *c4; i++) {
+        if (p4[i]->start_time != -1) return true;
+    }
+
+    return false;
+}
+
 void RunHPFNPwA(CPU *cpu, Job *jobs, unsigned jobsCount, int output) {
     sort_by_arrival_time(jobs, jobsCount);
 
@@ -146,7 +166,8 @@ void RunHPFNPwA(CPU *cpu, Job *jobs, unsigned jobsCount, int output) {
     *c1 = *c2 = *c3 = *c4 = 0;
 
     Job *running = NULL;
-    while (cpu->global_time < 100 && !isComplete(jobs, jobsCount)) {
+    while (incompleteJobs(j1, j2, j3, j4, c1, c2, c3, c4)
+            || (cpu->global_time < 100 && !isComplete(jobs, jobsCount))) {
         // Add new jobs
         addJobs(cpu, jobs, jobsCount, j1, j2, j3, j4, c1, c2, c3, c4);
 
