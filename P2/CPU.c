@@ -17,7 +17,7 @@ void giveCPUJob(CPU* cpu, Job *job) {
     cpu->job = job;
     cpu->cpuState = busy;
 }
-g
+
 void freeCPU(CPU* cpu) {
     cpu->cpuState = available;
 }
