@@ -21,7 +21,7 @@ void RunFCFS(CPU *cpu, Job *jobs, unsigned jobsCount){
             runIdle(cpu, jobs[i].arrival_time - cpu->global_time);
 
         } else {
-            while(!isEmpty(q)){
+            while(!isEmpty(q) && cpu->global_time < 100){
                 Job *j = getFrontQueueElement(q);
                 deQueue(q);
 
