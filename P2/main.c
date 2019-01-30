@@ -5,6 +5,7 @@
 #include "schedulingAlgorithms/SJF.h"
 #include "schedulingAlgorithms/SRT.h"
 #include "schedulingAlgorithms/HPFNP.h"
+#include "schedulingAlgorithms/HPFP.h"
 
 int main() {
     int NUM_JOBS = 10;
