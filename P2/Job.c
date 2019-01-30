@@ -24,6 +24,7 @@ void newJob(Job* job, int pid) {
 	job->arrival_time = rand() % 100;
 	job->service_time = newServiceTime();
 	job->priority = newPriority();
+	job->priority_orig = job->priority;
 
 	job->remaining_service_time = job->service_time;
 	job->start_time = -1;
@@ -45,6 +46,7 @@ void copyJob(Job *job, Job *jobCopy) {
 	jobCopy->arrival_time = job->arrival_time;
 	jobCopy->service_time = job->service_time;
 	jobCopy->priority = job->priority;
+	jobCopy->priority_orig = job->priority_orig;
 
 	jobCopy->remaining_service_time = job->service_time;
 	jobCopy->start_time = -1;
@@ -83,6 +85,7 @@ void swap_jobs_in_array(Job* job_array, int pos_1, int pos_2) {
 	tmp.arrival_time = job_array[pos_1].arrival_time;
 	tmp.service_time = job_array[pos_1].service_time;
 	tmp.priority = job_array[pos_1].priority;
+	tmp.priority_orig = job_array[pos_1].priority_orig;
 	tmp.remaining_service_time = job_array[pos_1].remaining_service_time;
 	tmp.start_time = job_array[pos_1].start_time;
 	tmp.finish_time = job_array[pos_1].finish_time;
@@ -91,6 +94,7 @@ void swap_jobs_in_array(Job* job_array, int pos_1, int pos_2) {
 	job_array[pos_1].arrival_time = job_array[pos_2].arrival_time;
 	job_array[pos_1].service_time = job_array[pos_2].service_time;
 	job_array[pos_1].priority = job_array[pos_2].priority;
+	job_array[pos_1].priority_orig = job_array[pos_2].priority_orig;
 	job_array[pos_1].remaining_service_time = job_array[pos_2].remaining_service_time;
 	job_array[pos_1].start_time = job_array[pos_2].start_time;
 	job_array[pos_1].finish_time = job_array[pos_2].finish_time;
@@ -99,6 +103,7 @@ void swap_jobs_in_array(Job* job_array, int pos_1, int pos_2) {
 	job_array[pos_2].arrival_time = tmp.arrival_time;
 	job_array[pos_2].service_time = tmp.service_time;
 	job_array[pos_2].priority = tmp.priority;
+	job_array[pos_2].priority_orig = tmp.priority_orig;
 	job_array[pos_2].remaining_service_time = tmp.remaining_service_time;
 	job_array[pos_2].start_time = tmp.start_time;
 	job_array[pos_2].finish_time = tmp.finish_time;
@@ -332,67 +337,73 @@ void print_avg_5throughput_hpf(Job *j1, Job *j2, Job *j3, Job *j4, Job *j5, int 
 	int p1 = 0, p2 = 0, p3 = 0, p4 = 0, t1 = 0, t2 = 0, t3 = 0, t4 = 0;
 
 	for (int i = 0; i < size; i++) {
-		if (j1[i].priority == 1) {
+		if (j1[i].priority_orig == 1) {
 			t1++;
 			if (j1[i].finish_time != -1) p1++;
-		} else if (j1[i].priority == 2) {
+		} else if (j1[i].priority_orig == 2) {
 			t2++;
 			if (j1[i].finish_time != -1) p2++;
-		} else if (j1[i].priority == 3) {
+		} else if (j1[i].priority_orig == 3) {
 			t3++;
 			if (j1[i].finish_time != -1) p3++;
-		} else if (j1[i].priority == 4) {
+		} else if (j1[i].priority_orig == 4) {
 			t4++;
 			if (j1[i].finish_time != -1) p4++;
 		}
 
-		if (j2[i].priority == 1) {
+		if (j2[i].priority_orig == 1) {
 			t1++;
 			if (j2[i].finish_time != -1) p1++;
-		} else if (j2[i].priority == 2) {
+		} else if (j2[i].priority_orig == 2) {
 			t2++;
 			if (j2[i].finish_time != -1) p2++;
-		} else if (j2[i].priority == 3) {
+		} else if (j2[i].priority_orig == 3) {
 			t3++;
 			if (j2[i].finish_time != -1) p3++;
-		} else if (j2[i].priority == 4) {
+		} else if (j2[i].priority_orig == 4) {
 			t4++;
 			if (j2[i].finish_time != -1) p4++;
 		}
 
-		if (j3[i].priority == 1) {
+		if (j3[i].priority_orig == 1) {
 			t1++;
 			if (j3[i].finish_time != -1) p1++;
-		} else if (j3[i].priority == 2) {
+		} else if (j3[i].priority_orig == 2) {
 			t2++;
 			if (j3[i].finish_time != -1) p2++;
-		} else if (j3[i].priority == 3) {
+		} else if (j3[i].priority_orig == 3) {
 			t3++;
 			if (j3[i].finish_time != -1) p3++;
-		} else if (j3[i].priority == 4) {
+		} else if (j3[i].priority_orig == 4) {
 			t4++;
 			if (j3[i].finish_time != -1) p4++;
 		}
 
-		if (j4[i].priority == 1) {
+		if (j4[i].priority_orig == 1) {
 			t1++;
 			if (j4[i].finish_time != -1) p1++;
-		} else if (j4[i].priority == 2) {
+		} else if (j4[i].priority_orig == 2) {
 			t2++;
 			if (j4[i].finish_time != -1) p2++;
-		} else if (j4[i].priority == 3) {
+		} else if (j4[i].priority_orig == 3) {
 			t3++;
 			if (j4[i].finish_time != -1) p3++;
-		} else if (j4[i].priority == 4) {
+		} else if (j4[i].priority_orig == 4) {
 			t4++;
 			if (j4[i].finish_time != -1) p4++;
 		}
 	}
+	double d1 = (p1 * 1.0) / (t1 * 1.0) * 100;
+	double d2 = (p2 * 1.0) / (t2 * 1.0) * 100;
+	double d3 = (p3 * 1.0) / (t3 * 1.0) * 100;
+	double d4 = (p4 * 1.0) / (t4 * 1.0) * 100;
 	printf("  Average Over 5 Runs:\n");
-	printf("  - Priority 1: %f percent    %d out of %d.\n", (p1 * 1.0) / (t1 * 1.0) * 100, p1, t1);
-	printf("  - Priority 2: %f percent    %d out of %d.\n", (p2 * 1.0) / (t2 * 1.0) * 100, p2, t2);
-	printf("  - Priority 3: %f percent    %d out of %d.\n", (p3 * 1.0) / (t3 * 1.0) * 100, p3, t3);
-	printf("  - Priority 4: %f percent    %d out of %d.\n", (p4 * 1.0) / (t4 * 1.0) * 100, p4, t4);
+	printf("  - Priority 1: %f percent    %d out of %d.\n", d1, p1, t1);
+	printf("  - Priority 2: %f percent    %d out of %d.\n", d2, p2, t2);
+	printf("  - Priority 3: %f percent    %d out of %d.\n", d3, p3, t3);
+	printf("  - Priority 4: %f percent    %d out of %d.\n", d4, p4, t4);
+	printf("  -  Overall: %f percent    %d out of %d.\n",
+		(d1 + d2 + d3 + d4) / (4.0), p1 + p2 + p3 + p4, t1 + t2 + t3 + t4);
 }
 
 void print_metrics(Job *j1, Job *j2, Job *j3, Job *j4, Job *j5, int size, int hpf) {

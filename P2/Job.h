@@ -10,6 +10,7 @@ typedef struct Job {
 	int pid;
 	int arrival_time;
 	int service_time;
+	int priority_orig;
 	int priority;
 	int remaining_service_time;
 	int start_time;
