@@ -22,7 +22,15 @@ int main() {
     // Printing out each job's name, arrival time, expected run time & priority
     report_print(jobs, NUM_JOBS);
 
+    //First Come First Serve
+    RunFCFS(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
 
+    //Round Robin
+    // RunRR(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
+
+    //RunHPF(jobs, cpu)
+    //....
+    //...
 
     Job *j1 = copyJobs(jobs, NUM_JOBS);//, *j2 = copyJobs(jobs), *j3 = copyJobs(jobs),
     //    *j4 = copyJobs(jobs), *j5 = copyJobs(jobs), *j6 = copyJobs(jobs);
