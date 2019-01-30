@@ -57,5 +57,5 @@ void RunRR(CPU *cpu, Job *jobs, unsigned jobsCount, int output){
         if (i < jobsCount)
             runIdle(cpu, jobs[i].arrival_time - cpu->global_time, output);
     }
-    printAllJobs(jobs, jobsCount);
+    // printAllJobs(jobs, jobsCount);
 }
