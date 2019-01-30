@@ -19,6 +19,8 @@ typedef struct Queue {
 	int size;
 } Queue;
 
+struct Node* newNode(Job *j);
+
 // create an initializer for the queue
 Queue* createQueue();
 

@@ -3,6 +3,13 @@
 
 #include "Queue.h"
 
+struct Node* newNode(Job *j) {
+	struct Node *temp = (struct Node *) malloc(sizeof(struct Node));
+	temp->job = j;
+	temp->next = NULL;
+	return temp;
+}
+
 // create an initializer for the queue
 Queue* createQueue() {
 	Queue* q =  (Queue*) malloc(sizeof(Queue));
@@ -13,52 +20,51 @@ Queue* createQueue() {
 }
 
 bool isEmpty(struct Queue* q) {
-	return (q->size == 0);
+	return getQueueSize(q) == 0;
 }
 
 int getQueueSize(struct Queue* q) {
-	if (q->head == NULL) return 0;
-	return q->size;
+	int count = 0;
+	Node *temp = q->head;
+	while (temp != NULL) {
+		temp = temp->next;
+		count++;
+	}
+	return count;
 }
 
 Job *getFrontQueueElement(struct Queue* q) {
+	assert(!isEmpty(q));
 	return q->head->job;
 }
 
 
 Job *deQueue(struct Queue* q) {
 	assert(!isEmpty(q));
-
-	Node *temp = q->head;
-	Job *job = q->head->job;
-	q->head = q->head->next;
-
-	free(temp);
-
 	q->size--;
 
-	if(q->size == 0) {
-		q->head = NULL;
+	struct Node * temp = q->head;
+	q->head = q->head->next;
+
+	if (q->head == NULL) {
 		q->tail = NULL;
 	}
 
-	return job;
+	return temp->job;
 }
 
 // create a function that adds an element to the queue
 void enQueue(struct Queue* q, Job *job) {
-	if(q->head == NULL) {
-		q->head = (struct Node*)malloc(sizeof(struct Node));
-		q->head->job = job;
-		q->head->next = NULL;
-		q->tail = q->head;
-	} else {
-		q->tail->next = (struct Node*)malloc(sizeof(struct Node));
-		q->tail->next->job = job;
-		q->tail->next->next = NULL;
-		q->tail = q->tail->next;
-	}
 	q->size++;
+	struct Node *temp = newNode(job);
+
+	if(q->head == NULL) {
+		q->head = q->tail = temp;
+		return;
+	}
+
+	q->tail->next = temp;
+	q->tail = temp;
 }
 
 void printQueue(struct Queue* q) {
@@ -85,34 +91,40 @@ void removeContents(struct Queue* q) {
 }
 
 Job *getElement(struct Queue *q, int element) {
+	assert(element <= q->size);
+
+	int count = 0;
 	Node *temp = q->head;
-	int i = 0;
+
 	while (temp != NULL) {
-		if (i == element) return temp->job;
+		if (count == element) return temp->job;
+
 		temp = temp->next;
+		++count;
 	}
-	assert(0);
+
+	assert(temp != NULL);
 	return NULL;
 }
 
 void removeElement(struct Queue *q, int element) {
-	Node *prev = NULL;
-	Node *temp = q->head;
-	int i = 0;
-	while (temp != NULL) {
-		if (i == element) {
-			if (prev == NULL) {
-				q->head = q->head->next;
-				free(temp);
-			} else {
-				prev->next = temp->next;
-				free(temp);
-			}
-			return;
-		}
+	Node *temp = q->head, *prev;
+	int count = 0;
+
+	if (temp != NULL && element == count) {
+		q->head = temp->next;
+		free(temp);
+		return;
+	}
+
+	while (temp != NULL && element != count) {
 		prev = temp;
 		temp = temp->next;
+		count++;
 	}
-	assert(0);
-	return;
+
+	assert (temp == NULL);
+
+	prev->next = temp->next;
+	free (temp);
 }
