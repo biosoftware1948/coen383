@@ -402,7 +402,7 @@ void print_avg_5throughput_hpf(Job *j1, Job *j2, Job *j3, Job *j4, Job *j5, int 
 	printf("  - Priority 2: %f percent    %d out of %d.\n", d2, p2, t2);
 	printf("  - Priority 3: %f percent    %d out of %d.\n", d3, p3, t3);
 	printf("  - Priority 4: %f percent    %d out of %d.\n", d4, p4, t4);
-	printf("  -  Overall: %f percent    %d out of %d.\n",
+	printf("  - Overall: %f percent    %d out of %d.\n",
 		(d1 + d2 + d3 + d4) / (4.0), p1 + p2 + p3 + p4, t1 + t2 + t3 + t4);
 }
 
