@@ -83,3 +83,36 @@ void removeContents(struct Queue* q) {
 	}
 	q->size = 0;
 }
+
+Job *getElement(struct Queue *q, int element) {
+	Node *temp = q->head;
+	int i = 0;
+	while (temp != NULL) {
+		if (i == element) return temp->job;
+		temp = temp->next;
+	}
+	assert(0);
+	return NULL;
+}
+
+void removeElement(struct Queue *q, int element) {
+	Node *prev = NULL;
+	Node *temp = q->head;
+	int i = 0;
+	while (temp != NULL) {
+		if (i == element) {
+			if (prev == NULL) {
+				q->head = q->head->next;
+				free(temp);
+			} else {
+				prev->next = temp->next;
+				free(temp);
+			}
+			return;
+		}
+		prev = temp;
+		temp = temp->next;
+	}
+	assert(0);
+	return;
+}

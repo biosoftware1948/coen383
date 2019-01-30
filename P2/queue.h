@@ -42,5 +42,9 @@ void printQueue(struct Queue* q);
 // empty the queue
 void removeContents(struct Queue* q);
 
+Job *getElement(struct Queue *q, int element);
+
+void removeElement(struct Queue *q, int element);
+
 
 #endif /* QUEUE_H */

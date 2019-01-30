@@ -8,6 +8,8 @@
 #include "schedulingAlgorithms/RR.h"
 #include "schedulingAlgorithms/HPFNP.h"
 #include "schedulingAlgorithms/HPFP.h"
+#include "schedulingAlgorithms/HPFNPwA.h"
+#include "schedulingAlgorithms/HPFPwA.h"
 
 # define NUM_JOBS 30
 
@@ -28,6 +30,7 @@ int main() {
     report_print(jobs, NUM_JOBS); // Printing out each job's name, arrival time, expected run time & priority
 
     // First Come First Serve
+    printf("\n\n\n===== Running First Come First Serve: =====\n");
     Job *jobsCopy = copyJobs(jobs, NUM_JOBS),
         *jc2 = copyJobs(j2, NUM_JOBS), *jc3 = copyJobs(j3, NUM_JOBS),
         *jc4 = copyJobs(j4, NUM_JOBS), *jc5 = copyJobs(j5, NUM_JOBS);
@@ -101,6 +104,34 @@ int main() {
     RunHPFP(createCPU(), jc3, NUM_JOBS, 0);
     RunHPFP(createCPU(), jc4, NUM_JOBS, 0);
     RunHPFP(createCPU(), jc5, NUM_JOBS, 0);
+    printf("\nMETRICS:\n");
+    print_metrics(jobsCopy, jc2, jc3, jc4, jc5, NUM_JOBS, 1);
+
+    printf("\n\n\n===== EXTRA CREDIT =====\n");
+
+    //Highest Priority First (non-preemptive)
+    printf("\n\n\n===== Running Highest Priority First (non-preemptive) with aging: =====\n");
+    jobsCopy = copyJobs(jobs, NUM_JOBS),
+        jc2 = copyJobs(j2, NUM_JOBS), jc3 = copyJobs(j3, NUM_JOBS),
+        jc4 = copyJobs(j4, NUM_JOBS), jc5 = copyJobs(j5, NUM_JOBS);
+    RunHPFNPwA(createCPU(), jobsCopy, NUM_JOBS, 1);
+    RunHPFNPwA(createCPU(), jc2, NUM_JOBS, 0);
+    RunHPFNPwA(createCPU(), jc3, NUM_JOBS, 0);
+    RunHPFNPwA(createCPU(), jc4, NUM_JOBS, 0);
+    RunHPFNPwA(createCPU(), jc5, NUM_JOBS, 0);
+    printf("\nMETRICS:\n");
+    print_metrics(jobsCopy, jc2, jc3, jc4, jc5, NUM_JOBS, 1);
+
+    //Highest Priority First (preemptive)
+    printf("\n\n\n===== Running Highest Priority First (preemptive) with aging: =====\n");
+    jobsCopy = copyJobs(jobs, NUM_JOBS),
+        jc2 = copyJobs(j2, NUM_JOBS), jc3 = copyJobs(j3, NUM_JOBS),
+        jc4 = copyJobs(j4, NUM_JOBS), jc5 = copyJobs(j5, NUM_JOBS);
+    RunHPFPwA(createCPU(), jobsCopy, NUM_JOBS, 1);
+    RunHPFPwA(createCPU(), jc2, NUM_JOBS, 0);
+    RunHPFPwA(createCPU(), jc3, NUM_JOBS, 0);
+    RunHPFPwA(createCPU(), jc4, NUM_JOBS, 0);
+    RunHPFPwA(createCPU(), jc5, NUM_JOBS, 0);
     printf("\nMETRICS:\n");
     print_metrics(jobsCopy, jc2, jc3, jc4, jc5, NUM_JOBS, 1);
 

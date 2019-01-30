@@ -46,12 +46,13 @@ int runCurrentJob(CPU *cpu, unsigned time_delta, int output) {
             printf("%d: Job %d\t", cpu->global_time + i, cpu->job->pid);
         }
     }
-    
+
     if (cpu->job->start_time == -1)
         cpu->job->start_time = cpu->global_time;
     cpu->global_time += time_delta;
     if (cpu->job->remaining_service_time == 0)
         cpu->job->finish_time = cpu->global_time;
 
+    cpu->job->age = 0;
     return time_delta;
 }
