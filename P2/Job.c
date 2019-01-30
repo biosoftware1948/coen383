@@ -210,3 +210,10 @@ void printAllJobs(Job* jobs, int num_jobs) {
 		jobInfo(jobs[i]);
 	}
 }
+
+void report_print(Job * jobs, int size) {
+	for (int i = 0; i < size; i++) {
+		printf("Job %d,   Arrival Time=%d,   Service Time=%d,   priority %d\n",
+			jobs[i].pid, jobs[i].arrival_time, jobs[i].service_time, jobs[i].priority);
+	}
+}

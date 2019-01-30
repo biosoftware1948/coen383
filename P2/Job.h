@@ -54,4 +54,6 @@ void sort_by_remaining_service_time(Job* jobs, int size);
 
 void sort_by_finish_time(Job* jobs, int size);
 
+void report_print(Job * jobs, int size);
+
 #endif /* JOB_H */

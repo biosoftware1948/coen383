@@ -7,28 +7,25 @@
 #include "schedulingAlgorithms/HPFNP.h"
 #include "schedulingAlgorithms/HPFP.h"
 
+# define NUM_JOBS = 10;
+
 int main() {
-    int NUM_JOBS = 10;
-
-    // Not working for some reason
-    int seed = time(NULL);
-    srand(seed);
-
+    //time chart
+    //Average turn around time
+    //Avereage waiting time
+    //Average response time
+    //Algorithm Throughput (HPF for priority level and all together)
+    // ensure calculation is only on jobs that ran
     Job* jobs = createJobs(NUM_JOBS);
-    printAllJobs(jobs, NUM_JOBS);
+    //sort_by_arrival_time(jobs, NUM_JOBS);
 
-    //CPU* cpu = createCPU();
+    // Printing out each job's name, arrival time, expected run time & priority
+    report_print(jobs, NUM_JOBS);
 
-    //Have a function for each algo here that
-    //takes the jobs and cpu
-    //the algos can sort the jobs then use the queue
-    //to put things on and off the cpu
 
-    //RunRoundRobin(jobs, cpu)
-    //RunHPF(jobs, cpu)
-    //....
-    //...
 
+    Job *j1 = copyJobs(jobs, NUM_JOBS);//, *j2 = copyJobs(jobs), *j3 = copyJobs(jobs),
+    //    *j4 = copyJobs(jobs), *j5 = copyJobs(jobs), *j6 = copyJobs(jobs);
     //Shortest Job First
     //RunSJF(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
 
@@ -39,6 +36,7 @@ int main() {
     //RunHPFNP(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
 
     //Highest Priority First (Preemptive)
-    //RunHPFP(createCPU(), copyJobs(jobs), NUM_JOBS);
+    //RunHPFP(createCPU(), j1, NUM_JOBS);
+
     return 0;
 }
