@@ -5,6 +5,8 @@
 #include "schedulingAlgorithms/SJF.h"
 #include "schedulingAlgorithms/SRT.h"
 #include "schedulingAlgorithms/HPFNP.h"
+#include "schedulingAlgorithms/FCFS.h"
+#include "schedulingAlgorithms/RR.h"
 
 int main() {
     int NUM_JOBS = 10;
@@ -23,7 +25,12 @@ int main() {
     //the algos can sort the jobs then use the queue
     //to put things on and off the cpu
 
-    //RunRoundRobin(jobs, cpu)
+    //First Come First Serve
+    RunFCFS(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
+
+    //Round Robin
+    // RunRR(createCPU(), copyJobs(jobs, NUM_JOBS), NUM_JOBS);
+
     //RunHPF(jobs, cpu)
     //....
     //...
