@@ -3,7 +3,7 @@
 # include "../CPU.h"
 # include "../Job.h"
 # include "../queue.h"
-# include "HPFP.h"
+# include "HPFPwA.h"
 
 static bool isComplete(Job *jobs, unsigned jobsCount) {
     for (int i = 0; i < jobsCount; i++) {
@@ -61,6 +61,53 @@ static void removeCompleted(
     }
 }
 
+static void age(CPU *cpu, Job *jobs, int jobsCount) {
+    for (int i = 0; i < jobsCount; i++) {
+        if (cpu->global_time < jobs[i].arrival_time) break;
+        jobs[i].age++;
+    }
+}
+
+static void upgrade(
+        Job **p1, Job **p2, Job **p3, Job **p4, int *c1, int *c2, int *c3, int *c4) {
+
+    for (int i = 0; i < *c4; i++) {
+        Job *job = p4[i];
+        if (job->finish_time == -1 && job->age >= 5) {
+            // Shift over
+            for (int j = i + 1; j < *c4; j++)
+                p4[j-1] = p4[j];
+            *c4 = *c4 - 1;;
+            p3[*c3] = job;
+            *c3 = *c3 + 1;
+        }
+    }
+
+    for (int i = 0; i < *c3; i++) {
+        Job *job = p3[i];
+        if (job->finish_time == -1 && job->age >= 5) {
+            // Shift over
+            for (int j = i + 1; j < *c3; j++)
+                p3[j-1] = p3[j];
+            *c3 = *c3 - 1;
+            p2[*c2] = job;
+            *c2 = *c2 + 1;
+        }
+    }
+
+    for (int i = 0; i < *c2; i++) {
+        Job *job = p2[i];
+        if (job->finish_time == -1 && job->age >= 5) {
+            // Shift over
+            for (int j = i + 1; j < *c2; j++)
+                p2[j-1] = p2[j];
+            *c1 = *c1 - 1;
+            p1[*c1] = job;
+            *c1 = *c1 + 1;
+        }
+    }
+}
+
 static void addJobs(
         CPU *cpu, Job *jobs, unsigned jobsCount,
         Job **p1, Job **p2, Job **p3, Job **p4,
@@ -105,7 +152,7 @@ static bool incompleteJobs(Job **p1, Job **p2, Job **p3, Job **p4, int *c1, int 
     return false;
 }
 
-void RunHPFP(CPU *cpu, Job *jobs, unsigned jobsCount, int output) {
+void RunHPFPwA(CPU *cpu, Job *jobs, unsigned jobsCount, int output) {
     sort_by_arrival_time(jobs, jobsCount);
 
     Job **j1 = malloc(sizeof(Job *) * jobsCount);
@@ -129,7 +176,9 @@ void RunHPFP(CPU *cpu, Job *jobs, unsigned jobsCount, int output) {
         if (next == NULL) runIdle(cpu, 1, output);
         else {
             giveCPUJob(cpu, next);
+            age(cpu, jobs, jobsCount);
             runCurrentJob(cpu, 1, output);
+            upgrade(j1, j2, j3, j4, c1, c2, c3, c4);
             removeCompleted(j1, j2, j3, j4, c1, c2, c3, c4);
         }
     }

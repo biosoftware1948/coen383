@@ -4,6 +4,6 @@
 # include "../CPU.h"
 # include "../Job.h"
 
-void RunSJF(CPU *cpu, Job *jobs, unsigned jobsCount);
+void RunSJF(CPU *cpu, Job *jobs, unsigned jobsCount, int output);
 
 # endif /* SJF_H */

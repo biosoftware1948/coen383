@@ -5,84 +5,138 @@
 # include "../queue.h"
 # include "HPFNP.h"
 
-bool isComplete(
-        struct Queue *p1, struct Queue *p2, struct Queue *p3, struct Queue *p4) {
-    return isEmpty(p1) && isEmpty(p2) && isEmpty(p3) && isEmpty(p4);
+static bool isComplete(Job *jobs, unsigned jobsCount) {
+    for (int i = 0; i < jobsCount; i++) {
+        if (jobs[i].finish_time == -1) return false;
+    }
+    return true;
 }
 
-int getMinArrival(int a, int b) {
-    if (a == -1) return b;
-    return a < b ? a : b;
-}
+static Job *getNextJob(
+        CPU *cpu, Job **p1, Job **p2, Job **p3, Job **p4, int *c1, int *c2, int *c3, int *c4) {
+    if (*c1 != 0) return p1[0];
+    if (*c2 != 0) return p2[0];
+    if (*c3 != 0) return p3[0];
+    if (*c4 != 0) return p4[0];
 
-Job *getNextJob(
-        CPU *cpu, struct Queue *p1, struct Queue *p2, struct Queue *p3, struct Queue *p4) {
-    Job *j1 = NULL, *j2 = NULL, *j3 = NULL, *j4 = NULL;
-    if (!isEmpty(p1)) j1 = (getFrontQueueElement(p1));
-    if (!isEmpty(p2)) j2 = (getFrontQueueElement(p2));
-    if (!isEmpty(p3)) j3 = (getFrontQueueElement(p3));
-    if (!isEmpty(p4)) j4 = (getFrontQueueElement(p4));
-
-    if (j1 != NULL && j1->arrival_time <= cpu->global_time) return deQueue(p1);
-    if (j2 != NULL && j2->arrival_time <= cpu->global_time) return deQueue(p2);
-    if (j3 != NULL && j3->arrival_time <= cpu->global_time) return deQueue(p3);
-    if (j4 != NULL && j4->arrival_time <= cpu->global_time) return deQueue(p4);
-
-    int min_arrival = -1;
-    if (j1 != NULL) min_arrival = getMinArrival(min_arrival, j1->arrival_time);
-    if (j2 != NULL) min_arrival = getMinArrival(min_arrival, j2->arrival_time);
-    if (j3 != NULL) min_arrival = getMinArrival(min_arrival, j3->arrival_time);
-    if (j4 != NULL) min_arrival = getMinArrival(min_arrival, j4->arrival_time);
-    assert(min_arrival != -1);
-
-    if (j1 != NULL && j1->arrival_time == min_arrival) return deQueue(p1);
-    if (j2 != NULL && j2->arrival_time == min_arrival) return deQueue(p2);
-    if (j3 != NULL && j3->arrival_time == min_arrival) return deQueue(p3);
-    if (j4 != NULL && j4->arrival_time == min_arrival) return deQueue(p4);
-    assert(0);
     return NULL;
 }
 
-unsigned timeToIdle(CPU *cpu, Job *nextJob) {
-    return cpu->global_time >= nextJob->arrival_time
-        ? 0
-        : nextJob->arrival_time - cpu->global_time;
-}
-
-void RunHPFNP(CPU *cpu, Job *jobs, unsigned jobsCount) {
-    sort_by_arrival_time(jobs, jobsCount);
-
-    Queue *priority1 = createQueue();
-    Queue *priority2 = createQueue();
-    Queue *priority3 = createQueue();
-    Queue *priority4 = createQueue();
-
-    for (int i = 0; i < jobsCount; i++) {
-        switch(jobs[i].priority) {
-            case 1:
-                enQueue(priority1, &jobs[i]);
-                break;
-            case 2:
-                enQueue(priority2, &jobs[i]);
-                break;
-            case 3:
-                enQueue(priority3, &jobs[i]);
-                break;
-            case 4:
-                enQueue(priority4, &jobs[i]);
-                break;
-            default:
-                assert(0);
-                break;
+static void removeCompleted(
+        Job **p1, Job **p2, Job **p3, Job **p4, int *c1, int *c2, int *c3, int *c4) {
+    for (int i = 0; i < *c1; i++) {
+        Job *job = p1[i];
+        if (job->remaining_service_time == 0) {
+            for (int j = i + 1; j < *c1; j++)
+                p1[j - 1] = p1[j];
+            *c1 = *c1 - 1;
         }
     }
 
-    while (cpu->global_time < 100 &&
-            !isComplete(priority1, priority2, priority3, priority4)) {
-        Job *next = getNextJob(cpu, priority1, priority2, priority3, priority4);
-        int tti = timeToIdle(cpu, next);
-        runIdle(cpu, tti);
-        giveCPUJob(cpu, next);
-        runCurrentJob(cpu, cpu->job->service_time);
+    for (int i = 0; i < *c2; i++) {
+        Job *job = p2[i];
+        if (job->remaining_service_time == 0) {
+            for (int j = i + 1; j < *c2; j++)
+                p2[j - 1] = p2[j];
+            *c2 = *c2 - 1;
+        }
+    }
+
+    for (int i = 0; i < *c3; i++) {
+        Job *job = p3[i];
+        if (job->remaining_service_time == 0) {
+            for (int j = i + 1; j < *c3; j++)
+                p3[j - 1] = p3[j];
+            *c3 = *c3 - 1;
+        }
+    }
+
+    for (int i = 0; i < *c4; i++) {
+        Job *job = p4[i];
+        if (job->remaining_service_time == 0) {
+            for (int j = i + 1; j < *c4; j++)
+                p4[j - 1] = p4[j];
+            *c4 = *c4 - 1;
+        }
+    }
+}
+
+static void addJobs(
+        CPU *cpu, Job *jobs, unsigned jobsCount,
+        Job **p1, Job **p2, Job **p3, Job **p4,
+        int *c1, int *c2, int *c3, int *c4) {
+
+    for (int i = 0; i < jobsCount; i++) {
+        if (cpu->global_time < 100 && cpu->global_time == jobs[i].arrival_time) {
+            if (jobs[i].priority == 1) {
+                p1[*c1] = &jobs[i];
+                *c1 = *c1 + 1;
+            } if (jobs[i].priority == 2) {
+                p2[*c2] = &jobs[i];
+                *c2 = *c2 + 1;
+            } if (jobs[i].priority == 3) {
+                p3[*c3] = &jobs[i];
+                *c3 = *c3 + 1;
+            } if (jobs[i].priority == 4) {
+                p4[*c4] = &jobs[i];
+                *c4 = *c4 + 1;
+            }
+        }
+    }
+}
+
+static bool incompleteJobs(Job **p1, Job **p2, Job **p3, Job **p4, int *c1, int *c2, int *c3, int *c4) {
+    for (int i = 0; i < *c1; i++) {
+        if (p1[i]->start_time != -1) return true;
+    }
+
+    for (int i = 0; i < *c2; i++) {
+        if (p2[i]->start_time != -1) return true;
+    }
+
+    for (int i = 0; i < *c3; i++) {
+        if (p3[i]->start_time != -1) return true;
+    }
+
+    for (int i = 0; i < *c4; i++) {
+        if (p4[i]->start_time != -1) return true;
+    }
+
+    return false;
+}
+
+void RunHPFNP(CPU *cpu, Job *jobs, unsigned jobsCount, int output) {
+    sort_by_arrival_time(jobs, jobsCount);
+
+    Job **j1 = malloc(sizeof(Job *) * jobsCount);
+    int *c1 = malloc(sizeof(int));
+    Job **j2 = malloc(sizeof(Job *) * jobsCount);
+    int *c2 = malloc(sizeof(int));
+    Job **j3 = malloc(sizeof(Job *) * jobsCount);
+    int *c3 = malloc(sizeof(int));
+    Job **j4 = malloc(sizeof(Job *) * jobsCount);
+    int *c4 = malloc(sizeof(int));
+    *c1 = *c2 = *c3 = *c4 = 0;
+
+    Job *running = NULL;
+    while (incompleteJobs(j1, j2, j3, j4, c1, c2, c3, c4)
+            || (cpu->global_time < 100 && !isComplete(jobs, jobsCount))) {
+        // Add new jobs
+        addJobs(cpu, jobs, jobsCount, j1, j2, j3, j4, c1, c2, c3, c4);
+
+        // Get next job
+        Job *next = getNextJob(cpu, j1, j2, j3, j4, c1, c2, c3, c4);
+
+        if (next == NULL) runIdle(cpu, 1, output);
+        else if (running != NULL) {
+            runCurrentJob(cpu, 1, output);
+            if (running->remaining_service_time == 0) running = NULL;
+            removeCompleted(j1, j2, j3, j4, c1, c2, c3, c4);
+        } else {
+            running = next;
+            giveCPUJob(cpu, next);
+            runCurrentJob(cpu, 1, output);
+            removeCompleted(j1, j2, j3, j4, c1, c2, c3, c4);
+        }
     }
 }
