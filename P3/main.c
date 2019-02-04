@@ -15,15 +15,18 @@ volatile pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 // seller thread to serve one time slice (1 minute)
 void * sell(Seller* seller, Auditorium* auditorium)
 {
-  printQueue(seller->customerQueue);
+  //printf("About to print Queue of %d\n", seller->id);
+  //printQueue(seller->customerQueue);
+  //printf("printed q\n");
+    
   while (!isEmpty(seller->customerQueue)) {
     pthread_mutex_lock(&mutex);
-    pthread_cond_wait(&cond, &mutex);
-    pthread_mutex_unlock(&mutex);
+    //pthread_cond_wait(&cond, &mutex);
+    Customer* c = deQueue(seller->customerQueue);
+    printf("\n %d has queue length %d", seller->id, seller->customerQueue->size);
     if (seller->type == 'H') {
-      Customer* c = deQueue(seller->customerQueue);
       for (int i = 0; i < 10; ++i) {
-        printf("seat: %d\n", seller->auditorium->seats[0][i].id);
+        //printf("seat: %d\n", seller->auditorium->seats[0][i].id);
         if (seller->auditorium->seats[0][i].id == -1) {
           seller->auditorium->seats[0][i].id = c->id;
           seller->auditorium->seats[0][i].type= c->type;
@@ -31,10 +34,9 @@ void * sell(Seller* seller, Auditorium* auditorium)
         }
       }
     }
-    // Serve any buyer available in this seller queue that is ready // now to buy ticket till done with all relevant buyers in their queue ……………… }
+      pthread_mutex_unlock(&mutex);
   }
 
-  printf("seller: %d\n", seller->id);
   return NULL; // thread exits
 }
 
@@ -71,7 +73,8 @@ int main(int argc, char** argv)
   wakeup_all_seller_threads();
   // wait for all seller threads to exit for (i = 0 ; i < 10 ; i++)
   for(int i = 0; i < 10; ++i) { 
-    pthread_join(&tids[i], NULL);
+    pthread_join(tids[i], NULL);
+    ;
   }
   // Printout simulation results …………
   exit(0);
