@@ -14,9 +14,10 @@ typedef struct Seller {
     int id; //ids 0-9 for the 10 sellers
     char type; // H, M, L sellers
     Auditorium* auditorium;
+    int current_row;
 } Seller;
 
-Seller* createSeller(char type, int id, int num_customers, Auditorium* a);
+Seller* createSeller(char type, int id, int starting_row, int num_customers, Auditorium* a);
 void deleteSeller(Seller* s);
 void printSellerCustomers(Seller* s);
 

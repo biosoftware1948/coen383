@@ -19,37 +19,44 @@ void * sell(Seller* seller, Auditorium* auditorium)
     pthread_mutex_lock(&mutex);
     //pthread_cond_wait(&cond, &mutex);
     Customer* c = deQueue(seller->customerQueue);
-    //printf("\n %d has queue length %d", seller->id, seller->customerQueue->size);
+
     if (seller->type == 'H') {
+      int found_seat = 0;
+      int starting_row = 0;
+      while(!found_seat) {
       for (int i = 0; i < 10; ++i) {
         //printf("seat: %d\n", seller->auditorium->seats[0][i].id);
-        if (seller->auditorium->seats[0][i].customer_id == -1) {
-          seller->auditorium->seats[0][i].customer_id = c->id;
-          seller->auditorium->seats[0][i].seller_id = seller->id;
-          seller->auditorium->seats[0][i].type= c->type;
+        if (seller->auditorium->seats[seller->current_row][i].customer_id == -1) {
+          seller->auditorium->seats[seller->current_row][i].customer_id = c->id;
+          seller->auditorium->seats[seller->current_row][i].seller_id = seller->id;
+          seller->auditorium->seats[seller->current_row][i].type= c->type;
+          found_seat = 1;
           break;
         }
         if (i == 9) {
-          //Row is full
-          removeContents(seller->customerQueue);
+          ++seller->current_row;
         }
+      }
       }
     }
 
     if (seller->type == 'L') {
        {
+      int found_seat = 0;
+      while(!found_seat) { 
       for (int i = 0; i < 10; ++i) {
-        //printf("seat: %d\n", seller->auditorium->seats[0][i].id);
-        if (seller->auditorium->seats[9][i].customer_id == -1) {
-          seller->auditorium->seats[9][i].customer_id = c->id;
-          seller->auditorium->seats[9][i].seller_id = seller->id;
-          seller->auditorium->seats[9][i].type= c->type;
+        if (seller->auditorium->seats[seller->current_row][i].customer_id == -1) {
+          seller->auditorium->seats[seller->current_row][i].customer_id = c->id;
+          seller->auditorium->seats[seller->current_row][i].seller_id = seller->id;
+          seller->auditorium->seats[seller->current_row][i].type= c->type;
+          found_seat = 1;
           break;
         }
         if (i == 9) {
           //Row is full
-          removeContents(seller->customerQueue);
+          --seller->current_row;
         }
+      }
       }
     }
     }
@@ -75,18 +82,18 @@ int main(int argc, char** argv)
   //}
   volatile Auditorium* auditorium = createAuditorium();
   pthread_t tids[10]; 
-  int N = 10;//atoi(argv[1]);
+  int N = 20;//atoi(argv[1]);
 
   //Create sellers with their customers
-  Seller* H1 = createSeller('H', 0, N, auditorium);
+  Seller* H1 = createSeller('H', 0, 0, N, auditorium);
  
   pthread_create(&tids[0], NULL, sell, H1);
   for(int i = 1; i < 4; ++i) {
-    Seller* M = createSeller('M', i, N, auditorium);
+    Seller* M = createSeller('M', i, 4, N, auditorium);
     pthread_create(&tids[i], NULL, sell, M);
   }
   for(int i = 4; i < 10; ++i) {
-    Seller* L = createSeller('L', i, N, auditorium);
+    Seller* L = createSeller('L', i, 9, N, auditorium);
     pthread_create(&tids[i], NULL, sell, L);
   }
 
