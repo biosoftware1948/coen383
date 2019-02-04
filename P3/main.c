@@ -106,13 +106,13 @@ void wakeup_all_seller_threads()
 
 int main(int argc, char** argv)
 {
-  //if(argc != 2) {
-  //  printf("Please enter N as a command line argument, where N is the number of buyers\n");
-  //  exit(0);
-  //}
+  if(argc != 2) {
+    printf("Please enter N as a command line argument, where N is the number of buyers\n");
+    exit(0);
+  }
   volatile Auditorium* auditorium = createAuditorium();
   pthread_t tids[10]; 
-  int N = 20;//atoi(argv[1]);
+  int N = atoi(argv[1]);
 
   //Create sellers with their customers
   Seller* H1 = createSeller('H', 0, 0, N, auditorium);
