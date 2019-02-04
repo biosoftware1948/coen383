@@ -7,7 +7,8 @@
 
 typedef struct Seat {
     char type; // customer type
-    int id; // customer id
+    int customer_id; // customer id
+    int seller_id;
 } Seat;
 
 typedef struct Auditorium {
@@ -16,5 +17,6 @@ typedef struct Auditorium {
 
 Auditorium* createAuditorium();
 void deleteAuditorium(Auditorium* a);
+void printAuditorium(Auditorium* a);
 
 #endif

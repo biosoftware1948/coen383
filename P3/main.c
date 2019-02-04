@@ -15,26 +15,46 @@ volatile pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 // seller thread to serve one time slice (1 minute)
 void * sell(Seller* seller, Auditorium* auditorium)
 {
-  //printf("About to print Queue of %d\n", seller->id);
-  //printQueue(seller->customerQueue);
-  //printf("printed q\n");
-    
   while (!isEmpty(seller->customerQueue)) {
     pthread_mutex_lock(&mutex);
     //pthread_cond_wait(&cond, &mutex);
     Customer* c = deQueue(seller->customerQueue);
-    printf("\n %d has queue length %d", seller->id, seller->customerQueue->size);
+    //printf("\n %d has queue length %d", seller->id, seller->customerQueue->size);
     if (seller->type == 'H') {
       for (int i = 0; i < 10; ++i) {
         //printf("seat: %d\n", seller->auditorium->seats[0][i].id);
-        if (seller->auditorium->seats[0][i].id == -1) {
-          seller->auditorium->seats[0][i].id = c->id;
+        if (seller->auditorium->seats[0][i].customer_id == -1) {
+          seller->auditorium->seats[0][i].customer_id = c->id;
+          seller->auditorium->seats[0][i].seller_id = seller->id;
           seller->auditorium->seats[0][i].type= c->type;
-
+          break;
+        }
+        if (i == 9) {
+          //Row is full
+          removeContents(seller->customerQueue);
         }
       }
     }
-      pthread_mutex_unlock(&mutex);
+
+    if (seller->type == 'L') {
+       {
+      for (int i = 0; i < 10; ++i) {
+        //printf("seat: %d\n", seller->auditorium->seats[0][i].id);
+        if (seller->auditorium->seats[9][i].customer_id == -1) {
+          seller->auditorium->seats[9][i].customer_id = c->id;
+          seller->auditorium->seats[9][i].seller_id = seller->id;
+          seller->auditorium->seats[9][i].type= c->type;
+          break;
+        }
+        if (i == 9) {
+          //Row is full
+          removeContents(seller->customerQueue);
+        }
+      }
+    }
+    }
+    printAuditorium(seller->auditorium);
+    pthread_mutex_unlock(&mutex);
   }
 
   return NULL; // thread exits
