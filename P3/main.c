@@ -24,19 +24,46 @@ void * sell(Seller* seller, Auditorium* auditorium)
       int found_seat = 0;
       int starting_row = 0;
       while(!found_seat) {
-      for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 10; ++i) {
         //printf("seat: %d\n", seller->auditorium->seats[0][i].id);
-        if (seller->auditorium->seats[seller->current_row][i].customer_id == -1) {
-          seller->auditorium->seats[seller->current_row][i].customer_id = c->id;
-          seller->auditorium->seats[seller->current_row][i].seller_id = seller->id;
-          seller->auditorium->seats[seller->current_row][i].type= c->type;
-          found_seat = 1;
-          break;
-        }
-        if (i == 9) {
-          ++seller->current_row;
+          if (seller->auditorium->seats[seller->current_row][i].customer_id == -1) {
+            seller->auditorium->seats[seller->current_row][i].customer_id = c->id;
+            seller->auditorium->seats[seller->current_row][i].seller_id = seller->id;
+            seller->auditorium->seats[seller->current_row][i].type= c->type;
+            found_seat = 1;
+            break;
+          }
+          if (i == 9) {
+            ++seller->current_row;
+            if(seller->current_row == 10) {
+              removeContents(seller->customerQueue);
+              found_seat = 1;
+          }
+          }
         }
       }
+    }
+    if (seller->type == 'M') {
+      int found_seat = 0;
+      int starting_row = 5;
+      while(!found_seat) {
+        for (int i = 0; i < 10; ++i) {
+        //printf("seat: %d\n", seller->auditorium->seats[0][i].id);
+          if (seller->auditorium->seats[seller->current_row][i].customer_id == -1) {
+            seller->auditorium->seats[seller->current_row][i].customer_id = c->id;
+            seller->auditorium->seats[seller->current_row][i].seller_id = seller->id;
+            seller->auditorium->seats[seller->current_row][i].type= c->type;
+            found_seat = 1;
+            break;
+          }
+          if (i == 9) {
+            ++seller->current_row;
+            if(seller->current_row == -1 || seller->current_row == 10) {
+              removeContents(seller->customerQueue);
+              found_seat = 1;
+          }
+          }
+        }
       }
     }
 
@@ -55,12 +82,15 @@ void * sell(Seller* seller, Auditorium* auditorium)
         if (i == 9) {
           //Row is full
           --seller->current_row;
+          if(seller->current_row == -1) {
+            removeContents(seller->customerQueue);
+            found_seat = 1;
+          }
         }
       }
       }
     }
     }
-    printAuditorium(seller->auditorium);
     pthread_mutex_unlock(&mutex);
   }
 
@@ -104,6 +134,7 @@ int main(int argc, char** argv)
     ;
   }
   // Printout simulation results …………
+  printAuditorium(auditorium);
   exit(0);
   
 }
