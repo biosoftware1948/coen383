@@ -15,14 +15,14 @@ typedef struct Seller {
     char type; // H, M, L sellers
     Auditorium* auditorium;
     int current_row;
-} Seller;
+}Seller;
 
 Seller* createSeller(char type, int id, int starting_row, int num_customers, Auditorium* a);
 void deleteSeller(Seller* s);
 void printSellerCustomers(Seller* s);
-
-
-
+int get_service_time(Seller* seller);
+void reserveSeat(Seller* seller, int column);
+int getNewMRow(int current_row);
 
 
 #endif

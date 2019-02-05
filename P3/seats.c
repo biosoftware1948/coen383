@@ -32,3 +32,4 @@ void printAuditorium(Auditorium* a) {
     }
     printf("\n\n");
 }
+

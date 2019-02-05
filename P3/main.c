@@ -6,6 +6,7 @@
 #include "seats.h"
 #include "seller.h"
 #include "Customer.h"
+#include <unistd.h>
 
 pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
 volatile pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -15,11 +16,9 @@ volatile pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 // seller thread to serve one time slice (1 minute)
 void * sell(Seller* seller, Auditorium* auditorium)
 {
-  while (!isEmpty(seller->customerQueue)) {
-    pthread_mutex_lock(&mutex);
-    //pthread_cond_wait(&cond, &mutex);
-    Customer* c = deQueue(seller->customerQueue);
+  unsigned int sleep_time = get_service_time(seller);
 
+  while (!isEmpty(seller->customerQueue)) {
     if (seller->type == 'H') {
       int found_seat = 0;
       int starting_row = 0;
@@ -27,9 +26,12 @@ void * sell(Seller* seller, Auditorium* auditorium)
         for (int i = 0; i < 10; ++i) {
         //printf("seat: %d\n", seller->auditorium->seats[0][i].id);
           if (seller->auditorium->seats[seller->current_row][i].customer_id == -1) {
-            seller->auditorium->seats[seller->current_row][i].customer_id = c->id;
-            seller->auditorium->seats[seller->current_row][i].seller_id = seller->id;
-            seller->auditorium->seats[seller->current_row][i].type= c->type;
+            //pthread_mutex_lock(&seller->auditorium->mutex[seller->current_row]);
+            pthread_mutex_lock(&mutex);     
+            sleep(sleep_time);
+            reserveSeat(seller, i);
+            //pthread_mutex_unlock(&seller->auditorium->mutex[seller->current_row]);
+            pthread_mutex_unlock(&mutex);
             found_seat = 1;
             break;
           }
@@ -50,14 +52,17 @@ void * sell(Seller* seller, Auditorium* auditorium)
         for (int i = 0; i < 10; ++i) {
         //printf("seat: %d\n", seller->auditorium->seats[0][i].id);
           if (seller->auditorium->seats[seller->current_row][i].customer_id == -1) {
-            seller->auditorium->seats[seller->current_row][i].customer_id = c->id;
-            seller->auditorium->seats[seller->current_row][i].seller_id = seller->id;
-            seller->auditorium->seats[seller->current_row][i].type= c->type;
+            //pthread_mutex_lock(&seller->auditorium->mutex[seller->current_row]);     
+            pthread_mutex_lock(&mutex);            
+            sleep(sleep_time);
+            reserveSeat(seller, i);
+            //pthread_mutex_unlock(&seller->auditorium->mutex[seller->current_row]);
+            pthread_mutex_unlock(&mutex); 
             found_seat = 1;
             break;
           }
           if (i == 9) {
-            ++seller->current_row;
+            seller->current_row = getNewMRow(seller->current_row);
             if(seller->current_row == -1 || seller->current_row == 10) {
               removeContents(seller->customerQueue);
               found_seat = 1;
@@ -68,14 +73,16 @@ void * sell(Seller* seller, Auditorium* auditorium)
     }
 
     if (seller->type == 'L') {
-       {
       int found_seat = 0;
       while(!found_seat) { 
       for (int i = 0; i < 10; ++i) {
         if (seller->auditorium->seats[seller->current_row][i].customer_id == -1) {
-          seller->auditorium->seats[seller->current_row][i].customer_id = c->id;
-          seller->auditorium->seats[seller->current_row][i].seller_id = seller->id;
-          seller->auditorium->seats[seller->current_row][i].type= c->type;
+          //pthread_mutex_lock(&seller->auditorium->mutex[seller->current_row]);    
+          pthread_mutex_lock(&mutex);      
+          sleep(sleep_time);
+          reserveSeat(seller, i);
+          //pthread_mutex_unlock(&seller->auditorium->mutex[seller->current_row]);
+          pthread_mutex_unlock(&mutex);
           found_seat = 1;
           break;
         }
@@ -90,8 +97,6 @@ void * sell(Seller* seller, Auditorium* auditorium)
       }
       }
     }
-    }
-    pthread_mutex_unlock(&mutex);
   }
 
   return NULL; // thread exits
