@@ -21,9 +21,9 @@ pthread_mutex_t selling_mutex = PTHREAD_MUTEX_INITIALIZER;
 //pretend that hours are seconds
 //so each tick of the clock is 1s real time
 //representing 1m of sim time
-volatile int clock_time =0;
+volatile int timer = 0;
 int MAXIMUM_RUN_TIME = 60;
-volatile int tickets_available = 100; //100 seats
+volatile int tickets_for_sale = 100; //100 seats
 //Some globals for the threads
 //Basically holding current row, seat that the threads
 //are gonna try to get
@@ -38,6 +38,15 @@ volatile int M_CUSTOMERS_WITH_SEATS = 0;
 volatile int L_CUSTOMERS_WITH_SEATS = 0;
 volatile int turned_away_customers = 0;
 
+//wait an hour
+//this spins for 1 minute 
+//which is our simulation fo hour
+void wait_pseudo_hour() {
+    while(timer++ < MAXIMUM_RUN_TIME) {
+		sleep(1);
+
+	}
+}
 
 // function to wake up all of the seller threads
 void wakeup_all_seller_threads() {
@@ -45,15 +54,7 @@ void wakeup_all_seller_threads() {
 	pthread_cond_broadcast(&cond_go);
 	pthread_mutex_unlock(&mutex_condition);
 }
-//wait an hour
-//this spins for 1 minute 
-//which is our simulation fo hour
-void wait_pseudo_hour() {
-    while(clock_time < MAXIMUM_RUN_TIME) {
-		sleep(1);
-		clock_time++;
-	}
-}
+
 int main(int argc, char* argv[]) {
     printf("Group 1: Matthew Findlay, Kevin Velcich, Esai Morales\n");
     printf("Project 3 Output\n\n\n");

@@ -12,11 +12,11 @@ extern pthread_cond_t cond_go;
 extern pthread_mutex_t mutex_condition;
 extern pthread_mutex_t selling_mutex;
 
-extern volatile int clock_time;
+extern volatile int timer;
 extern int MAXIMUM_RUN_TIME;
 
 // create a variable to tell when all the tickets have been sold
-extern volatile int tickets_available;
+extern volatile int tickets_for_sale;
 
 extern volatile int H_CURRENT_ROW;
 extern volatile int H_CURRENT_SEAT;
@@ -54,4 +54,6 @@ class Seller {
 		// gets seller to find new seat to go to
 		void getNewSeat();
         void StartSelling();
+        void increaseBuyerCount();
+        bool checkIfDone();
 };

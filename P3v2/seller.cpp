@@ -34,73 +34,57 @@ void* Seller::sell() {
 	pthread_mutex_lock(&mutex_condition);
 	pthread_cond_wait(&cond_go, &mutex_condition);
 	pthread_mutex_unlock(&mutex_condition);
-    //run untill clock is done
-	while(clock_time < MAXIMUM_RUN_TIME) {
-		int next_buy_time= 0;
+    //run untill timeris done
+	while(timer < MAXIMUM_RUN_TIME) {
+		int next_buy_time= timer;
 		// check if it is time to serve the next customer and that the queue is not empty
-		if( (!this->buyerQueue.empty()) && (clock_time >= next_buy_time) && (clock_time >= buyerQueue.top().arrival_time)) {
-				
+		if( (!this->buyerQueue.empty()) && (timer >= next_buy_time) && (timer >= buyerQueue.top().arrived)) {
+			//its time
+            //Lock the sale here!
+			pthread_mutex_lock(&selling_mutex);
 			Buyer b = this->buyerQueue.top();
 			this->buyerQueue.pop();
 			// Here we get the service time for the customer
 			int customer_buy_wait_time = sellerRandomSellTime();
 			
-            //Lock the sale here!
-			pthread_mutex_lock(&selling_mutex);
+
             //if we still have tickets
-			if(tickets_available > 0) {
-                --tickets_available;
+			if(tickets_for_sale-- > 0) {
 				// customer is being serviced so set next available time
-				next_buy_time = (clock_time + customer_buy_wait_time);
+				next_buy_time+= customer_buy_wait_time;
                 int row = currentRow();
                 int col = currentColumn();
                 getNewSeat();
                 //continue searching for new seat if not empty
                 while(this->auditorium[row][col] != "-") {
                     //break if about to leave auditorium ie seller has used up all spots
-                	if(this->type[0] == 'H') {
-                        if (9 < H_CURRENT_ROW) {
-						    break;
-                        }
-					}
-					else if(this->type[0] == 'M') {
-                        if (0 > M_CURRENT_ROW) {
-						    break;
-                        }
-					}
-					else if(this->type[0] == 'L') {
-                        if(0 > L_CURRENT_ROW) {
-						    break;
-                        }
-					}
+                	if (this->checkIfDone()) {
+                        break;
+                    }
                     row = currentRow();
                     col = currentColumn();
                     getNewSeat();
                 }
 				//print info of payment
-                printTime(clock_time);
+                printTime(timer);
                 printf("\n");
 				printPurchase(&b, this->type.c_str());
 				//customer takes the seat
-				this->auditorium[row][col] = (this->type + "0" + std::to_string(b.ID));
+                std::string seat_string = "";
+                seat_string += this->type;
+                seat_string += "0";
+                seat_string += std::to_string(b.ID);
+				this->auditorium[row][col] = seat_string;
 				printAuditorium(this->auditorium);
 				printf("\n");
 				// increment the number of customers that got seats
-				if(this->type[0] == 'H') {
-					H_CUSTOMERS_WITH_SEATS++;
-				}
-				else if(this->type[0] == 'M') {
-					M_CUSTOMERS_WITH_SEATS++;
-				}
-				else if(this->type[0] == 'L') {
-					L_CUSTOMERS_WITH_SEATS++;
-				}
+				this->increaseBuyerCount();
 			}
             //Else there are no tickets
 			else {
-                printTime(clock_time);
+                printTime(timer);
                 printf("\n");
-				printSoldout(clock_time, &b, this->type.c_str());
+				printSoldout(timer, &b, this->type.c_str());
 				++turned_away_customers;
 			}
             //release mutex
@@ -110,7 +94,37 @@ void* Seller::sell() {
 	return NULL;
 }
 
+bool Seller::checkIfDone() {
+    if(this->type[0] == 'H') {
+        if (9 < H_CURRENT_ROW) {
+			return true;
+        }
+	}
+	else if(this->type[0] == 'M') {
+        if (0 > M_CURRENT_ROW) {
+			return true;
+            }
+		}
+		else if(this->type[0] == 'L') {
+            if(0 > L_CURRENT_ROW) {
+				return true;
+            }
+		}
+    return false;
+}
 
+void Seller::increaseBuyerCount() {
+    // increment the number of customers that got seats
+	if(this->type[0] == 'H') {
+		H_CUSTOMERS_WITH_SEATS++;
+	}
+	else if(this->type[0] == 'M') {
+		M_CUSTOMERS_WITH_SEATS++;
+	}
+	else if(this->type[0] == 'L') {
+		L_CUSTOMERS_WITH_SEATS++;
+	}
+}
 //gets the new time
 int Seller::sellerRandomSellTime() {
 	if(this->type[0] == 'H') { //H sellers are 1 or 2 minutes

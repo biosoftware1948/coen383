@@ -9,7 +9,7 @@
 void createBuyer(Buyer *b, int id) {
 	b->ID = id;
     //buyers arrive under 59 miniutes
-	b->arrival_time = rand() % 60;
+	b->arrived = rand() % 60;
     //-1 so we know customer has no seat
 	b->row_number = -1;
 	b->column_number = -1;
@@ -22,14 +22,14 @@ void setBuyerSeat(Buyer* b, int r, int s) {
 
 //OVerload this so its easy to compare who is next in priority queue
 bool operator<(const Buyer& b, const Buyer& b2) {
-	if(b.arrival_time > b2.arrival_time) {
+	if(b.arrived > b2.arrived) {
 		return true;
 	}
 	return false;
 }
 //OVerload this so its easy to compare who is next in priority queue
 bool operator<=(const Buyer& b, const Buyer& b2) {
-		if(b.arrival_time >= b2.arrival_time) {
+		if(b.arrived >= b2.arrived) {
 		return true;
 	}
 	return false;

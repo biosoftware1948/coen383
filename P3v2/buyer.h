@@ -4,7 +4,7 @@
 //Buyer datastructure
 typedef struct Buyer {
 	int ID;
-	int arrival_time;
+	int arrived;
 	int row_number;
 	int column_number;
 	
