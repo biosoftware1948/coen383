@@ -32,8 +32,6 @@ extern volatile int turned_away_customers;
 
 class Seller {
 	private:
-		// seller type
-		std::string type;
 		// sellers customer queue
 		std::priority_queue<Buyer> buyerQueue;
 		// reference to customer seats
@@ -45,10 +43,11 @@ class Seller {
 
 	public:
     pthread_t sellerThread;
+    		// seller type
+		std::string type;
 		// constructor
 		Seller(std::string auditorium[][10], std::string seller_type, int queue_size);
-		// sets the seller type
-		void setSellerType(std::string seller_type);
+
 		void* sell();
 		// remove a customer from the sellers queue
 		int get_service_time();

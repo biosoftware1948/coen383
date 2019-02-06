@@ -32,5 +32,5 @@ void printTime(int clock) {
 }
 
 void printSoldout(int clock_time, Buyer* b, const char* s) {
-	printf("0:%02i Customer %i has been turned away by seller %s because concert is sold out.\n", clock_time, b->ID, s);
+    printf("Concert is sold out!!! Customer %i is being turned away. Too slow!", b->ID, s);
 }

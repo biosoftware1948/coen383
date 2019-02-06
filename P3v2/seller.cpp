@@ -93,6 +93,8 @@ void* Seller::sell() {
 				}
 			}
 			else {
+                printTime(clock_time);
+                printf("\n");
 				printSoldout(clock_time, &b, this->type.c_str());
 				// increment the number of customers turned away
 				turned_away_customers++;
@@ -102,11 +104,6 @@ void* Seller::sell() {
 		}
 	}
 	return NULL;
-}
-
-// sets the seller type
-void Seller::setSellerType(std::string seller_type) {
-	this->type = seller_type;
 }
 
 
@@ -175,7 +172,7 @@ void Seller::set_next_free_seat() {
 				rowM = 0;
 			}
 			else if(0 == rowM) {
-				rowM == -1;
+				rowM = -1;
 			}
 		}
 	}

@@ -16,7 +16,7 @@ pthread_cond_t cond_go = PTHREAD_COND_INITIALIZER;
 pthread_mutex_t mutex_condition = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_sell = PTHREAD_MUTEX_INITIALIZER;
 
-
+//keep track of time in seconds
 volatile int clock_time;
 int max_time = 60;
 
