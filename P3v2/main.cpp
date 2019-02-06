@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include <unistd.h>
-#include <pthread.h>
 #include <queue>
 #include <string>
+#include <unistd.h>
+#include <pthread.h>
+
 
 #include "buyer.h"
 #include "auditorium.h"
@@ -14,7 +15,7 @@
 //global mutexs
 pthread_cond_t cond_go = PTHREAD_COND_INITIALIZER;
 pthread_mutex_t mutex_condition = PTHREAD_MUTEX_INITIALIZER;
-pthread_mutex_t mutex_sell = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t selling_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 //For the purpose of this simulation we
 //pretend that hours are seconds
@@ -57,8 +58,6 @@ int main(int argc, char* argv[]) {
     printf("Group 1: Matthew Findlay, Kevin Velcich, Esai Morales\n");
     printf("Project 3 Output\n\n\n");
 
-	int seed = time(NULL);
-	srand(seed);
     //Get N customers from command line
     if(argc != 2) {
         printf("Please enter N as a command line argument, where N is the number of buyers\n");
@@ -74,19 +73,23 @@ int main(int argc, char* argv[]) {
 	pthread_t tids[10];
 	// create H ticket seller
 	Seller* H0 = new Seller(auditorium, "H0", N);
+    H0->StartSelling();
     tids[0] = H0->sellerThread;
 	// create M ticket sellers
 	for(int i = 1; i < 4; i++) {
 		Seller* M = new Seller(auditorium, "M" + std::to_string(i), N);
+        M->StartSelling();
 		tids[i] = M->sellerThread;
 	}
 	// create  L ticket sellers
 	for(int i = 4; i < 10; i++) {
 		Seller* L = new Seller(auditorium, "L" + std::to_string(i), N);
+        L->StartSelling();
 		tids[i] = L->sellerThread;
 	}
     //Sleep to allow threads to create (segfaults sometime if not), then wake up at same time
     sleep(5);
+    printf("\n~~All threads succesfully started~~\n\n");
 	wakeup_all_seller_threads();
 
     //wait 1 hour (1 minute for us)
@@ -102,7 +105,7 @@ int main(int argc, char* argv[]) {
 	printf("%d H customers seated.\n", H_CUSTOMERS_WITH_SEATS);
 	printf("%d M customers seated.\n", M_CUSTOMERS_WITH_SEATS);
 	printf("%d L customers seated.\n", L_CUSTOMERS_WITH_SEATS);
-	printf("%d customers turned away.\n", turned_away_customers);
+	printf("%d customers not seated.\n", turned_away_customers);
 	
 
 

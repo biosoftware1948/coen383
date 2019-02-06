@@ -5,21 +5,6 @@
 #include "buyer.h"
 
 
-//OVerload this so its easy to compare who is next in priority queue
-bool operator<(const Buyer& b, const Buyer& b2) {
-	if(b.arrival_time > b2.arrival_time) {
-		return true;
-	}
-	return false;
-}
-//OVerload this so its easy to compare who is next in priority queue
-bool operator<=(const Buyer& b, const Buyer& b2) {
-		if(b.arrival_time >= b2.arrival_time) {
-		return true;
-	}
-	return false;
-}
-
 //create new buyer
 void createBuyer(Buyer *b, int id) {
 	b->ID = id;
@@ -33,4 +18,19 @@ void createBuyer(Buyer *b, int id) {
 void setBuyerSeat(Buyer* b, int r, int s) {
 	b->row_number = r;
 	b->column_number = s;
+}
+
+//OVerload this so its easy to compare who is next in priority queue
+bool operator<(const Buyer& b, const Buyer& b2) {
+	if(b.arrival_time > b2.arrival_time) {
+		return true;
+	}
+	return false;
+}
+//OVerload this so its easy to compare who is next in priority queue
+bool operator<=(const Buyer& b, const Buyer& b2) {
+		if(b.arrival_time >= b2.arrival_time) {
+		return true;
+	}
+	return false;
 }

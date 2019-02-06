@@ -10,7 +10,7 @@
 
 extern pthread_cond_t cond_go;
 extern pthread_mutex_t mutex_condition;
-extern pthread_mutex_t mutex_sell;
+extern pthread_mutex_t selling_mutex;
 
 extern volatile int clock_time;
 extern int MAXIMUM_RUN_TIME;
@@ -37,18 +37,21 @@ class Seller {
 		std::string (*auditorium)[10];
 		// remaining customer service time
 		int service_time;
+        int id;
+        int seats;
 
 	public:
         pthread_t sellerThread;
 		std::string type;         //H, M, or L
-		Seller(std::string auditorium[][10], std::string type, int N);
+		Seller(std::string auditorium[10][10], std::string type, int N);
 		void* sell();
         //create new sell time depending on type H, M, L
 		int sellerRandomSellTime();
 		// get the current row for seating
 		int currentRow();
 		// get the current seat to be used
-		int currentSeat();
+		int currentColumn();
 		// gets seller to find new seat to go to
 		void getNewSeat();
+        void StartSelling();
 };
