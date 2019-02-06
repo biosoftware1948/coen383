@@ -37,17 +37,17 @@ volatile int tickets_available;
 pthread_mutex_t tickets_available_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 // create variables and a mutex for the seller rows and seller seats
-volatile int rowH;
-volatile int seatH;
-volatile int rowM;
-volatile int seatM;
-volatile int rowL;
-volatile int seatL;
+volatile int rowH =0;
+volatile int seatH = 0;
+volatile int rowM = 5;
+volatile int seatM = 0;
+volatile int rowL = 9;
+volatile int seatL = 0;
 pthread_mutex_t seating_index_mutex = PTHREAD_MUTEX_INITIALIZER;
-volatile int seated_customers_H;
-volatile int seated_customers_M;
-volatile int seated_customers_L;
-volatile int turned_away_customers;
+volatile int seated_customers_H = 0;
+volatile int seated_customers_M = 0;
+volatile int seated_customers_L = 0;
+volatile int turned_away_customers = 0;
 
 // function to wake up all of the seller threads
 void wakeup_all_seller_threads() {
@@ -65,35 +65,14 @@ int main(int argc, char* argv[]) {
 	clock_time = 0;
 	// initialize the available number of tickets to 100
 	tickets_available = 100;
-	// initialize all of the starting rows and seats
-	rowH = 0;
-	seatH = 0;
-	rowM = 5;
-	seatM = 0;
-	rowL = 9;
-	seatL = 0;
-	seated_customers_H = 0;
-	seated_customers_M = 0;
-	seated_customers_L = 0;
-	turned_away_customers = 0;
 
-	// set a default value for the number of customers per queue
-	int customers_per_queue = 10;
 
-	// check if the user entered a desired number for customers per queue
-	if(2 > argc) {
-		printf("No size entered for customers per queue.\nUsing default of 10 customers per queue.\n");
-	}
-	else {
-		// check if the supplied argument is a number
-		if(0 < atoi(argv[1])) {
-			customers_per_queue =  atoi(argv[1]);
-			printf("Each queue will have %i customers.\n", customers_per_queue);
-		}
-		else {
-			printf("Input is not valid.\nUsing default of 10 customers per queue.\n");
-		}
-	}
+    if(argc != 2) {
+        printf("Please enter N as a command line argument, where N is the number of buyers\n");
+        exit(0);
+    }
+    int N = atoi(argv[1]);
+    printf("%d customers entered\n", N);
 
 	// create the 2d array of seats
 	std::string auditorium[10][10];
@@ -107,17 +86,17 @@ int main(int argc, char* argv[]) {
 
 
 	// create H ticket seller
-	sellers[0] = new Seller(auditorium, "H0", customers_per_queue);
-	tids[0] = sellers[0]->getThread();
+	sellers[0] = new Seller(auditorium, "H0", N);
+	tids[0] = sellers[0]->sellerThread;
 	// create 3 M ticket sellers
 	for(int i = 1; i < 4; i++) {
-		sellers[i] = new Seller(auditorium, "M" + std::to_string(i), customers_per_queue);
-		tids[i] = sellers[i]->getThread();
+		sellers[i] = new Seller(auditorium, "M" + std::to_string(i), N);
+		tids[i] = sellers[i]->sellerThread;
 	}
 	// create 6 L ticket sellers
 	for(int i = 4; i < 10; i++) {
-		sellers[i] = new Seller(auditorium, "L" + std::to_string(i - 3), customers_per_queue);
-		tids[i] = sellers[i]->getThread();
+		sellers[i] = new Seller(auditorium, "L" + std::to_string(i), N);
+		tids[i] = sellers[i]->sellerThread;
 	}
 
 	// sleep 1 second to make sure all threads have been created and are waiting

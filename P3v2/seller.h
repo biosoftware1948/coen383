@@ -33,34 +33,25 @@ extern volatile int turned_away_customers;
 class Seller {
 	private:
 		// seller type
-		std::string seller_type;
+		std::string type;
 		// sellers customer queue
-		std::priority_queue<Buyer> q;
+		std::priority_queue<Buyer> buyerQueue;
 		// reference to customer seats
-		std::string (*concert_seats)[10];
+		std::string (*auditorium)[10];
 		// reference to thread
-		pthread_t my_thread;
+
 		// remaining customer service time
-		int remaining_customer_service_time;
+		int service_time;
 
 	public:
+    pthread_t sellerThread;
 		// constructor
-		Seller(std::string seats[][10], std::string seller_type, int queue_size);
+		Seller(std::string auditorium[][10], std::string seller_type, int queue_size);
 		// sets the seller type
 		void setSellerType(std::string seller_type);
 		void* sell();
-		// add a customer to the seller's queue
-		void push_queue(Buyer c);
-		// checks if the seller queue is empty
-		bool isEmpty();
-		// function to return the thread
-		pthread_t getThread();
 		// remove a customer from the sellers queue
-		void pop_queue();
-		// function to get random service time
 		int get_service_time();
-		// function to fill the sellers queue
-		void fill_queue(int n);
 		// get the current row for seating
 		int get_row();
 		// get the current seat to be used
