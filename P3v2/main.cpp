@@ -16,12 +16,16 @@ pthread_cond_t cond_go = PTHREAD_COND_INITIALIZER;
 pthread_mutex_t mutex_condition = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_sell = PTHREAD_MUTEX_INITIALIZER;
 
-//keep track of time in seconds
-volatile int clock_time;
+//For the purpose of this simulation we
+//pretend that hours are seconds
+//so each tick of the clock is 1s real time
+//representing 1m of sim time
+volatile int clock_time =0;
 int MAXIMUM_RUN_TIME = 60;
-volatile int tickets_available;
-
-
+volatile int tickets_available = 100; //100 seats
+//Some globals for the threads
+//Basically holding current row, seat that the threads
+//are gonna try to get
 volatile int H_CURRENT_ROW =0;
 volatile int H_CURRENT_SEAT = 0;
 volatile int M_CURRENT_ROW = 5;
@@ -40,7 +44,9 @@ void wakeup_all_seller_threads() {
 	pthread_cond_broadcast(&cond_go);
 	pthread_mutex_unlock(&mutex_condition);
 }
-
+//wait an hour
+//this spins for 1 minute 
+//which is our simulation fo hour
 void wait_pseudo_hour() {
     while(clock_time < MAXIMUM_RUN_TIME) {
 		sleep(1);
@@ -53,11 +59,7 @@ int main(int argc, char* argv[]) {
 
 	int seed = time(NULL);
 	srand(seed);
-	// initialize the clock time to 0
-	clock_time = 0;
-	// initialize the available number of tickets to 100
-	tickets_available = 100;
-
+    //Get N customers from command line
     if(argc != 2) {
         printf("Please enter N as a command line argument, where N is the number of buyers\n");
         exit(0);
@@ -65,7 +67,7 @@ int main(int argc, char* argv[]) {
     int N = atoi(argv[1]);
     printf("%d customers entered\n", N);
 
-    //create string to store seats
+    //creat the auditorium where seats are
 	std::string auditorium[10][10];
     //Fill seats with empty placeholder "-"
     createAuditorium(auditorium);
@@ -73,17 +75,17 @@ int main(int argc, char* argv[]) {
 	// create H ticket seller
 	Seller* H0 = new Seller(auditorium, "H0", N);
     tids[0] = H0->sellerThread;
-	// create 3 M ticket sellers
+	// create M ticket sellers
 	for(int i = 1; i < 4; i++) {
 		Seller* M = new Seller(auditorium, "M" + std::to_string(i), N);
 		tids[i] = M->sellerThread;
 	}
-	// create 6 L ticket sellers
+	// create  L ticket sellers
 	for(int i = 4; i < 10; i++) {
 		Seller* L = new Seller(auditorium, "L" + std::to_string(i), N);
 		tids[i] = L->sellerThread;
 	}
-    //Sleep to allow threads to create, then wake up at same time
+    //Sleep to allow threads to create (segfaults sometime if not), then wake up at same time
     sleep(5);
 	wakeup_all_seller_threads();
 

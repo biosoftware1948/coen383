@@ -49,11 +49,11 @@ void* Seller::sell() {
 				// get the next available seat and make sure it isn't already taken
 				do {
 					// get the available row
-					avail_row = get_row();
+					avail_row = currentRow();
 					// get the available seat
-					avail_seat = get_seat();
+					avail_seat = currentSeat();
 					// set the next available seat if there are still tickets available
-					set_next_free_seat();
+					getNewSeat();
 					// put in an exit condition for the threads to prevent infinite loop looking for seat
 					if(('H' == this->type[0]) && (9 < H_CURRENT_ROW)) {
 						break;
@@ -122,7 +122,7 @@ int Seller::sellerRandomSellTime() {
 
 // function that sets the next free seat
 // requires getting the lock prior to its call
-void Seller::set_next_free_seat() {
+void Seller::getNewSeat() {
 	// check if this is a H ticket seller
 	if('H' == this->type[0]) {
 		// increment the seat
@@ -187,7 +187,7 @@ void Seller::set_next_free_seat() {
 
 // get the current row for seating
 // requires getting the lock prior to its call
-int Seller::get_row() {
+int Seller::currentRow() {
 	int r;
 	// look at which row index to get
 	if('H' == this->type[0]) {
@@ -205,7 +205,7 @@ int Seller::get_row() {
 
 // get the current seat to be used
 // requires getting the lock prior to its call
-int Seller::get_seat() {
+int Seller::currentSeat() {
 	int s;
 	// look at which seat index to get
 	if('H' == this->type[0]) {

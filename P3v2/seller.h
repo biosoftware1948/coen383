@@ -43,11 +43,12 @@ class Seller {
 		std::string type;         //H, M, or L
 		Seller(std::string auditorium[][10], std::string type, int N);
 		void* sell();
+        //create new sell time depending on type H, M, L
 		int sellerRandomSellTime();
 		// get the current row for seating
-		int get_row();
+		int currentRow();
 		// get the current seat to be used
-		int get_seat();
-		// set the next free seat
-		void set_next_free_seat();
+		int currentSeat();
+		// gets seller to find new seat to go to
+		void getNewSeat();
 };

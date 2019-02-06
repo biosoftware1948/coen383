@@ -5,14 +5,14 @@
 #include "buyer.h"
 
 
-
+//OVerload this so its easy to compare who is next in priority queue
 bool operator<(const Buyer& b, const Buyer& b2) {
 	if(b.arrival_time > b2.arrival_time) {
 		return true;
 	}
 	return false;
 }
-
+//OVerload this so its easy to compare who is next in priority queue
 bool operator<=(const Buyer& b, const Buyer& b2) {
 		if(b.arrival_time >= b2.arrival_time) {
 		return true;
