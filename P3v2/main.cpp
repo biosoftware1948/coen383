@@ -6,7 +6,8 @@
 #include <string>
 #include <unistd.h>
 #include <pthread.h>
-
+#include <vector>
+#include <cassert>
 
 #include "buyer.h"
 #include "auditorium.h"
@@ -38,14 +39,20 @@ volatile int M_CUSTOMERS_WITH_SEATS = 0;
 volatile int L_CUSTOMERS_WITH_SEATS = 0;
 volatile int turned_away_customers = 0;
 
+std::vector<Seller *> s;
+
 //wait an hour
 //this spins for 1 minute 
 //which is our simulation fo hour
 void wait_pseudo_hour() {
-    while(timer++ < MAXIMUM_RUN_TIME) {
-		sleep(1);
+    assert(s.size() == 10);
 
-	}
+    while(timer < MAXIMUM_RUN_TIME) {
+        for (int i = 0; i < s.size(); i++)
+            s[i]->printAvailables(timer);    
+        sleep(1);
+        timer++;
+    }
 }
 
 // function to wake up all of the seller threads
@@ -74,18 +81,21 @@ int main(int argc, char* argv[]) {
 	pthread_t tids[10];
 	// create H ticket seller
 	Seller* H0 = new Seller(auditorium, "H0", N);
+        s.push_back(H0);
     H0->StartSelling();
     tids[0] = H0->sellerThread;
 	// create M ticket sellers
 	for(int i = 1; i < 4; i++) {
 		Seller* M = new Seller(auditorium, "M" + std::to_string(i), N);
         M->StartSelling();
+                s.push_back(M);
 		tids[i] = M->sellerThread;
 	}
 	// create  L ticket sellers
 	for(int i = 4; i < 10; i++) {
 		Seller* L = new Seller(auditorium, "L" + std::to_string(i), N);
         L->StartSelling();
+                s.push_back(L);
 		tids[i] = L->sellerThread;
 	}
     //Sleep to allow threads to create (segfaults sometime if not), then wake up at same time

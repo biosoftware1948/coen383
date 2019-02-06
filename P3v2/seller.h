@@ -53,7 +53,9 @@ class Seller {
 		int currentColumn();
 		// gets seller to find new seat to go to
 		void getNewSeat();
-        void StartSelling();
-        void increaseBuyerCount();
-        bool checkIfDone();
+                void StartSelling();
+                void increaseBuyerCount();
+                bool checkIfDone();
+                void printAvailables(int);
+                void printAllBuyers();
 };

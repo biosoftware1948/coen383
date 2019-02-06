@@ -225,3 +225,7 @@ void Seller::getNewSeat() {
 		}
 	}    
 }
+
+void Seller::printAvailables(int ctime) {
+
+}
