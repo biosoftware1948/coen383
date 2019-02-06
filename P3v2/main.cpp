@@ -2,39 +2,25 @@
 #include <stdlib.h>
 #include <time.h>
 
-// for sleeping
 #include <unistd.h>
-
-// thread library
 #include <pthread.h>
-// cpp queue container
 #include <queue>
-// for the concert seats will be a string vector
 #include <string>
 
-// additional files
 #include "buyer.h"
 #include "auditorium.h"
 #include "seller.h"
 
-// condition for threads to begin
+//global mutexs
 pthread_cond_t cond_go = PTHREAD_COND_INITIALIZER;
-
-// mutex for waiting on condition
 pthread_mutex_t mutex_condition = PTHREAD_MUTEX_INITIALIZER;
-
-// mutex for threads editing seat chart
 pthread_mutex_t mutex_sell = PTHREAD_MUTEX_INITIALIZER;
 
-// for debugging within the thread, a mutex is needed
-pthread_mutex_t print_lock = PTHREAD_MUTEX_INITIALIZER;
 
 volatile int clock_time;
 int max_time = 60;
 
-// create a variable to tell when all the tickets have been sold
 volatile int tickets_available;
-pthread_mutex_t tickets_available_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 // create variables and a mutex for the seller rows and seller seats
 volatile int rowH =0;
@@ -43,7 +29,6 @@ volatile int rowM = 5;
 volatile int seatM = 0;
 volatile int rowL = 9;
 volatile int seatL = 0;
-pthread_mutex_t seating_index_mutex = PTHREAD_MUTEX_INITIALIZER;
 volatile int seated_customers_H = 0;
 volatile int seated_customers_M = 0;
 volatile int seated_customers_L = 0;
@@ -65,7 +50,6 @@ int main(int argc, char* argv[]) {
 	clock_time = 0;
 	// initialize the available number of tickets to 100
 	tickets_available = 100;
-
 
     if(argc != 2) {
         printf("Please enter N as a command line argument, where N is the number of buyers\n");

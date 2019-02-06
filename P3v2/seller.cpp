@@ -39,12 +39,8 @@ void* Seller::sell() {
 			// get the random service time required for the customer
 			int serve_time = get_service_time();
 			
-			// get mutexes to enter critical region
-			pthread_mutex_lock(&print_lock);
+
 			pthread_mutex_lock(&mutex_sell);
-			pthread_mutex_lock(&seating_index_mutex);
-			pthread_mutex_lock(&tickets_available_mutex);
-			// check if there are any available tickets left
 			if(0 < tickets_available) {
 				// customer is being serviced so set next available time
 				ready_for_customer = (clock_time + serve_time);
@@ -101,11 +97,8 @@ void* Seller::sell() {
 				// increment the number of customers turned away
 				turned_away_customers++;
 			}
-			// release mutexes
-			pthread_mutex_unlock(&tickets_available_mutex);
-			pthread_mutex_unlock(&seating_index_mutex);
+            //release mutex
 			pthread_mutex_unlock(&mutex_sell);
-			pthread_mutex_unlock(&print_lock);
 		}
 	}
 	return NULL;
