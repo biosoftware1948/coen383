@@ -42,14 +42,15 @@ volatile int turned_away_customers = 0;
 std::vector<Seller *> s;
 
 //wait an hour
-//this spins for 1 minute 
+//this spins for 1 minute
 //which is our simulation fo hour
 void wait_pseudo_hour() {
     assert(s.size() == 10);
 
     while(timer < MAXIMUM_RUN_TIME) {
         for (int i = 0; i < s.size(); i++)
-            s[i]->printAvailables(timer);    
+            s[i]->printAvailables(timer);
+			
         sleep(1);
         timer++;
     }
@@ -117,7 +118,7 @@ int main(int argc, char* argv[]) {
 	printf("%d M customers seated.\n", M_CUSTOMERS_WITH_SEATS);
 	printf("%d L customers seated.\n", L_CUSTOMERS_WITH_SEATS);
 	printf("%d customers not seated.\n", turned_away_customers);
-	
+
 
 
 	exit(0);

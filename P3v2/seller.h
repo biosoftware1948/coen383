@@ -4,6 +4,7 @@
 #include <queue>
 #include <iostream>
 #include <pthread.h>
+#include <vector>
 
 #include "buyer.h"
 #include "auditorium.h"
@@ -33,12 +34,31 @@ extern volatile int turned_away_customers;
 class Seller {
 	private:
 		std::priority_queue<Buyer> buyerQueue;
+		std::vector<Buyer> allBuyers;
 		// reference to auditorium
 		std::string (*auditorium)[10];
 		// remaining customer service time
 		int service_time;
         int id;
         int seats;
+
+		class Transaction {
+		public:
+			Buyer _b;
+			int time;
+			int row;
+			int col;
+			Transaction(Buyer a, int b, int c, int d) {
+				_b = a;
+				time = b;
+				row = c;
+				col = d;
+			}
+		};
+
+		std::vector<Transaction> transactions;
+		void printStarted(Transaction t);
+		void finishSale(Transaction t);
 
 	public:
         pthread_t sellerThread;
@@ -53,9 +73,9 @@ class Seller {
 		int currentColumn();
 		// gets seller to find new seat to go to
 		void getNewSeat();
-                void StartSelling();
-                void increaseBuyerCount();
-                bool checkIfDone();
-                void printAvailables(int);
-                void printAllBuyers();
+        void StartSelling();
+        void increaseBuyerCount();
+        bool checkIfDone();
+        void printAvailables(int);
+        void printAllBuyers();
 };

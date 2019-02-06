@@ -6,6 +6,7 @@ Seller::Seller(std::string auditorium[10][10], std::string type, int N) {
 	for(int i = 0; i < N; i++) {
 		Buyer b;
 		createBuyer(&b, i);
+		allBuyers.push_back(b);
 		this->buyerQueue.push(b);
 	}
     this->auditorium = auditorium;
@@ -28,6 +29,48 @@ void Seller::StartSelling() {
 	pthread_create(&this->sellerThread, NULL, _startSales, (void*) this);
 }
 
+void Seller::printStarted(Transaction t) {
+	std::string time_str = "0";
+	if (timer >= 10) time_str = "";
+	std::string bID = "0";
+	if (t._b.ID >= 10) bID = "";
+
+	std::cout << std::endl;
+	std::cout << "0:" << time_str << timer;
+	std::cout << " Customer " << bID << t._b.ID;
+	std::cout << " is being served from seller ";
+	std::cout << type;
+	std::cout << "and is assigned seat: R" << t.row << "C" << t.col;
+	std::cout << std::endl;
+}
+
+void Seller::finishSale(Transaction t) {
+	pthread_mutex_lock(&selling_mutex);
+	std::string time_str = "0";
+	if (timer >= 10) time_str = "";
+	std::string bID = "0";
+	if (t._b.ID >= 10) bID = "";
+
+	std::cout << std::endl;
+	std::cout << "0:" << time_str << timer;
+	std::cout << " Customer " << bID << t._b.ID;
+	std::cout << " has finished buying from seller ";
+	std::cout << type;
+	std::cout << " with seat: R" << t.row << "C" << t.col;
+	std::cout << std::endl;
+
+	//customer takes the seat
+	std::string seat_string = "";
+	seat_string += this->type;
+	seat_string += "0";
+	seat_string += std::to_string(t._b.ID);
+	this->auditorium[t.row][t.col] = seat_string;
+	printAuditorium(this->auditorium);
+	printf("\n");
+	// increment the number of customers that got seats
+	this->increaseBuyerCount();
+	pthread_mutex_unlock(&selling_mutex);
+}
 
 void* Seller::sell() {
     //take mutexs
@@ -35,8 +78,9 @@ void* Seller::sell() {
 	pthread_cond_wait(&cond_go, &mutex_condition);
 	pthread_mutex_unlock(&mutex_condition);
     //run untill timeris done
+	int next_buy_time= timer; // AND GET RID OF THISvvv
 	while(timer < MAXIMUM_RUN_TIME) {
-		int next_buy_time= timer;
+		//int next_buy_time= timer; // IF STOPS WORKING UNCOMMENT THIS^^
 		// check if it is time to serve the next customer and that the queue is not empty
 		if( (!this->buyerQueue.empty()) && (timer >= next_buy_time) && (timer >= buyerQueue.top().arrived)) {
 			//its time
@@ -46,7 +90,7 @@ void* Seller::sell() {
 			this->buyerQueue.pop();
 			// Here we get the service time for the customer
 			int customer_buy_wait_time = sellerRandomSellTime();
-			
+
 
             //if we still have tickets
 			if(tickets_for_sale-- > 0) {
@@ -65,20 +109,26 @@ void* Seller::sell() {
                     col = currentColumn();
                     getNewSeat();
                 }
+
+				// CHANGES MADE
+				Transaction t = Transaction(b, next_buy_time, row, col);
+				printStarted(t);
+				transactions.push_back(t);
+
 				//print info of payment
-                printTime(timer);
-                printf("\n");
-				printPurchase(&b, this->type.c_str());
-				//customer takes the seat
-                std::string seat_string = "";
-                seat_string += this->type;
-                seat_string += "0";
-                seat_string += std::to_string(b.ID);
-				this->auditorium[row][col] = seat_string;
-				printAuditorium(this->auditorium);
-				printf("\n");
-				// increment the number of customers that got seats
-				this->increaseBuyerCount();
+                //printTime(timer);
+                // printf("\n");
+				// printPurchase(&b, this->type.c_str());
+				// //customer takes the seat
+                // std::string seat_string = "";
+                // seat_string += this->type;
+                // seat_string += "0";
+                // seat_string += std::to_string(b.ID);
+				// this->auditorium[row][col] = seat_string;
+				// printAuditorium(this->auditorium);
+				// printf("\n");
+				// // increment the number of customers that got seats
+				// this->increaseBuyerCount();
 			}
             //Else there are no tickets
 			else {
@@ -90,7 +140,24 @@ void* Seller::sell() {
             //release mutex
 			pthread_mutex_unlock(&selling_mutex);
 		}
+
+		int counter = 0;
+		while (!transactions.empty()) {
+			for (int i = 0; i < transactions.size(); i++) {
+				if (timer >= transactions[i].time) {
+					finishSale(transactions[i]);
+					transactions.erase(transactions.begin() + i);
+					i--;
+				}
+			}
+			if (counter == 10000) {
+				counter = 0;
+				//std::cout << "\n\nWAIAtING A LONG TIME\n\n";
+				counter++;
+			}
+		}
 	}
+	//std::cout << "!!!COMPLETED: " << type << std::endl;
 	return NULL;
 }
 
@@ -176,7 +243,7 @@ void Seller::getNewSeat() {
 			H_CURRENT_ROW++;
 		}
 	}
-	
+
 	else if(this->type[0] == 'L') {
 		++L_CURRENT_SEAT;
 		//end of row
@@ -223,9 +290,25 @@ void Seller::getNewSeat() {
 				M_CURRENT_ROW = -1;
 			}
 		}
-	}    
+	}
 }
 
 void Seller::printAvailables(int ctime) {
+	std::string time = "0";
+	if (ctime >= 10) time = "";
 
+	for (int i = 0; i < allBuyers.size(); i++) {
+		if (ctime >= allBuyers[i].arrived) {
+			std::string bID = "0";
+			if (allBuyers[i].ID >= 10) bID = "";
+
+			std::cout << "0:" << time << ctime;
+			std::cout << "Customer " << bID << allBuyers[i].ID;
+			std::cout << " arrived at the tail of seller " << type;
+			std::cout << "'s queue." std::endl;
+
+			allBuyers.erase(allBuyers.begin() + i);
+			i--;
+		}
+	}
 }
