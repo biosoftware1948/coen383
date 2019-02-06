@@ -9,10 +9,11 @@
 #include <unistd.h>
 #include <time.h>
 
+//Global mutex conditions
 pthread_cond_t condition = PTHREAD_COND_INITIALIZER;
 volatile pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-//Create the auditorium with seats
 
+//sleeps for the specified milliseconds
 int nsleep(long miliseconds)
 {
    struct timespec req, rem;
@@ -31,12 +32,12 @@ int nsleep(long miliseconds)
    return nanosleep(&req , &rem);
 }
 
-// seller thread to serve one time slice (1 minute)
+//Seller thread
 void * sell(Seller* seller, Auditorium* auditorium)
 {
-  //100 milliseconds for simulation
+  // each minute is 100 milliseconds for simulation purposes
   long sleep_time = get_service_time(seller) *100;
-
+  //continue while a seller still has customers
   while (!isEmpty(seller->customerQueue)) {
     if (seller->type == 'H') {
       int found_seat = 0;
@@ -152,7 +153,11 @@ int main(int argc, char** argv)
     ;
   }
   // Printout simulation results …………
+  printf("Group 1: Matthew Findlay, Kevin Velcich, Esai Morales\n");
+  printf("Project 3 Output\n\n\n");
+  printf("Auditorium:\n");
   printAuditorium(auditorium);
+  
   exit(0);
   
 }

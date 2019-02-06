@@ -10,6 +10,7 @@ Auditorium* createAuditorium() {
 
         }
     }
+    a->reserved_seats = 0;
     return a;
 }
 

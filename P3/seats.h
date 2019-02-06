@@ -14,7 +14,8 @@ typedef struct Seat {
 
 typedef struct Auditorium {
     Seat seats[10][10];
-    volatile pthread_mutex_t mutex[10]; 
+    volatile pthread_mutex_t mutex[10];
+    int reserved_seats;
     //Might be smart to keep track of seats here, and exit only when all seats are full
     //or out of customers
 } Auditorium;
