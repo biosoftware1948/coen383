@@ -17,6 +17,7 @@
 pthread_cond_t cond_go = PTHREAD_COND_INITIALIZER;
 pthread_mutex_t mutex_condition = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t selling_mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t std_output = PTHREAD_MUTEX_INITIALIZER;
 
 //For the purpose of this simulation we
 //pretend that hours are seconds
@@ -50,7 +51,7 @@ void wait_pseudo_hour() {
     while(timer < MAXIMUM_RUN_TIME) {
         for (int i = 0; i < s.size(); i++)
             s[i]->printAvailables(timer);
-			
+
         sleep(1);
         timer++;
     }

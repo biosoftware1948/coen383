@@ -35,38 +35,43 @@ void Seller::printStarted(Transaction t) {
 	std::string bID = "0";
 	if (t._b.ID >= 10) bID = "";
 
-	std::cout << std::endl;
+	pthread_mutex_lock(&std_output);
 	std::cout << "0:" << time_str << timer;
 	std::cout << " Customer " << bID << t._b.ID;
 	std::cout << " is being served from seller ";
 	std::cout << type;
 	std::cout << "and is assigned seat: R" << t.row << "C" << t.col;
 	std::cout << std::endl;
+	std::cout << "WILL FINISH AT: " << t.time << std::endl;
+	pthread_mutex_unlock(&std_output);
 }
 
 void Seller::finishSale(Transaction t) {
-	pthread_mutex_lock(&selling_mutex);
 	std::string time_str = "0";
 	if (timer >= 10) time_str = "";
 	std::string bID = "0";
 	if (t._b.ID >= 10) bID = "";
 
-	std::cout << std::endl;
+	pthread_mutex_lock(&std_output);
 	std::cout << "0:" << time_str << timer;
 	std::cout << " Customer " << bID << t._b.ID;
 	std::cout << " has finished buying from seller ";
 	std::cout << type;
 	std::cout << " with seat: R" << t.row << "C" << t.col;
 	std::cout << std::endl;
+	pthread_mutex_unlock(&std_output);
 
 	//customer takes the seat
 	std::string seat_string = "";
 	seat_string += this->type;
-	seat_string += "0";
+	if (t._b.ID < 10) seat_string += "0";
 	seat_string += std::to_string(t._b.ID);
+	pthread_mutex_lock(&selling_mutex);
 	this->auditorium[t.row][t.col] = seat_string;
+	pthread_mutex_lock(&std_output);
 	printAuditorium(this->auditorium);
 	printf("\n");
+	pthread_mutex_unlock(&std_output);
 	// increment the number of customers that got seats
 	this->increaseBuyerCount();
 	pthread_mutex_unlock(&selling_mutex);
@@ -78,9 +83,9 @@ void* Seller::sell() {
 	pthread_cond_wait(&cond_go, &mutex_condition);
 	pthread_mutex_unlock(&mutex_condition);
     //run untill timeris done
-	int next_buy_time= timer; // AND GET RID OF THISvvv
+	//int next_buy_time= timer; // AND GET RID OF THISvvv
 	while(timer < MAXIMUM_RUN_TIME) {
-		//int next_buy_time= timer; // IF STOPS WORKING UNCOMMENT THIS^^
+		int next_buy_time= timer; // IF STOPS WORKING UNCOMMENT THIS^^
 		// check if it is time to serve the next customer and that the queue is not empty
 		if( (!this->buyerQueue.empty()) && (timer >= next_buy_time) && (timer >= buyerQueue.top().arrived)) {
 			//its time
@@ -111,9 +116,12 @@ void* Seller::sell() {
                 }
 
 				// CHANGES MADE
-				Transaction t = Transaction(b, next_buy_time, row, col);
+				Transaction t = Transaction(b, timer + customer_buy_wait_time, row, col);
 				printStarted(t);
 				transactions.push_back(t);
+
+				//pthread_mutex_unlock(&selling_mutex);
+				//pthread_mutex_lock(&selling_mutex);
 
 				//print info of payment
                 //printTime(timer);
@@ -132,28 +140,26 @@ void* Seller::sell() {
 			}
             //Else there are no tickets
 			else {
+				pthread_mutex_lock(&std_output);
                 printTime(timer);
                 printf("\n");
 				printSoldout(timer, &b, this->type.c_str());
+				pthread_mutex_unlock(&std_output);
 				++turned_away_customers;
 			}
             //release mutex
 			pthread_mutex_unlock(&selling_mutex);
 		}
 
-		int counter = 0;
 		while (!transactions.empty()) {
 			for (int i = 0; i < transactions.size(); i++) {
 				if (timer >= transactions[i].time) {
+					//pthread_mutex_lock(&selling_mutex);
 					finishSale(transactions[i]);
+					//pthread_mutex_unlock(&selling_mutex);
 					transactions.erase(transactions.begin() + i);
 					i--;
-				}
-			}
-			if (counter == 10000) {
-				counter = 0;
-				//std::cout << "\n\nWAIAtING A LONG TIME\n\n";
-				counter++;
+				} else sleep(0.5);
 			}
 		}
 	}
@@ -302,10 +308,12 @@ void Seller::printAvailables(int ctime) {
 			std::string bID = "0";
 			if (allBuyers[i].ID >= 10) bID = "";
 
+			pthread_mutex_lock(&std_output);
 			std::cout << "0:" << time << ctime;
-			std::cout << "Customer " << bID << allBuyers[i].ID;
+			std::cout << " Customer " << bID << allBuyers[i].ID;
 			std::cout << " arrived at the tail of seller " << type;
-			std::cout << "'s queue." std::endl;
+			std::cout << "'s queue." << std::endl;
+			pthread_mutex_unlock(&std_output);
 
 			allBuyers.erase(allBuyers.begin() + i);
 			i--;

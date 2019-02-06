@@ -5,6 +5,7 @@
 #include <iostream>
 #include <pthread.h>
 #include <vector>
+#include <unistd.h>
 
 #include "buyer.h"
 #include "auditorium.h"
@@ -12,6 +13,7 @@
 extern pthread_cond_t cond_go;
 extern pthread_mutex_t mutex_condition;
 extern pthread_mutex_t selling_mutex;
+extern pthread_mutex_t std_output;
 
 extern volatile int timer;
 extern int MAXIMUM_RUN_TIME;

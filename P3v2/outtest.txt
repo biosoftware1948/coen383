@@ -1,0 +1,1623 @@
+Group 1: Matthew Findlay, Kevin Velcich, Esai Morales
+Project 3 Output
+
+
+15 customers entered
+Starting seller thread for H0
+Starting seller thread for M1
+Starting seller thread for M2
+Starting seller thread for M3
+Starting seller thread for L4
+Starting seller thread for L5
+Starting seller thread for L6
+Starting seller thread for L7
+Starting seller thread for L8
+Starting seller thread for L9
+
+~~All threads succesfully started~~
+
+0:00 Customer 01 arrived at the tail of seller M1's queue.
+0:00 Customer 01 arrived at the tail of seller L6's queue.
+0:00 Customer 01 is being served from seller M1and is assigned seat: R5C0
+WILL FINISH AT: 3
+0:00 Customer 01 is being served from seller L6and is assigned seat: R9C0
+WILL FINISH AT: 5
+0:01 Customer 09 arrived at the tail of seller H0's queue.
+0:01 Customer 14 arrived at the tail of seller M3's queue.
+0:01 Customer 07 arrived at the tail of seller L7's queue.
+0:01 Customer 10 arrived at the tail of seller L7's queue.
+0:01 Customer 14 is being served from seller M3and is assigned seat: R5C1
+WILL FINISH AT: 3
+0:01 Customer 07 is being served from seller L7and is assigned seat: R9C1
+WILL FINISH AT: 8
+0:01 Customer 09 is being served from seller H0and is assigned seat: R0C0
+WILL FINISH AT: 2
+0:02 Customer 09 has finished buying from seller H0 with seat: R0C0
+| H009||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+
+0:02 Customer 10 is being served from seller H0and is assigned seat: R0C1
+WILL FINISH AT: 4
+0:02 Customer 10 arrived at the tail of seller H0's queue.
+0:02 Customer 09 arrived at the tail of seller M1's queue.
+0:02 Customer 11 arrived at the tail of seller M1's queue.
+0:02 Customer 11 arrived at the tail of seller M3's queue.
+0:02 Customer 02 arrived at the tail of seller L7's queue.
+0:03 Customer 09 is being served from seller L9and is assigned seat: R9C2
+WILL FINISH AT: 9
+0:03 Customer 03 arrived at the tail of seller L5's queue.
+0:03 Customer 11 arrived at the tail of seller L5's queue.
+0:03 Customer 09 arrived at the tail of seller L9's queue.
+0:03 Customer 14 has finished buying from seller M3 with seat: R5C1
+| H009||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  || M3014||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+
+0:03 Customer 11 is being served from seller M3and is assigned seat: R5C2
+WILL FINISH AT: 5
+0:03 Customer 01 has finished buying from seller M1 with seat: R5C0
+| H009||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+
+0:03 Customer 11 is being served from seller M1and is assigned seat: R5C3
+WILL FINISH AT: 6
+0:03 Customer 03 is being served from seller L5and is assigned seat: R9C3
+WILL FINISH AT: 10
+0:04 Customer 13 arrived at the tail of seller L7's queue.
+0:04 Customer 10 has finished buying from seller H0 with seat: R0C1
+| H009|| H0010||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+
+0:05 Customer 01 has finished buying from seller L6 with seat: R9C0
+0:05 Customer 05 arrived at the tail of seller L4's queue.
+| H009|| H0010||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+
+0:05 Customer 00 arrived at the tail of seller L9's queue.
+0:05 Customer 11 has finished buying from seller M3 with seat: R5C2
+| H009|| H0010||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+
+0:05 Customer 05 is being served from seller L4and is assigned seat: R9C4
+WILL FINISH AT: 12
+0:06 Customer 02 arrived at the tail of seller M1's queue.
+0:06 Customer 07 arrived at the tail of seller L6's queue.
+0:06 Customer 14 arrived at the tail of seller L8's queue.
+0:06 Customer 14 is being served from seller L8and is assigned seat: R9C5
+WILL FINISH AT: 10
+0:06 Customer 07 is being served from seller L6and is assigned seat: R9C6
+WILL FINISH AT: 10
+0:06 Customer 11 has finished buying from seller M1 with seat: R5C3
+| H009|| H0010||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+
+0:06 Customer 09 is being served from seller M1and is assigned seat: R5C4
+WILL FINISH AT: 10
+0:07 Customer 11 arrived at the tail of seller H0's queue.
+0:07 Customer 13 arrived at the tail of seller M1's queue.
+0:07 Customer 05 arrived at the tail of seller L5's queue.
+0:07 Customer 09 arrived at the tail of seller L8's queue.
+0:07 Customer 11 is being served from seller H0and is assigned seat: R0C2
+WILL FINISH AT: 9
+0:08 Customer 06 arrived at the tail of seller M1's queue.
+0:08 Customer 09 arrived at the tail of seller L5's queue.
+0:08 Customer 07 has finished buying from seller L7 with seat: R9C1
+| H009|| H0010||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+
+0:08 Customer 10 is being served from seller L7and is assigned seat: R9C7
+WILL FINISH AT: 14
+0:09 Customer 08 arrived at the tail of seller H0's queue.
+0:09 Customer 08 arrived at the tail of seller M1's queue.
+0:09 Customer 10 arrived at the tail of seller M2's queue.
+0:09 Customer 07 arrived at the tail of seller L4's queue.
+0:09 Customer 01 arrived at the tail of seller L8's queue.
+0:09 Customer 08 arrived at the tail of seller L8's queue.
+0:09 Customer 11 has finished buying from seller H0 with seat: R0C2
+| H009|| H0010|| H0011||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+
+0:09 Customer 08 is being served from seller H0and is assigned seat: R0C3
+WILL FINISH AT: 11
+0:09 Customer 10 is being served from seller M2and is assigned seat: R5C5
+WILL FINISH AT: 12
+0:09 Customer 09 has finished buying from seller L9 with seat: R9C2
+| H009|| H0010|| H0011||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+
+0:09 Customer 00 is being served from seller L9and is assigned seat: R9C8
+WILL FINISH AT: 15
+0:10 Customer 09 has finished buying from seller M1 with seat: R5C4
+| H009|| H0010|| H0011||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+
+0:10 Customer 02 is being served from seller M1and is assigned seat: R5C6
+WILL FINISH AT: 13
+0:10 Customer 03 has finished buying from seller L5 with seat: R9C3
+| H009|| H0010|| H0011||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+
+0:10 Customer 11 is being served from seller L5and is assigned seat: R9C9
+WILL FINISH AT: 14
+0:10 Customer 14 has finished buying from seller L8 with seat: R9C5
+| H009|| H0010|| H0011||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503||  -  || L8014||  -  ||  -  ||  -  ||  -  |
+
+0:10 Customer 09 is being served from seller L8and is assigned seat: R8C0
+WILL FINISH AT: 16
+0:10 Customer 11 arrived at the tail of seller L6's queue.
+0:10 Customer 07 has finished buying from seller L6 with seat: R9C6
+| H009|| H0010|| H0011||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503||  -  || L8014|| L607||  -  ||  -  ||  -  |
+
+0:10 Customer 11 is being served from seller L6and is assigned seat: R8C1
+WILL FINISH AT: 17
+0:11 Customer 08 has finished buying from seller H0 with seat: R0C3
+| H009|| H0010|| H0011|| H008||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503||  -  || L8014|| L607||  -  ||  -  ||  -  |
+
+0:11 Customer 05 arrived at the tail of seller M1's queue.
+0:11 Customer 12 arrived at the tail of seller L5's queue.
+0:11 Customer 05 arrived at the tail of seller L8's queue.
+0:12 Customer 07 arrived at the tail of seller H0's queue.
+0:12 Customer 00 arrived at the tail of seller L6's queue.
+0:12 Customer 04 arrived at the tail of seller L7's queue.
+0:12 Customer 05 has finished buying from seller L4 with seat: R9C4
+| H009|| H0010|| H0011|| H008||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607||  -  ||  -  ||  -  |
+
+0:12 Customer 07 is being served from seller L4and is assigned seat: R8C2
+WILL FINISH AT: 16
+0:12 Customer 10 has finished buying from seller M2 with seat: R5C5
+| H009|| H0010|| H0011|| H008||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607||  -  ||  -  ||  -  |
+
+0:12 Customer 07 is being served from seller H0and is assigned seat: R0C4
+WILL FINISH AT: 14
+0:13 Customer 06 arrived at the tail of seller M2's queue.
+0:13 Customer 08 arrived at the tail of seller L4's queue.
+0:13 Customer 06 is being served from seller M2and is assigned seat: R5C7
+WILL FINISH AT: 15
+0:13 Customer 02 has finished buying from seller M1 with seat: R5C6
+| H009|| H0010|| H0011|| H008||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607||  -  ||  -  ||  -  |
+
+0:13 Customer 13 is being served from seller M1and is assigned seat: R5C8
+WILL FINISH AT: 17
+0:14 Customer 11 has finished buying from seller L5 with seat: R9C9
+| H009|| H0010|| H0011|| H008||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607||  -  ||  -  || L5011|
+
+0:14 Customer 05 is being served from seller L5and is assigned seat: R8C3
+WILL FINISH AT: 19
+0:14 Customer 14 arrived at the tail of seller L4's queue.
+0:14 Customer 01 arrived at the tail of seller L5's queue.
+0:14 Customer 13 arrived at the tail of seller L5's queue.
+0:14 Customer 12 arrived at the tail of seller L6's queue.
+0:14 Customer 07 has finished buying from seller H0 with seat: R0C4
+| H009|| H0010|| H0011|| H008|| H007||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607||  -  ||  -  || L5011|
+
+0:14 Customer 10 has finished buying from seller L7 with seat: R9C7
+| H009|| H0010|| H0011|| H008|| H007||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010||  -  || L5011|
+
+0:14 Customer 02 is being served from seller L7and is assigned seat: R8C4
+WILL FINISH AT: 21
+0:15 Customer 06 has finished buying from seller M2 with seat: R5C7
+| H009|| H0010|| H0011|| H008|| H007||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010||  -  || L5011|
+
+0:15 Customer 11 arrived at the tail of seller L4's queue.
+0:15 Customer 10 arrived at the tail of seller L6's queue.
+0:15 Customer 00 has finished buying from seller L9 with seat: R9C8
+| H009|| H0010|| H0011|| H008|| H007||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:16 Customer 04 arrived at the tail of seller M1's queue.
+0:16 Customer 07 arrived at the tail of seller M2's queue.
+0:16 Customer 13 arrived at the tail of seller M3's queue.
+0:16 Customer 11 arrived at the tail of seller L8's queue.
+0:16 Customer 07 is being served from seller M2and is assigned seat: R5C9
+WILL FINISH AT: 19
+0:16 Customer 07 has finished buying from seller L4 with seat: R8C2
+| H009|| H0010|| H0011|| H008|| H007||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  || L407||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:16 Customer 08 is being served from seller L4and is assigned seat: R8C5
+WILL FINISH AT: 20
+0:16 Customer 09 has finished buying from seller L8 with seat: R8C0
+| H009|| H0010|| H0011|| H008|| H007||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809||  -  || L407||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:16 Customer 01 is being served from seller L8and is assigned seat: R8C6
+WILL FINISH AT: 23
+0:16 Customer 13 is being served from seller M3and is assigned seat: R6C0
+WILL FINISH AT: 20
+0:17 Customer 09 arrived at the tail of seller L4's queue.
+0:17 Customer 01 arrived at the tail of seller L7's queue.
+0:17 Customer 12 arrived at the tail of seller L8's queue.
+0:17 Customer 13 has finished buying from seller M1 with seat: R5C8
+| H009|| H0010|| H0011|| H008|| H007||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809||  -  || L407||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:17 Customer 06 is being served from seller M1and is assigned seat: R6C1
+WILL FINISH AT: 20
+0:17 Customer 11 has finished buying from seller L6 with seat: R8C1
+| H009|| H0010|| H0011|| H008|| H007||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:17 Customer 00 is being served from seller L6and is assigned seat: R8C7
+WILL FINISH AT: 24
+0:18 Customer 03 arrived at the tail of seller M2's queue.
+0:19 Customer 07 has finished buying from seller M2 with seat: R5C9
+| H009|| H0010|| H0011|| H008|| H007||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:19 Customer 03 is being served from seller M2and is assigned seat: R6C2
+WILL FINISH AT: 23
+0:19 Customer 05 has finished buying from seller L5 with seat: R8C3
+| H009|| H0010|| H0011|| H008|| H007||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:19 Customer 09 is being served from seller L5and is assigned seat: R8C8
+WILL FINISH AT: 25
+0:19 Customer 13 arrived at the tail of seller H0's queue.
+0:19 Customer 14 arrived at the tail of seller L5's queue.
+0:19 Customer 04 arrived at the tail of seller L6's queue.
+0:19 Customer 13 is being served from seller H0and is assigned seat: R0C5
+WILL FINISH AT: 21
+0:20 Customer 08 has finished buying from seller L4 with seat: R8C5
+| H009|| H0010|| H0011|| H008|| H007||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505||  -  || L408||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:20 Customer 14 is being served from seller L4and is assigned seat: R8C9
+WILL FINISH AT: 26
+0:20 Customer 08 arrived at the tail of seller M3's queue.
+0:20 Customer 08 arrived at the tail of seller L7's queue.
+0:20 Customer 06 has finished buying from seller M1 with seat: R6C1
+| H009|| H0010|| H0011|| H008|| H007||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+|  -  || M106||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505||  -  || L408||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:20 Customer 08 is being served from seller M1and is assigned seat: R6C3
+WILL FINISH AT: 23
+0:20 Customer 13 has finished buying from seller M3 with seat: R6C0
+| H009|| H0010|| H0011|| H008|| H007||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505||  -  || L408||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:20 Customer 08 is being served from seller M3and is assigned seat: R6C4
+WILL FINISH AT: 24
+0:21 Customer 02 has finished buying from seller L7 with seat: R8C4
+| H009|| H0010|| H0011|| H008|| H007||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:21 Customer 13 is being served from seller L7and is assigned seat: R7C0
+WILL FINISH AT: 26
+0:21 Customer 13 has finished buying from seller H0 with seat: R0C5
+| H009|| H0010|| H0011|| H008|| H007|| H0013||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:21 Customer 12 arrived at the tail of seller M2's queue.
+0:21 Customer 00 arrived at the tail of seller L7's queue.
+0:21 Customer 06 arrived at the tail of seller L8's queue.
+0:22 Customer 09 arrived at the tail of seller M2's queue.
+0:23 Customer 03 has finished buying from seller M2 with seat: R6C2
+| H009|| H0010|| H0011|| H008|| H007|| H0013||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:23 Customer 12 is being served from seller M2and is assigned seat: R6C5
+WILL FINISH AT: 25
+0:23 Customer 08 has finished buying from seller M1 with seat: R6C3
+| H009|| H0010|| H0011|| H008|| H007|| H0013||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408||  -  ||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:23 Customer 05 is being served from seller M1and is assigned seat: R6C6
+WILL FINISH AT: 26
+0:23 Customer 14 is being served from seller H0and is assigned seat: R0C6
+WILL FINISH AT: 24
+0:23 Customer 01 has finished buying from seller L8 with seat: R8C6
+| H009|| H0010|| H0011|| H008|| H007|| H0013||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:23 Customer 08 is being served from seller L8and is assigned seat: R7C1
+WILL FINISH AT: 27
+0:23 Customer 14 arrived at the tail of seller H0's queue.
+0:23 Customer 02 arrived at the tail of seller L9's queue.
+0:23 Customer 02 is being served from seller L9and is assigned seat: R7C2
+WILL FINISH AT: 30
+0:24 Customer 14 has finished buying from seller H0 with seat: R0C6
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801||  -  ||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:24 Customer 10 arrived at the tail of seller L4's queue.
+0:24 Customer 10 arrived at the tail of seller L5's queue.
+0:24 Customer 00 has finished buying from seller L6 with seat: R8C7
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:24 Customer 12 is being served from seller L6and is assigned seat: R7C3
+WILL FINISH AT: 31
+0:24 Customer 08 has finished buying from seller M3 with seat: R6C4
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600||  -  ||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:25 Customer 09 has finished buying from seller L5 with seat: R8C8
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:25 Customer 12 is being served from seller L5and is assigned seat: R7C4
+WILL FINISH AT: 29
+0:25 Customer 12 has finished buying from seller M2 with seat: R6C5
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509||  -  |
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:25 Customer 09 is being served from seller M2and is assigned seat: R6C7
+WILL FINISH AT: 27
+0:26 Customer 14 has finished buying from seller L4 with seat: R8C9
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:26 Customer 11 is being served from seller L4and is assigned seat: R7C5
+WILL FINISH AT: 30
+0:26 Customer 05 has finished buying from seller M1 with seat: R6C6
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:26 Customer 04 is being served from seller M1and is assigned seat: R6C8
+WILL FINISH AT: 29
+0:26 Customer 09 arrived at the tail of seller L7's queue.
+0:26 Customer 13 has finished buying from seller L7 with seat: R7C0
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105||  -  ||  -  ||  -  |
+| L7013||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:26 Customer 04 is being served from seller L7and is assigned seat: R7C6
+WILL FINISH AT: 33
+0:27 Customer 07 arrived at the tail of seller M1's queue.
+0:27 Customer 05 arrived at the tail of seller M2's queue.
+0:27 Customer 03 arrived at the tail of seller L4's queue.
+0:27 Customer 00 arrived at the tail of seller L5's queue.
+0:27 Customer 10 arrived at the tail of seller L8's queue.
+0:27 Customer 09 has finished buying from seller M2 with seat: R6C7
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209||  -  ||  -  |
+| L7013||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:27 Customer 05 is being served from seller M2and is assigned seat: R6C9
+WILL FINISH AT: 30
+0:27 Customer 08 has finished buying from seller L8 with seat: R7C1
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209||  -  ||  -  |
+| L7013|| L808||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:27 Customer 05 is being served from seller L8and is assigned seat: R7C7
+WILL FINISH AT: 32
+0:28 Customer 05 arrived at the tail of seller L9's queue.
+0:28 Customer 13 arrived at the tail of seller L9's queue.
+0:29 Customer 12 has finished buying from seller L5 with seat: R7C4
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209||  -  ||  -  |
+| L7013|| L808||  -  ||  -  || L5012||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:29 Customer 13 is being served from seller L5and is assigned seat: R7C8
+WILL FINISH AT: 35
+0:29 Customer 04 has finished buying from seller M1 with seat: R6C8
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104||  -  |
+| L7013|| L808||  -  ||  -  || L5012||  -  ||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:29 Customer 07 is being served from seller M1and is assigned seat: R4C0
+WILL FINISH AT: 33
+0:29 Customer 00 arrived at the tail of seller M2's queue.
+0:29 Customer 04 arrived at the tail of seller M2's queue.
+0:29 Customer 12 arrived at the tail of seller L7's queue.
+0:29 Customer 08 arrived at the tail of seller L9's queue.
+0:30 Customer 11 has finished buying from seller L4 with seat: R7C5
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104||  -  |
+| L7013|| L808||  -  ||  -  || L5012|| L4011||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:30 Customer 04 arrived at the tail of seller M3's queue.
+0:30 Customer 11 arrived at the tail of seller L9's queue.
+0:30 Customer 09 is being served from seller L4and is assigned seat: R7C9
+WILL FINISH AT: 34
+0:30 Customer 04 is being served from seller M3and is assigned seat: R4C1
+WILL FINISH AT: 33
+0:30 Customer 05 has finished buying from seller M2 with seat: R6C9
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808||  -  ||  -  || L5012|| L4011||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:30 Customer 04 is being served from seller M2and is assigned seat: R4C2
+WILL FINISH AT: 33
+0:30 Customer 02 has finished buying from seller L9 with seat: R7C2
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902||  -  || L5012|| L4011||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:30 Customer 13 is being served from seller L9and is assigned seat: R4C0
+WILL FINISH AT: 34
+0:31 Customer 12 has finished buying from seller L6 with seat: R7C3
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011||  -  ||  -  ||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:31 Customer 10 is being served from seller L6and is assigned seat: R4C1
+WILL FINISH AT: 35
+0:31 Customer 08 arrived at the tail of seller M2's queue.
+0:31 Customer 07 arrived at the tail of seller M3's queue.
+0:32 Customer 05 has finished buying from seller L8 with seat: R7C7
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011||  -  || L805||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:32 Customer 11 is being served from seller L8and is assigned seat: R4C2
+WILL FINISH AT: 37
+0:32 Customer 07 arrived at the tail of seller L9's queue.
+0:33 Customer 04 has finished buying from seller L7 with seat: R7C6
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:33 Customer 01 is being served from seller L7and is assigned seat: R4C3
+WILL FINISH AT: 38
+0:33 Customer 04 has finished buying from seller M3 with seat: R4C1
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  || M304||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:33 Customer 07 is being served from seller M3and is assigned seat: R4C3
+WILL FINISH AT: 37
+0:33 Customer 07 has finished buying from seller M1 with seat: R4C0
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M107|| M304||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:33 Customer 11 arrived at the tail of seller M2's queue.
+0:33 Customer 10 arrived at the tail of seller M3's queue.
+0:33 Customer 13 arrived at the tail of seller L8's queue.
+0:33 Customer 04 has finished buying from seller M2 with seat: R4C2
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M107|| M304|| M204||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805||  -  ||  -  |
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:33 Customer 00 is being served from seller M2and is assigned seat: R4C4
+WILL FINISH AT: 35
+0:34 Customer 09 has finished buying from seller L4 with seat: R7C9
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M107|| M304|| M204||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805||  -  || L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:34 Customer 10 is being served from seller L4and is assigned seat: R4C4
+WILL FINISH AT: 38
+0:34 Customer 13 has finished buying from seller L9 with seat: R4C0
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| M304|| M204||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805||  -  || L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:34 Customer 05 is being served from seller L9and is assigned seat: R4C5
+WILL FINISH AT: 41
+0:35 Customer 10 has finished buying from seller L6 with seat: R4C1
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| M204||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805||  -  || L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:35 Customer 04 is being served from seller L6and is assigned seat: R4C6
+WILL FINISH AT: 41
+0:35 Customer 03 arrived at the tail of seller M3's queue.
+0:35 Customer 07 arrived at the tail of seller L8's queue.
+0:35 Customer 14 arrived at the tail of seller L9's queue.
+0:35 Customer 00 has finished buying from seller M2 with seat: R4C4
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| M204||  -  || M200||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805||  -  || L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:35 Customer 08 is being served from seller M2and is assigned seat: R4C5
+WILL FINISH AT: 39
+0:35 Customer 13 has finished buying from seller L5 with seat: R7C8
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| M204||  -  || M200||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:35 Customer 01 is being served from seller L5and is assigned seat: R4C7
+WILL FINISH AT: 41
+0:36 Customer 07 arrived at the tail of seller L5's queue.
+0:37 Customer 11 has finished buying from seller L8 with seat: R4C2
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011||  -  || M200||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:37 Customer 12 is being served from seller L8and is assigned seat: R4C8
+WILL FINISH AT: 44
+0:37 Customer 07 has finished buying from seller M3 with seat: R4C3
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| M307|| M200||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:37 Customer 10 is being served from seller M3and is assigned seat: R4C6
+WILL FINISH AT: 40
+0:37 Customer 00 arrived at the tail of seller M3's queue.
+0:37 Customer 03 arrived at the tail of seller L8's queue.
+0:38 Customer 10 has finished buying from seller L4 with seat: R4C4
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| M307|| L4010||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:38 Customer 03 is being served from seller L4and is assigned seat: R4C9
+WILL FINISH AT: 43
+0:38 Customer 01 arrived at the tail of seller M3's queue.
+0:38 Customer 08 arrived at the tail of seller L5's queue.
+0:38 Customer 01 has finished buying from seller L7 with seat: R4C3
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010||  -  ||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:38 Customer 08 is being served from seller L7and is assigned seat: R3C0
+WILL FINISH AT: 42
+0:39 Customer 08 has finished buying from seller M2 with seat: R4C5
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| M208||  -  ||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:39 Customer 11 is being served from seller M2and is assigned seat: R4C7
+WILL FINISH AT: 41
+0:40 Customer 00 arrived at the tail of seller L8's queue.
+0:40 Customer 10 has finished buying from seller M3 with seat: R4C6
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| M208|| M3010||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:40 Customer 03 is being served from seller M3and is assigned seat: R4C8
+WILL FINISH AT: 44
+0:41 Customer 05 has finished buying from seller L9 with seat: R4C5
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| M3010||  -  ||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:41 Customer 08 is being served from seller L9and is assigned seat: R3C1
+WILL FINISH AT: 48
+0:41 Customer 11 has finished buying from seller M2 with seat: R4C7
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| M3010|| M2011||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:41 Customer 01 has finished buying from seller L5 with seat: R4C7
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| M3010|| L501||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:41 Customer 14 is being served from seller L5and is assigned seat: R3C2
+WILL FINISH AT: 47
+0:41 Customer 04 has finished buying from seller L6 with seat: R4C6
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:42 Customer 01 arrived at the tail of seller M2's queue.
+0:42 Customer 02 arrived at the tail of seller M2's queue.
+0:42 Customer 12 arrived at the tail of seller L4's queue.
+0:42 Customer 01 is being served from seller M2and is assigned seat: R4C9
+WILL FINISH AT: 45
+0:42 Customer 08 has finished buying from seller L7 with seat: R3C0
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501||  -  ||  -  |
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:42 Customer 00 is being served from seller L7and is assigned seat: R3C3
+WILL FINISH AT: 47
+0:43 Customer 00 arrived at the tail of seller H0's queue.
+0:43 Customer 12 arrived at the tail of seller M1's queue.
+0:43 Customer 03 has finished buying from seller L4 with seat: R4C9
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501||  -  || L403|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:43 Customer 12 is being served from seller L4and is assigned seat: R3C4
+WILL FINISH AT: 49
+0:43 Customer 00 is being served from seller H0and is assigned seat: R0C7
+WILL FINISH AT: 44
+0:43 Customer 12 is being served from seller M1and is assigned seat: R3C1
+WILL FINISH AT: 47
+0:44 Customer 12 has finished buying from seller L8 with seat: R4C8
+0:44 Customer 14 arrived at the tail of seller M2's queue.
+0:44 Customer 02 arrived at the tail of seller M3's queue.
+0:44 Customer 02 arrived at the tail of seller L4's queue.
+0:44 Customer 02 arrived at the tail of seller L5's queue.
+0:44 Customer 04 arrived at the tail of seller L9's queue.
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| L8012|| L403|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:44 Customer 06 is being served from seller L8and is assigned seat: R3C5
+WILL FINISH AT: 49
+0:44 Customer 00 has finished buying from seller H0 with seat: R0C7
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| L8012|| L403|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:44 Customer 03 has finished buying from seller M3 with seat: R4C8
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| L403|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:44 Customer 00 is being served from seller M3and is assigned seat: R3C2
+WILL FINISH AT: 46
+0:45 Customer 01 has finished buying from seller M2 with seat: R4C9
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:45 Customer 02 is being served from seller M2and is assigned seat: R3C3
+WILL FINISH AT: 47
+0:45 Customer 00 arrived at the tail of seller L4's queue.
+0:45 Customer 01 arrived at the tail of seller L4's queue.
+0:45 Customer 13 arrived at the tail of seller L4's queue.
+0:45 Customer 11 arrived at the tail of seller L7's queue.
+0:46 Customer 01 arrived at the tail of seller H0's queue.
+0:46 Customer 06 arrived at the tail of seller H0's queue.
+0:46 Customer 00 arrived at the tail of seller M1's queue.
+0:46 Customer 06 arrived at the tail of seller M3's queue.
+0:46 Customer 06 arrived at the tail of seller L4's queue.
+0:46 Customer 06 arrived at the tail of seller L6's queue.
+0:46 Customer 01 arrived at the tail of seller L9's queue.
+0:46 Customer 00 has finished buying from seller M3 with seat: R3C2
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708||  -  || M300||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:46 Customer 01 is being served from seller M3and is assigned seat: R3C4
+WILL FINISH AT: 49
+0:46 Customer 06 is being served from seller L6and is assigned seat: R3C6
+WILL FINISH AT: 50
+0:46 Customer 06 is being served from seller H0and is assigned seat: R0C8
+WILL FINISH AT: 48
+0:47 Customer 12 has finished buying from seller M1 with seat: R3C1
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| M1012|| M300||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:47 Customer 14 arrived at the tail of seller L6's queue.
+0:47 Customer 00 is being served from seller M1and is assigned seat: R3C5
+WILL FINISH AT: 51
+0:47 Customer 00 has finished buying from seller L7 with seat: R3C3
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| M1012|| M300|| L700||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:47 Customer 09 is being served from seller L7and is assigned seat: R3C7
+WILL FINISH AT: 51
+0:47 Customer 14 has finished buying from seller L5 with seat: R3C2
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| M1012|| L5014|| L700||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:47 Customer 10 is being served from seller L5and is assigned seat: R3C8
+WILL FINISH AT: 54
+0:47 Customer 02 has finished buying from seller M2 with seat: R3C3
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| M1012|| L5014|| M202||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:47 Customer 14 is being served from seller M2and is assigned seat: R3C6
+WILL FINISH AT: 49
+0:48 Customer 06 has finished buying from seller H0 with seat: R0C8
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000|| H006||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| M1012|| L5014|| M202||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:48 Customer 01 is being served from seller H0and is assigned seat: R0C9
+WILL FINISH AT: 49
+0:48 Customer 08 has finished buying from seller L9 with seat: R3C1
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000|| H006||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| L908|| L5014|| M202||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:48 Customer 11 is being served from seller L9and is assigned seat: R3C9
+WILL FINISH AT: 52
+0:48 Customer 06 arrived at the tail of seller L5's queue.
+0:48 Customer 03 arrived at the tail of seller L6's queue.
+0:48 Customer 12 arrived at the tail of seller L9's queue.
+0:49 Customer 14 has finished buying from seller M2 with seat: R3C6
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000|| H006||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| L908|| L5014|| M202||  -  ||  -  || M2014||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:49 Customer 12 has finished buying from seller L4 with seat: R3C4
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000|| H006||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| L908|| L5014|| M202|| L4012||  -  || M2014||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:49 Customer 02 is being served from seller L4and is assigned seat: R2C0
+WILL FINISH AT: 53
+0:49 Customer 06 has finished buying from seller L8 with seat: R3C5
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000|| H006||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| L908|| L5014|| M202|| L4012|| L806|| M2014||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:49 Customer 10 is being served from seller L8and is assigned seat: R2C1
+WILL FINISH AT: 55
+0:49 Customer 01 has finished buying from seller H0 with seat: R0C9
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000|| H006|| H001|
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| L908|| L5014|| M202|| L4012|| L806|| M2014||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:49 Customer 01 has finished buying from seller M3 with seat: R3C4
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000|| H006|| H001|
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| L908|| L5014|| M202|| M301|| L806|| M2014||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:49 Customer 02 is being served from seller M3and is assigned seat: R3C7
+WILL FINISH AT: 53
+0:50 Customer 12 arrived at the tail of seller H0's queue.
+0:50 Customer 10 arrived at the tail of seller M1's queue.
+0:50 Customer 12 arrived at the tail of seller M3's queue.
+0:50 Customer 04 arrived at the tail of seller L5's queue.
+0:50 Customer 06 has finished buying from seller L6 with seat: R3C6
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000|| H006|| H001|
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| L908|| L5014|| M202|| M301|| L806|| L606||  -  ||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+0:50 Customer 14 is being served from seller L6and is assigned seat: R2C2
+WILL FINISH AT: 56
+time is 0:50
+Concert is sold out!!! Customer 12 is being turned away. Too slow!0:51 Customer 02 arrived at the tail of seller L8's queue.
+0:51 Customer 06 arrived at the tail of seller L9's queue.
+0:51 Customer 09 has finished buying from seller L7 with seat: R3C7
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000|| H006|| H001|
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| L908|| L5014|| M202|| M301|| L806|| L606|| L709||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+time is 0:51
+Concert is sold out!!! Customer 12 is being turned away. Too slow!time is 0:51
+Concert is sold out!!! Customer 11 is being turned away. Too slow!0:51 Customer 00 has finished buying from seller M1 with seat: R3C5
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000|| H006|| H001|
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| L908|| L5014|| M202|| M301|| M100|| L606|| L709||  -  ||  -  |
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+time is 0:51
+Concert is sold out!!! Customer 10 is being turned away. Too slow!time is 0:52
+Concert is sold out!!! Customer 3 is being turned away. Too slow!0:52 Customer 11 has finished buying from seller L9 with seat: R3C9
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000|| H006|| H001|
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| L908|| L5014|| M202|| M301|| M100|| L606|| L709||  -  || L9011|
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+time is 0:52
+Concert is sold out!!! Customer 7 is being turned away. Too slow!time is 0:52
+Concert is sold out!!! Customer 14 is being turned away. Too slow!time is 0:52
+Concert is sold out!!! Customer 4 is being turned away. Too slow!time is 0:52
+Concert is sold out!!! Customer 1 is being turned away. Too slow!time is 0:52
+Concert is sold out!!! Customer 12 is being turned away. Too slow!time is 0:52
+Concert is sold out!!! Customer 6 is being turned away. Too slow!time is 0:52
+Concert is sold out!!! Customer 5 is being turned away. Too slow!0:52 Customer 03 arrived at the tail of seller M1's queue.
+0:52 Customer 05 arrived at the tail of seller L6's queue.
+0:52 Customer 05 arrived at the tail of seller L7's queue.
+0:53 Customer 02 has finished buying from seller M3 with seat: R3C7
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000|| H006|| H001|
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| L908|| L5014|| M202|| M301|| M100|| L606|| M302||  -  || L9011|
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+time is 0:53
+Concert is sold out!!! Customer 6 is being turned away. Too slow!time is 0:53
+Concert is sold out!!! Customer 12 is being turned away. Too slow!time is 0:53
+Concert is sold out!!! Customer 5 is being turned away. Too slow!0:53 Customer 02 has finished buying from seller L4 with seat: R2C0
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000|| H006|| H001|
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L402||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| L908|| L5014|| M202|| M301|| M100|| L606|| M302||  -  || L9011|
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+time is 0:53
+Concert is sold out!!! Customer 0 is being turned away. Too slow!time is 0:53
+Concert is sold out!!! Customer 1 is being turned away. Too slow!time is 0:53
+Concert is sold out!!! Customer 13 is being turned away. Too slow!time is 0:53
+Concert is sold out!!! Customer 6 is being turned away. Too slow!time is 0:53
+Concert is sold out!!! Customer 4 is being turned away. Too slow!0:53 Customer 04 arrived at the tail of seller H0's queue.
+0:53 Customer 05 arrived at the tail of seller M3's queue.
+0:54 Customer 10 has finished buying from seller L5 with seat: R3C8
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000|| H006|| H001|
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L402||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| L908|| L5014|| M202|| M301|| M100|| L606|| M302|| L5010|| L9011|
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+time is 0:54
+Concert is sold out!!! Customer 0 is being turned away. Too slow!time is 0:54
+Concert is sold out!!! Customer 7 is being turned away. Too slow!time is 0:54
+Concert is sold out!!! Customer 8 is being turned away. Too slow!time is 0:54
+Concert is sold out!!! Customer 2 is being turned away. Too slow!time is 0:54
+Concert is sold out!!! Customer 6 is being turned away. Too slow!time is 0:54
+Concert is sold out!!! Customer 4 is being turned away. Too slow!0:54 Customer 08 arrived at the tail of seller L6's queue.
+0:55 Customer 10 has finished buying from seller L8 with seat: R2C1
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000|| H006|| H001|
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L402|| L8010||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| L908|| L5014|| M202|| M301|| M100|| L606|| M302|| L5010|| L9011|
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+time is 0:55
+Concert is sold out!!! Customer 13 is being turned away. Too slow!time is 0:55
+Concert is sold out!!! Customer 7 is being turned away. Too slow!time is 0:55
+Concert is sold out!!! Customer 3 is being turned away. Too slow!time is 0:55
+Concert is sold out!!! Customer 0 is being turned away. Too slow!time is 0:55
+Concert is sold out!!! Customer 2 is being turned away. Too slow!time is 0:55
+Concert is sold out!!! Customer 5 is being turned away. Too slow!time is 0:55
+Concert is sold out!!! Customer 3 is being turned away. Too slow!time is 0:55
+Concert is sold out!!! Customer 14 is being turned away. Too slow!0:55 Customer 03 arrived at the tail of seller H0's queue.
+0:55 Customer 05 arrived at the tail of seller H0's queue.
+0:55 Customer 14 arrived at the tail of seller M1's queue.
+time is 0:56
+Concert is sold out!!! Customer 4 is being turned away. Too slow!time is 0:56
+Concert is sold out!!! Customer 6 is being turned away. Too slow!0:56 Customer 09 arrived at the tail of seller M3's queue.
+0:56 Customer 04 arrived at the tail of seller L4's queue.
+0:56 Customer 02 arrived at the tail of seller L6's queue.
+0:56 Customer 06 arrived at the tail of seller L7's queue.
+0:56 Customer 14 has finished buying from seller L6 with seat: R2C2
+| H009|| H0010|| H0011|| H008|| H007|| H0013|| H0014|| H000|| H006|| H001|
+|  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L402|| L8010|| L6014||  -  ||  -  ||  -  ||  -  ||  -  ||  -  ||  -  |
+| L708|| L908|| L5014|| M202|| M301|| M100|| L606|| M302|| L5010|| L9011|
+| L9013|| L6010|| L8011|| L701|| L4010|| L905|| L604|| L501|| M303|| M201|
+| M101|| M3014|| M3011|| M1011|| M109|| M2010|| M102|| M206|| M1013|| M207|
+| M3013|| M106|| M203|| M108|| M308|| M2012|| M105|| M209|| M104|| M205|
+| L7013|| L808|| L902|| L6012|| L5012|| L4011|| L704|| L805|| L5013|| L409|
+| L809|| L6011|| L407|| L505|| L702|| L408|| L801|| L600|| L509|| L4014|
+| L601|| L707|| L909|| L503|| L405|| L8014|| L607|| L7010|| L900|| L5011|
+
+time is 0:56
+Concert is sold out!!! Customer 3 is being turned away. Too slow!time is 0:56
+Concert is sold out!!! Customer 5 is being turned away. Too slow!time is 0:56
+Concert is sold out!!! Customer 8 is being turned away. Too slow!time is 0:56
+Concert is sold out!!! Customer 2 is being turned away. Too slow!time is 0:56
+Concert is sold out!!! Customer 9 is being turned away. Too slow!time is 0:57
+Concert is sold out!!! Customer 4 is being turned away. Too slow!time is 0:57
+Concert is sold out!!! Customer 3 is being turned away. Too slow!time is 0:57
+Concert is sold out!!! Customer 2 is being turned away. Too slow!0:57 Customer 02 arrived at the tail of seller H0's queue.
+0:57 Customer 03 arrived at the tail of seller L7's queue.
+0:57 Customer 04 arrived at the tail of seller L8's queue.
+0:58 Customer 13 arrived at the tail of seller L6's queue.
+time is 0:58
+Concert is sold out!!! Customer 13 is being turned away. Too slow!time is 0:59
+Concert is sold out!!! Customer 3 is being turned away. Too slow!time is 0:59
+Concert is sold out!!! Customer 10 is being turned away. Too slow!time is 0:59
+Concert is sold out!!! Customer 13 is being turned away. Too slow!time is 0:59
+Concert is sold out!!! Customer 14 is being turned away. Too slow!0:59 Customer 13 arrived at the tail of seller M2's queue.
+0:59 Customer 09 arrived at the tail of seller L6's queue.
+0:59 Customer 14 arrived at the tail of seller L7's queue.
+0:59 Customer 03 arrived at the tail of seller L9's queue.
+0:59 Customer 10 arrived at the tail of seller L9's queue.
+time is 0:59
+Concert is sold out!!! Customer 9 is being turned away. Too slow!END RESULTS::
+10 H customers seated.
+37 M customers seated.
+53 L customers seated.
+50 customers not seated.
