@@ -1,25 +1,22 @@
 #include "seller.h"
 
-
-static void* sell_x(void* object) {
-	return ((Seller*) object)->sell();
+static void* startSales(void* seller) {
+    return ((Seller*) seller)->sell();
 }
 
-// 3 argument constructor
-Seller::Seller(std::string seats[][10], std::string seller_type, int queue_size) {
-	this->auditorium = seats;
-	this->type = seller_type;
+Seller::Seller(std::string auditorium[][10], std::string type, int N) {
+	this->auditorium = auditorium;
+	this->type = type;
 	this->service_time = 0;
 	// call function to populate the customer queue
-    for(int i = 0; i < queue_size; i++) {
+	for(int i = 0; i < N; i++) {
 		Buyer b;
 		createBuyer(&b, i);
 		this->buyerQueue.push(b);
 	}
 
-
 	// pass pthread_create "this" to call a member function in sell_x
-	pthread_create(&this->sellerThread, NULL, sell_x, (void*) this);
+	pthread_create(&this->sellerThread, NULL, startSales, (void*) this);
 }
 
 
@@ -27,7 +24,7 @@ void* Seller::sell() {
 	pthread_mutex_lock(&mutex_condition);
 	pthread_cond_wait(&cond_go, &mutex_condition);
 	pthread_mutex_unlock(&mutex_condition);
-	while(clock_time < max_time) {
+	while(clock_time < MAXIMUM_RUN_TIME) {
 		int ready_for_customer = 0;
 		// check if it is time to serve the next customer and that the queue is not empty
 		if((clock_time >= buyerQueue.top().arrival_time) && (!this->buyerQueue.empty()) && (clock_time >= ready_for_customer)) {
@@ -37,7 +34,7 @@ void* Seller::sell() {
 			// pop the customer from the queue
 			this->buyerQueue.pop();
 			// get the random service time required for the customer
-			int serve_time = get_service_time();
+			int serve_time = sellerRandomSellTime();
 			
 
 			pthread_mutex_lock(&mutex_sell);
@@ -58,13 +55,13 @@ void* Seller::sell() {
 					// set the next available seat if there are still tickets available
 					set_next_free_seat();
 					// put in an exit condition for the threads to prevent infinite loop looking for seat
-					if(('H' == this->type[0]) && (9 < rowH)) {
+					if(('H' == this->type[0]) && (9 < H_CURRENT_ROW)) {
 						break;
 					}
-					else if(('M' == this->type[0]) && (0 > rowM)) {
+					else if(('M' == this->type[0]) && (0 > M_CURRENT_ROW)) {
 						break;
 					}
-					else if(('L' == this->type[0]) && (0 > rowL)) {
+					else if(('L' == this->type[0]) && (0 > L_CURRENT_ROW)) {
 						break;
 					}
 					
@@ -83,13 +80,13 @@ void* Seller::sell() {
 				printf("\n");
 				// increment the number of customers that got seats
 				if('H' == this->type[0]) {
-					seated_customers_H++;
+					H_CUSTOMERS_WITH_SEATS++;
 				}
 				else if('M' == this->type[0]) {
-					seated_customers_M++;
+					M_CUSTOMERS_WITH_SEATS++;
 				}
 				else if('L' == this->type[0]) {
-					seated_customers_L++;
+					L_CUSTOMERS_WITH_SEATS++;
 				}
 			}
 			else {
@@ -108,17 +105,17 @@ void* Seller::sell() {
 
 
 // function to get random service time
-int Seller::get_service_time() {
+int Seller::sellerRandomSellTime() {
 	// for H: 1-2 minutes
-	if('H' == this->type[0]) {
+	if(this->type[0] == 'H') {
 		return ((rand() % 2) + 1);
 	}
 	// for M: 2, 3, or 4 minutes
-	else if('M' == this->type[0]) {
+	else if(this->type[0] == 'M') {
 		return ((rand() % 3) + 2);
 	}
 	// for L: 4, 5, 6, or 7 minutes
-	else if('L' == this->type[0]) {
+	else if(this->type[0] == 'L') {
 		return ((rand() % 4) + 4);
 	}
 }
@@ -129,61 +126,61 @@ void Seller::set_next_free_seat() {
 	// check if this is a H ticket seller
 	if('H' == this->type[0]) {
 		// increment the seat
-		seatH++;
-		// check if the seat and row need to be adjusted
-		if(9 < seatH) {
-			seatH = 0;
-			rowH++;
+		H_CURRENT_SEAT++;
+		//reset if hit the end
+		if(H_CURRENT_SEAT > 9) {
+			H_CURRENT_SEAT = 0;
+			H_CURRENT_ROW++;
 		}
 	}
 	// check if this is a M ticket seller
 	else if('M' == this->type[0]) {
 		// increment the seat
-		seatM++;
+		M_CURRENT_SEAT++;
 		// check if the seat and row need to be adjusted
-		if(9 < seatM) {
-			seatM = 0;
+		if(9 < M_CURRENT_SEAT) {
+			M_CURRENT_SEAT = 0;
 			// determine which row to begin assigning next
-			if(5 == rowM) {
-				rowM = 6;
+			if(5 == M_CURRENT_ROW) {
+				M_CURRENT_ROW = 6;
 			}
-			else if(6 == rowM) {
-				rowM = 4;
+			else if(6 == M_CURRENT_ROW) {
+				M_CURRENT_ROW = 4;
 			}
-			else if(4 == rowM) {
-				rowM = 7;
+			else if(4 == M_CURRENT_ROW) {
+				M_CURRENT_ROW = 7;
 			}
-			else if(7 == rowM) {
-				rowM = 3;
+			else if(7 == M_CURRENT_ROW) {
+				M_CURRENT_ROW = 3;
 			}
-			else if(3 == rowM) {
-				rowM = 8;
+			else if(3 == M_CURRENT_ROW) {
+				M_CURRENT_ROW = 8;
 			}
-			else if(8 == rowM) {
-				rowM = 2;
+			else if(8 == M_CURRENT_ROW) {
+				M_CURRENT_ROW = 2;
 			}
-			else if(2 == rowM) {
-				rowM = 9;
+			else if(2 == M_CURRENT_ROW) {
+				M_CURRENT_ROW = 9;
 			}
-			else if(9 == rowM) {
-				rowM = 1;
+			else if(9 == M_CURRENT_ROW) {
+				M_CURRENT_ROW = 1;
 			}
-			else if(1 == rowM) {
-				rowM = 0;
+			else if(1 == M_CURRENT_ROW) {
+				M_CURRENT_ROW = 0;
 			}
-			else if(0 == rowM) {
-				rowM = -1;
+			else if(0 == M_CURRENT_ROW) {
+				M_CURRENT_ROW = -1;
 			}
 		}
 	}
 	// check if this is a L ticket seller
 	else if('L' == this->type[0]) {
 		// increment the seat
-		seatL++;
+		L_CURRENT_SEAT++;
 		// check if the seat and row need to be adjusted
-		if(9 < seatL) {
-			seatL = 0;
-			rowL--;
+		if(9 < L_CURRENT_SEAT) {
+			L_CURRENT_SEAT = 0;
+			L_CURRENT_ROW--;
 		}
 	}
 }
@@ -194,13 +191,13 @@ int Seller::get_row() {
 	int r;
 	// look at which row index to get
 	if('H' == this->type[0]) {
-		r = rowH;
+		r = H_CURRENT_ROW;
 	}
 	else if('M' == this->type[0]) {
-		r = rowM;
+		r = M_CURRENT_ROW;
 	}
 	else if('L' == this->type[0]) {
-		r = rowL;
+		r = L_CURRENT_ROW;
 	}
 	// return the row index
 	return r;
@@ -212,16 +209,15 @@ int Seller::get_seat() {
 	int s;
 	// look at which seat index to get
 	if('H' == this->type[0]) {
-		s = seatH;
+		s = H_CURRENT_SEAT;
 	}
 	else if('M' == this->type[0]) {
-		s = seatM;
+		s = M_CURRENT_SEAT;
 	}
 	else if('L' == this->type[0]) {
-		s = seatL;
+		s = L_CURRENT_SEAT;
 	}
 	// return the seat index
 	return s;
 }
-
 

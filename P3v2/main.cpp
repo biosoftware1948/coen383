@@ -18,21 +18,21 @@ pthread_mutex_t mutex_sell = PTHREAD_MUTEX_INITIALIZER;
 
 //keep track of time in seconds
 volatile int clock_time;
-int max_time = 60;
-
+int MAXIMUM_RUN_TIME = 60;
 volatile int tickets_available;
 
-// create variables and a mutex for the seller rows and seller seats
-volatile int rowH =0;
-volatile int seatH = 0;
-volatile int rowM = 5;
-volatile int seatM = 0;
-volatile int rowL = 9;
-volatile int seatL = 0;
-volatile int seated_customers_H = 0;
-volatile int seated_customers_M = 0;
-volatile int seated_customers_L = 0;
+
+volatile int H_CURRENT_ROW =0;
+volatile int H_CURRENT_SEAT = 0;
+volatile int M_CURRENT_ROW = 5;
+volatile int M_CURRENT_SEAT = 0;
+volatile int L_CURRENT_ROW = 9;
+volatile int L_CURRENT_SEAT = 0;
+volatile int H_CUSTOMERS_WITH_SEATS = 0;
+volatile int M_CUSTOMERS_WITH_SEATS = 0;
+volatile int L_CUSTOMERS_WITH_SEATS = 0;
 volatile int turned_away_customers = 0;
+
 
 // function to wake up all of the seller threads
 void wakeup_all_seller_threads() {
@@ -41,9 +41,16 @@ void wakeup_all_seller_threads() {
 	pthread_mutex_unlock(&mutex_condition);
 }
 
-
+void wait_pseudo_hour() {
+    while(clock_time < MAXIMUM_RUN_TIME) {
+		sleep(1);
+		clock_time++;
+	}
+}
 int main(int argc, char* argv[]) {
-	// initalize the seed for random arrival time
+    printf("Group 1: Matthew Findlay, Kevin Velcich, Esai Morales\n");
+    printf("Project 3 Output\n\n\n");
+
 	int seed = time(NULL);
 	srand(seed);
 	// initialize the clock time to 0
@@ -58,56 +65,44 @@ int main(int argc, char* argv[]) {
     int N = atoi(argv[1]);
     printf("%d customers entered\n", N);
 
-	// create the 2d array of seats
+    //create string to store seats
 	std::string auditorium[10][10];
+    //Fill seats with empty placeholder "-"
     createAuditorium(auditorium);
-	// initialize the seating chart
-
-	// create seller instance array
-	Seller* sellers[10];
-	// create thread array to store seller threads
 	pthread_t tids[10];
-
-
 	// create H ticket seller
-	sellers[0] = new Seller(auditorium, "H0", N);
-	tids[0] = sellers[0]->sellerThread;
+	Seller* H0 = new Seller(auditorium, "H0", N);
+    tids[0] = H0->sellerThread;
 	// create 3 M ticket sellers
 	for(int i = 1; i < 4; i++) {
-		sellers[i] = new Seller(auditorium, "M" + std::to_string(i), N);
-		tids[i] = sellers[i]->sellerThread;
+		Seller* M = new Seller(auditorium, "M" + std::to_string(i), N);
+		tids[i] = M->sellerThread;
 	}
 	// create 6 L ticket sellers
 	for(int i = 4; i < 10; i++) {
-		sellers[i] = new Seller(auditorium, "L" + std::to_string(i), N);
-		tids[i] = sellers[i]->sellerThread;
+		Seller* L = new Seller(auditorium, "L" + std::to_string(i), N);
+		tids[i] = L->sellerThread;
 	}
-
-	// sleep 1 second to make sure all threads have been created and are waiting
-	sleep(1);
+    //Sleep to allow threads to create, then wake up at same time
+    sleep(5);
 	wakeup_all_seller_threads();
 
-	// do work on thre threads while incrementing time
-	// sleep is here for now as I am unsure how to wait for all of the threads to be waiting on the conditional
-	while(clock_time < max_time) {
-		sleep(1);
-		clock_time++;
-	}
+    //wait 1 hour (1 minute for us)
+    wait_pseudo_hour();
 
 	// wait for all seller threads to exit
 	for(int i = 0; i < 10; i++) {
 		pthread_join(tids[i], NULL);
 	}
 
-	// free all of the sellers
-	for(int i=0; i<10; i++) {
-		delete sellers[i];
-	}
+  // Printout simulation results …………
+    printf("END RESULTS::\n");
+	printf("%d H customers seated.\n", H_CUSTOMERS_WITH_SEATS);
+	printf("%d M customers seated.\n", M_CUSTOMERS_WITH_SEATS);
+	printf("%d L customers seated.\n", L_CUSTOMERS_WITH_SEATS);
+	printf("%d customers turned away.\n", turned_away_customers);
 	
-	printf("There were %i H customers seated.\n", seated_customers_H);
-	printf("There were %i M customers seated.\n", seated_customers_M);
-	printf("There were %i L customers seated.\n", seated_customers_L);
-	printf("There were %i customers turned away.\n", turned_away_customers);
-	
+
+
 	exit(0);
 }
