@@ -1,28 +1,20 @@
-# Compiler
-CC			= gcc
+# set the compiler
+CC = g++
+# set the flags
+CFLAGS = -Wall
+# specify which libraries to use
+LDFLAGS = -pthread
+#set the object files
+OBJFILES = main.o buyer.o auditorium.o seller.o
+# specify the name of the desired output file
+TARGET = seatSellers
 
-#Flags, Libraries and Includes
-CFLAGS		= -g -Wall
+all: $(TARGET)
 
-# Target Binary program
-PROG		= main
+#make the files
+$(TARGET): $(OBJFILES)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJFILES) $(LDFLAGS)
 
-# Directories, Sources and Resources
-SRC_DIR 	:=
-SCHED_DIR	:= schedulingAlgorithms/
-BUILD_DIR	:= obj/
-TARGET_DIR	:=
-SRC_EXT		:= c
-OBJ_EXT		:= o
-
-# Program Files
-SOURCES 	= $(wildcard $(SRC_DIR)*.c)
-SCHED_ALGS	= $(wildcard $(SRC_DIR)$(SCHED_DIR)*.c)
-OBJS		= $(SOURCES: %.c = %.o) $(SCHED_ALGS: %.c = %.o)
-
-all:		$(PROG)
-
-$(PROG):	$(OBJS)
-		$(CC) $(CFLAGS) -o $(PROG) $(OBJS)
-
-clean:;		$(RM) -f $(PROG) core *.o
+# clean the files from directory
+clean:
+	rm -f $(OBJFILES) $(TARGET) *~
