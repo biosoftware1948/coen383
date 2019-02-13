@@ -27,6 +27,28 @@ unsigned Process::getArrivalTime() const {
     return _arrivalTime;
 }
 
+unsigned Process::getNextPage() {
+    unsigned branch = rand() % 10 + 1, delta_i;
+
+    // get local page id
+    if (branch <= 7) {
+        delta_i = rand() % 2;
+        if (delta_i == 0) delta_i = -1;
+    } else delta_i = rand() % getNumPages();
+
+    // keeping track of page's local id
+    if (_lastReferencedPage == -1) _lastReferencedPage = 0;
+    else _lastReferencedPage = (_lastReferencedPage + delta_i) % getNumPages();
+    
+    // return global page id
+    return _pages[_lastReferencedPage]->getGlobalId();
+}
+
+bool Process::isCompleted() const {
+    return _serviceDuration == _timeRun;
+}
+
 bool Process::CompareArrivalTime(const Process *left, const Process *right) {
     return left->getArrivalTime() < right->getArrivalTime();
 }
+

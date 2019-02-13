@@ -8,6 +8,9 @@ class Page {
 
 public:
     Page(unsigned parentId, unsigned localId);
+    
+    unsigned getLocalId() { return _localId; }
+    unsigned getGlobalId() { return _globalId; }
 };
 
 # endif /* PAGE_H */
