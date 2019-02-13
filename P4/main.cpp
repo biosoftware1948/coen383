@@ -3,7 +3,7 @@
 # include <time.h>
 # include "Process.h"
 
-const unsigned RUN_TIME = 60000; // milliseconds
+extern const unsigned RUN_TIME = 60000; // milliseconds
 
 int main() {
     srand(time(NULL));
