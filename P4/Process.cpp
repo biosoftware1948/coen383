@@ -22,3 +22,11 @@ void Process::allocatePages() {
     for (int i = 0; i < numJobs; i++)
         _pages.push_back(new Page(_processId, i));
 }
+
+unsigned Process::getArrivalTime() const {
+    return _arrivalTime;
+}
+
+bool Process::CompareArrivalTime(const Process *left, const Process *right) {
+    return left->getArrivalTime() < right->getArrivalTime();
+}

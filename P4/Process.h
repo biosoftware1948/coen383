@@ -11,7 +11,8 @@ class Process {
 public:
     Process();
     unsigned numPages() { return _pages.size(); }
+    unsigned getArrivalTime() const;
+    static bool CompareArrivalTime(const Process *, const Process *);
 };
-
 
 # endif /* PROCESS_H */
