@@ -4,12 +4,11 @@
 # include <ostream>
 
 class Page {
-    unsigned _localId, _globalId, _parentId;
+    unsigned _globalId, _parentId;
 
 public:
-    Page(unsigned parentId, unsigned localId);
+    Page(unsigned parentId);
     
-    unsigned getLocalId() { return _localId; }
     unsigned getGlobalId() { return _globalId; }
 };
 

@@ -1,32 +1,41 @@
 # ifndef CPU_H
 # define CPU_H
 # include <vector>
+# include <queue>
+# include "Memory.h"
 # include "Process.h"
 # include "Page.h"
 
-extern const unsigned NUM_PAGES;
+enum Replacement { FIFO, LRU, LFU, MFU, RANDOM };
 
 class CPU {
     unsigned _clockTime = 0;
     bool _atJobCapacity = false;
 
-    std::vector<Process *> _queuedJobs;
-    std::vector<Process *> _runningJobs;
-    
-    class Memory {
-        std::vector<Page *> _memory;
-    public:
-        bool isFull() { return _memory.size() >= NUM_PAGES; }
-    };
-public:
-    CPU();
+    std::vector<Process *> _queuedJobs; /* processes waiting to be run. */
+    std::queue<Process *> _runningJobs; /* processes currently being run. */
+    Memory _memory;
 
-    unsigned getClockTime() { return _clockTime; }
+    /* Function pointer for one of the 5 page replacement algorithms */
+    void (CPU::*requestPage)(Page *p);
+    void FIFOReplacement(Page *p);
+    void LRUReplacement(Page *p);
+    void LFUReplacement(Page *p);
+    void MFUReplacement(Page *p);
+    void RandomReplacement(Page *p);
 
-    void removeFinished();
     void checkQueue();
-    unsigned runIdle(); // returns Id of next job to run.
-    unsigned runProcess(unsigned processId, unsigned pageId = 0);
+
+public:
+    CPU(Replacement algorithm);
+
+    bool isProcessesComplete() {
+        return _queuedJobs.empty() && _runningJobs.empty();
+    }
+    unsigned getClockTime() { return _clockTime; }
+    Process *getNextProcess();
+
+    void runProcess(unsigned quantum, Process *process);
 };
 
-# endif /* PAGE_H */
+# endif /* CPU_H */

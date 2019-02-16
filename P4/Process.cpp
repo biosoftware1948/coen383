@@ -20,14 +20,14 @@ void Process::allocatePages() {
     else if (numJobs == 3) numJobs = 31;
 
     for (int i = 0; i < numJobs; i++)
-        _pages.push_back(new Page(_processId, i));
+        _pages.push_back(new Page(_processId));
 }
 
 unsigned Process::getArrivalTime() const {
     return _arrivalTime;
 }
 
-unsigned Process::getNextPage() {
+Page *Process::getNextPage() {
     unsigned branch = rand() % 10 + 1, delta_i;
 
     // get local page id
@@ -41,11 +41,15 @@ unsigned Process::getNextPage() {
     else _lastReferencedPage = (_lastReferencedPage + delta_i) % getNumPages();
     
     // return global page id
-    return _pages[_lastReferencedPage]->getGlobalId();
+    return _pages[_lastReferencedPage];
 }
 
 bool Process::isCompleted() const {
     return _serviceDuration == _timeRun;
+}
+
+void Process::service(unsigned quantum) {
+    _serviceDuration += quantum;
 }
 
 bool Process::CompareArrivalTime(const Process *left, const Process *right) {
