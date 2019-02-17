@@ -95,8 +95,7 @@ void CPU::MFUReplacement(Page *p) {
 }
 
 void CPU::RandomReplacement(Page *p) {
-    // Page to be replaced
-    Page *old = nullptr;
+    Page *old = nullptr; // Page to be replaced
 
     // Check for page hit
     if (!_memory.contains(p) && _memory.isFull())
@@ -104,9 +103,7 @@ void CPU::RandomReplacement(Page *p) {
 
     printPageRequest(p, old);
 
-    // Page fault
-    if (_memory.contains(p)) return;
-    else if (!_memory.isFull()) _memory.addPage(p);
-    // Page replacement required
-    else _memory.replacePage(old, p);
+    if (_memory.contains(p)) return; // Page hit
+    else if (!_memory.isFull()) _memory.addPage(p); // Page fault
+    else _memory.replacePage(old, p); // Page replacement required
 }
