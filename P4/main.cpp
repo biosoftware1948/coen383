@@ -15,7 +15,9 @@ int main() {
     srand(time(NULL));
 
     //Iterate over all 5 algorithms
-    for(int algorithmInt = FIFO; algorithmInt != RANDOM; ++algorithmInt) {
+    for(int algorithmInt = FIFO; algorithmInt != RANDOM + 1; ++algorithmInt) {
+        std::cout << algorithmInt << std::endl;
+
         Replacement algorithm = static_cast<Replacement>(algorithmInt);
         //Each algorithm is run 5 times to get an average
         for(int i = 0; i < RUNS; ++i){
