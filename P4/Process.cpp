@@ -1,3 +1,5 @@
+# include <iostream>
+
 # include <random>
 # include <stdlib.h>
 # include <time.h>
@@ -13,14 +15,14 @@ Process::Process() : _processId(idCounter++) {
 }
 
 void Process::allocatePages() {
-    unsigned numJobs = rand() % 4;
-    if (numJobs == 0) numJobs = 5;
-    else if (numJobs == 1) numJobs = 11;
-    else if (numJobs == 2) numJobs = 17;
-    else if (numJobs == 3) numJobs = 31;
+    unsigned numPages = rand() % 4;
+    if (numPages == 0) numPages = 5;
+    else if (numPages == 1) numPages = 11;
+    else if (numPages == 2) numPages = 17;
+    else if (numPages == 3) numPages = 31;
 
-    for (int i = 0; i < numJobs; i++)
-        _pages.push_back(new Page(_processId));
+    for (int i = 0; i < numPages; i++)
+        _pages.push_back(new Page(i, _processId));
 }
 
 unsigned Process::getArrivalTime() const {
@@ -28,7 +30,8 @@ unsigned Process::getArrivalTime() const {
 }
 
 Page *Process::getNextPage() {
-    unsigned branch = rand() % 10 + 1, delta_i;
+    int delta_i;
+    unsigned branch = rand() % 10 + 1;
 
     // get local page id
     if (branch <= 7) {
@@ -39,7 +42,7 @@ Page *Process::getNextPage() {
     // keeping track of page's local id
     if (_lastReferencedPage == -1) _lastReferencedPage = 0;
     else _lastReferencedPage = (_lastReferencedPage + delta_i) % getNumPages();
-    
+
     // return global page id
     return _pages[_lastReferencedPage];
 }
@@ -55,4 +58,3 @@ void Process::service(unsigned quantum) {
 bool Process::CompareArrivalTime(const Process *left, const Process *right) {
     return left->getArrivalTime() < right->getArrivalTime();
 }
-

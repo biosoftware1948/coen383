@@ -1,5 +1,6 @@
 # include <algorithm>
-#include <stdlib.h>
+# include <iostream>
+# include <stdlib.h>
 # include "CPU.h"
 # include "Process.h"
 
@@ -40,7 +41,7 @@ void CPU::checkQueue() {
 
 Process *CPU::getNextProcess() {
     checkQueue();
-    if (_memory.isEmpty()) return nullptr;
+    if (_runningJobs.empty()) return nullptr;
 
     Process *nextProcess = _runningJobs.front();
     _runningJobs.pop();
@@ -48,16 +49,31 @@ Process *CPU::getNextProcess() {
 }
 
 void CPU::runProcess(unsigned quantum, Process *process) {
+    if (process == nullptr) {
+        _clockTime += quantum;
+        return;
+    }
+
+    (this->*this->requestPage)(process->getNextPage());
+
     _clockTime += quantum;
-    if (process == nullptr) return;
-
-    (this->*this->requestPage)(nullptr);
-    //(requestPage)(process->getNextPage());
-
     process->service(quantum);
     if (!process->isCompleted()) _runningJobs.push(process);
 }
 
+void CPU::printPageRequest(Page *p, Page *old) {
+    std::cout << "Time:\t\t" << _clockTime << std::endl;
+    std::cout << "Process:\t" << p->getParentId() << std::endl;
+    std::cout << "Page:\t\t" << p->getLocalId() << std::endl;
+    std::string location = _memory.contains(p) ? "memory" : "disk";
+    std::cout << "Location:\t" << location << std::endl;
+    if (old != nullptr) {
+        std::cout << "Replaced page:\tProcess: ";
+        std::cout << old->getParentId() << " Page: ";
+        std::cout << old->getLocalId() << std::endl;
+    }
+    std::cout << std::endl;
+}
 /* ----- PAGE REPLACEMENT ALGORITHMS ----- */
 
 void CPU::FIFOReplacement(Page *p) {
@@ -77,11 +93,18 @@ void CPU::MFUReplacement(Page *p) {
 }
 
 void CPU::RandomReplacement(Page *p) {
-    if (!_memory.isFull()) {
-        _memory.addPage(p);
-        return;
-    }
+    // Page to be replaced
+    Page *old = nullptr;
 
-    Page *old = _memory.getPage(rand() % _memory.getNumPages());
-    _memory.replacePage(old, p);
+    // Check for page hit
+    if (!_memory.contains(p) && _memory.isFull())
+        old = _memory.getPage(rand() % _memory.getNumPages());
+
+    printPageRequest(p, old);
+
+    // Page fault
+    if (_memory.contains(p)) return;
+    else if (!_memory.isFull()) _memory.addPage(p);
+    // Page replacement required
+    else _memory.replacePage(old, p);
 }

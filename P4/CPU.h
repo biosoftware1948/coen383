@@ -25,6 +25,7 @@ class CPU {
     void RandomReplacement(Page *p);
 
     void checkQueue();
+    void printPageRequest(Page *p, Page *old);
 
 public:
     CPU(Replacement algorithm);

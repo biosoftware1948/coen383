@@ -1,7 +1,7 @@
 # set the compiler
 CC = g++
 # set the flags
-CFLAGS = -Wall
+CFLAGS = -Wall -g3
 # specify which libraries to use
 LDFLAGS =
 #set the object files

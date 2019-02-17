@@ -16,6 +16,8 @@ int main() {
     while (!cpu.isProcessesComplete()
             && cpu.getClockTime() <= RUN_TIME) {
         Process *p = cpu.getNextProcess();
+        bool a = p == nullptr;
+        //std::cout << a << std::endl;
         cpu.runProcess(QUANTUM, p);
     }
 }
