@@ -117,12 +117,12 @@ void CPU::LRUReplacement(Page *p) {
 
     // this can probably be cleaner
     if (_memory.contains(p)){
-        _memory.removePage(p);
+        _memory.removePage(p);  // Page hit
         _memory.addPage(p);
     } else if (!_memory.isFull()){
-        _memory.addPage(p);
+        _memory.addPage(p);     // Page fault
     } else {
-        _memory.removeFirstPage();
+        _memory.removeFirstPage();  // Replace least recntly used page
         _memory.addPage(p);
     }
 }
