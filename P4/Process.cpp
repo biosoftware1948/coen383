@@ -48,6 +48,9 @@ Page *Process::getNextPage() {
     if (_lastReferencedPage == -1) _lastReferencedPage = 0;
     else _lastReferencedPage = (_lastReferencedPage + delta_i) % getNumPages();
 
+    //increment page frequency
+    _pages[_lastReferencedPage]->incrementFrequency();
+
     // return global page id
     return _pages[_lastReferencedPage];
 }

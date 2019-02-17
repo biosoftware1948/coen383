@@ -112,28 +112,73 @@ void CPU::LRUReplacement(Page *p) {
     Page *old = nullptr;
 
     if (!_memory.contains(p) && _memory.isFull())
-        old = _memory.getPage(0);   // least recently used page sits in back of deque
+        old = _memory.getPage(0);
 
     printPageRequest(p, old);
 
     // this can probably be cleaner
     if (_memory.contains(p)){
-        _memory.removePage(p);  // Page hit
+        _memory.removePage(p);
         _memory.addPage(p);
     } else if (!_memory.isFull()){
-        _memory.addPage(p);     // Page fault
+        _memory.addPage(p);
     } else {
-        _memory.removeFirstPage();  // Replace least recntly used page
+        _memory.removeFirstPage();
         _memory.addPage(p);
     }
 }
 
 void CPU::LFUReplacement(Page *p) {
-
+    Page *old = nullptr;
+    //Replacement logic
+    if (!_memory.contains(p) && _memory.isFull()) {
+        old = _memory.getPage(0);
+        for(int i = 1; i < _memory.getNumPages(); ++i) {
+            if (_memory.getPage(i)->getFrequency() < old->getFrequency()) {
+                  old = _memory.getPage(i);
+            }
+        }
+#ifdef DEBUG
+    printf("DEBUG: Page %d has been chosen by LFU, with frequency of %d\n", old->getLocalId(), old->getFrequency());
+#endif
+    }
+    if (_memory.contains(p)) { //page hit
+      return;
+    }
+    else if (!_memory.isFull()) {
+      _memory.addPage(p); //space in memory
+    }
+    else {
+      _memory.replacePage(old, p);
+    }
+    printPageRequest (p, old);
+      
 }
 
 void CPU::MFUReplacement(Page *p) {
-
+    Page *old = nullptr;
+    //Replacement logic
+    if (!_memory.contains(p) && _memory.isFull()) {
+        old = _memory.getPage(0);
+        for(int i = 1; i < _memory.getNumPages(); ++i) {
+            if (_memory.getPage(i)->getFrequency() > old->getFrequency()) {
+                  old = _memory.getPage(i);
+            }
+        }
+#ifdef DEBUG
+    printf("DEBUG: Page %d has been chosen by MFU, with frequency of %d\n", old->getLocalId(), old->getFrequency());
+#endif
+    }
+    if (_memory.contains(p)) { //page hit
+      return;
+    }
+    else if (!_memory.isFull()) {
+      _memory.addPage(p); //space in memory
+    }
+    else {
+      _memory.replacePage(old, p);
+    }
+    printPageRequest (p, old);
 }
 
 void CPU::RandomReplacement(Page *p) {
