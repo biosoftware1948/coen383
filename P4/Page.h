@@ -4,13 +4,14 @@
 # include <ostream>
 
 class Page {
-    unsigned _localId, _globalId, _parentId;
+    unsigned _globalId, _localId, _parentId;
 
 public:
     Page(unsigned parentId, unsigned localId);
     
-    unsigned getLocalId() { return _localId; }
     unsigned getGlobalId() { return _globalId; }
+    unsigned getLocalId() { return _localId; }
+    unsigned getParentId() { return _parentId; }
 };
 
 # endif /* PAGE_H */

@@ -1,39 +1,149 @@
 # include <algorithm>
+# include <iostream>
+# include <stdlib.h>
 # include "CPU.h"
 # include "Process.h"
 
 extern const unsigned JOB_COUNT;
 
-//TODO: Waiting for Email response from Dr. Ezzat on CPU job scheduling
-
-CPU::CPU() {
-    for (int i = 0; i < JOB_COUNT; i++) 
+CPU::CPU(Replacement algorithm) {
+    for (int i = 0; i < JOB_COUNT; i++)
         _queuedJobs.push_back(new Process());
 
     // sort queued jobs by arrival time
     std::sort(_queuedJobs.begin(), _queuedJobs.end(), Process::CompareArrivalTime);
+
+    if(algorithm == FIFO) requestPage = &CPU::FIFOReplacement;
+    else if (algorithm == LRU) requestPage = &CPU::LRUReplacement;
+    else if (algorithm == LFU) requestPage = &CPU::LFUReplacement;
+    else if (algorithm == MFU) requestPage = &CPU::MFUReplacement;
+    else if (algorithm == RANDOM) requestPage = &CPU::RandomReplacement;
 }
 
-void CPU::removeFinished() {
-    for (unsigned i = 0; i < _runningJobs.size();) {
-        if (_runningJobs[i]->isCompleted()) {
-            _runningJobs.erase(_runningJobs.begin() + i);
-            _atJobCapacity = false;
-            return; 
-        }
+// TODO: Broken - fix seg-faults and duplicated frees
+CPU::~CPU() {
+    // For now just allowing memory leaks
+    /*while (!_runningJobs.empty()) {
+        delete _runningJobs.front();
+        _runningJobs.pop();
     }
+    for (unsigned i = 0; i < _queuedJobs.size(); i++) delete _queuedJobs[i];
+    delete this; */
 }
 
 void CPU::checkQueue() {
-    
+    if (_queuedJobs.size() == 0) return;
+
+    Process *process = _queuedJobs[0];
+    /* If we can run a job, put at end of running queue. */
+    if (process->getArrivalTime() <= _clockTime
+            && (_memory.getNumFreePages() >= 4 || !_atJobCapacity)
+            && _runningJobs.size() < 25 /* questionably necessary. */) {
+        _queuedJobs.erase(_queuedJobs.begin());
+        _runningJobs.push(process);
+    }
+
+    /* Set capacity to full if there are less than 4 pages. We can safely set here
+     * because we have already pulled job off queue if capacity wasn't full. */
+    if (!_atJobCapacity && _memory.getNumFreePages() <= 4) {
+        _atJobCapacity = true;
+    }
 }
 
-unsigned CPU::runIdle() {
-    _clockTime += 100;
-
+Process *CPU::getNextProcess() {
     checkQueue();
+    if (_runningJobs.empty()) return nullptr;
+
+    Process *nextProcess = _runningJobs.front();
+    _runningJobs.pop();
+    return nextProcess;
 }
 
-unsigned CPU::runProcess(unsigned processId, unsigned pageId) {
+void CPU::runProcess(unsigned quantum, Process *process) {
+    if (process == nullptr) {
+        _clockTime += quantum;
+        return;
+    }
+
+    (this->*this->requestPage)(process->getNextPage());
+
+    _clockTime += quantum;
+    process->service(quantum);
+    if (!process->isCompleted()) _runningJobs.push(process);
+    else delete process;
 }
 
+void CPU::printPageRequest(Page *p, Page *old) {
+    std::string location = _memory.contains(p) ? "In Memory" : "On Disk";
+
+    std::cout << "<" << _clockTime;
+    std::cout << ",    PROC: " << p->getParentId();
+    std::cout << ",\t" << "PAGE: " << p->getLocalId();
+    std::cout << ",\t" << location;
+    if (old != nullptr) {
+        std::cout << ",\tReplacing PROC: " << old->getParentId();
+        std::cout << " PAGE: " << old->getLocalId();
+    }
+    std::cout << ">" << std::endl;
+}
+
+/* ----- PAGE REPLACEMENT ALGORITHMS ----- */
+
+void CPU::FIFOReplacement(Page *p) {
+
+    Page * old = nullptr;
+
+    if (!_memory.contains(p) && _memory.isFull())
+        old = _memory.getPage(0);
+
+    printPageRequest(p, old);
+
+    if (_memory.contains(p)) return; // Page hit
+    else if(!_memory.isFull()) _memory.addPage(p); // Page fault
+    else{
+        _memory.removeFirstPage(); // remove 'first-in' page
+        _memory.addPage(p); // add new page
+    }
+
+}
+
+void CPU::LRUReplacement(Page *p) {
+    Page *old = nullptr;
+
+    if (!_memory.contains(p) && _memory.isFull())
+        old = _memory.getPage(0);
+
+    printPageRequest(p, old);
+
+    // this can probably be cleaner
+    if (_memory.contains(p)){
+        _memory.removePage(p);
+        _memory.addPage(p);
+    } else if (!_memory.isFull()){
+        _memory.addPage(p);
+    } else {
+        _memory.removeFirstPage();
+        _memory.addPage(p);
+    }
+}
+
+void CPU::LFUReplacement(Page *p) {
+
+}
+
+void CPU::MFUReplacement(Page *p) {
+
+}
+
+void CPU::RandomReplacement(Page *p) {
+    Page *old = nullptr; // Page to be replaced
+
+    if (!_memory.contains(p) && _memory.isFull())
+        old = _memory.getPage(rand() % _memory.getNumPages());
+
+    printPageRequest(p, old);
+
+    if (_memory.contains(p)) return; // Page hit
+    else if (!_memory.isFull()) _memory.addPage(p); // Page fault
+    else _memory.replacePage(old, p); // Page replacement required
+}

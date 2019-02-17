@@ -2,6 +2,6 @@
 
 static unsigned _globalIdCounter = 0;
 
-Page::Page(unsigned parentId, unsigned localId)
-        : _parentId(parentId), _localId(localId), _globalId(_globalIdCounter++) {
-}
+Page::Page(unsigned localId, unsigned parentId)
+        : _globalId(_globalIdCounter++), _localId(localId), _parentId(parentId) { }
+
