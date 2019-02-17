@@ -62,18 +62,20 @@ void CPU::runProcess(unsigned quantum, Process *process) {
 }
 
 void CPU::printPageRequest(Page *p, Page *old) {
-    std::cout << "Time:\t\t" << _clockTime << std::endl;
-    std::cout << "Process:\t" << p->getParentId() << std::endl;
-    std::cout << "Page:\t\t" << p->getLocalId() << std::endl;
-    std::string location = _memory.contains(p) ? "memory" : "disk";
-    std::cout << "Location:\t" << location << std::endl;
+    std::string location =
+            _memory.contains(p) ? "In Memory" : "On Disk";
+
+    std::cout << "<" << _clockTime;
+    std::cout << ",    PROC: " << p->getParentId();
+    std::cout << ",\t" << "PAGE: " << p->getLocalId();
+    std::cout << ",\t" << location;
     if (old != nullptr) {
-        std::cout << "Replaced page:\tProcess: ";
-        std::cout << old->getParentId() << " Page: ";
-        std::cout << old->getLocalId() << std::endl;
+        std::cout << ",\tReplacing PROC: " << old->getParentId();
+        std::cout << " PAGE: " << old->getLocalId();
     }
-    std::cout << std::endl;
+    std::cout << ">" << std::endl;
 }
+
 /* ----- PAGE REPLACEMENT ALGORITHMS ----- */
 
 void CPU::FIFOReplacement(Page *p) {
