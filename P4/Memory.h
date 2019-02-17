@@ -22,6 +22,7 @@ public:
         return std::find(_memory.begin(), _memory.end(), page) != _memory.end();
     }
     void replacePage(Page *oldPage, Page *newPage);
+    void removePage(Page *oldPage);
     void removeFirstPage() { _memory.pop_front(); }
 };
 

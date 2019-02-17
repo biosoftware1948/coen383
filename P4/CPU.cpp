@@ -102,13 +102,29 @@ void CPU::FIFOReplacement(Page *p) {
     else if(!_memory.isFull()) _memory.addPage(p); // Page fault
     else{
         _memory.removeFirstPage(); // remove 'first-in' page
-        _memory.addPage(p); // add new page 
+        _memory.addPage(p); // add new page
     }
 
 }
 
 void CPU::LRUReplacement(Page *p) {
+    Page *old = nullptr;
 
+    if (!_memory.contains(p) && _memory.isFull())
+        old = _memory.getPage(0);
+
+    printPageRequest(p, old);
+
+    // this can probably be cleaner
+    if (_memory.contains(p)){
+        _memory.removePage(p);
+        _memory.addPage(p);
+    } else if (!_memory.isFull()){
+        _memory.addPage(p);
+    } else {
+        _memory.removeFirstPage();
+        _memory.addPage(p);
+    }
 }
 
 void CPU::LFUReplacement(Page *p) {
