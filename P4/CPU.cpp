@@ -4,6 +4,7 @@
 # include "CPU.h"
 # include "Process.h"
 
+
 extern const unsigned JOB_COUNT;
 
 CPU::CPU(Replacement algorithm) {
