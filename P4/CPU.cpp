@@ -4,10 +4,19 @@
 # include "CPU.h"
 # include "Process.h"
 
-
 extern const unsigned JOB_COUNT;
+extern const std::map<Replacement, std::string> ReplacementString {
+    { FIFO, "FIFO" },
+    { LRU, "LRU" },
+    { LFU, "LFU" },
+    { MFU, "MFU" },
+    { RANDOM, "RANDOM" }
+};
 
-CPU::CPU(Replacement algorithm) {
+
+CPU::CPU(Replacement algorithm, bool printRequests) {
+    _printRequests = printRequests;
+
     for (int i = 0; i < JOB_COUNT; i++)
         _queuedJobs.push_back(new Process());
 
@@ -76,6 +85,7 @@ void CPU::runProcess(unsigned quantum, Process *process) {
 }
 
 void CPU::printPageRequest(Page *p, Page *old) {
+    if (!_printRequests) return;
     std::string location = _memory.contains(p) ? "In Memory" : "On Disk";
 
     std::cout << "<" << _clockTime;
@@ -147,6 +157,8 @@ void CPU::LFUReplacement(Page *p) {
     printf("DEBUG: Page %d has been chosen by LFU, with frequency of %d\n", old->getLocalId(), old->getFrequency());
 #endif
     }
+
+    printPageRequest (p, old);
     if (_memory.contains(p)) { //page hit
       return;
     }
@@ -157,8 +169,6 @@ void CPU::LFUReplacement(Page *p) {
     else {
       _memory.replacePage(old, p);
     }
-    printPageRequest (p, old);
-
 }
 
 void CPU::MFUReplacement(Page *p) {
@@ -175,6 +185,8 @@ void CPU::MFUReplacement(Page *p) {
     printf("DEBUG: Page %d has been chosen by MFU, with frequency of %d\n", old->getLocalId(), old->getFrequency());
 #endif
     }
+
+    printPageRequest (p, old);
     if (_memory.contains(p)) { //page hit
       return;
     }
@@ -185,7 +197,6 @@ void CPU::MFUReplacement(Page *p) {
     else {
       _memory.replacePage(old, p);
     }
-    printPageRequest (p, old);
 }
 
 void CPU::RandomReplacement(Page *p) {

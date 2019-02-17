@@ -1,5 +1,6 @@
 # ifndef CPU_H
 # define CPU_H
+# include <map>
 # include <vector>
 # include <queue>
 # include "Memory.h"
@@ -7,10 +8,11 @@
 # include "Page.h"
 
 enum Replacement { FIFO, LRU, LFU, MFU, RANDOM };
+extern const std::map<Replacement, std::string> ReplacementString;
 
 class CPU {
     unsigned _clockTime = 0;
-    bool _atJobCapacity = false;
+    bool _atJobCapacity = false, _printRequests;
 
     std::vector<Process *> _queuedJobs; /* processes waiting to be run. */
     std::queue<Process *> _runningJobs; /* processes currently being run. */
@@ -28,7 +30,7 @@ class CPU {
     void printPageRequest(Page *p, Page *old);
 
 public:
-    CPU(Replacement algorithm);
+    CPU(Replacement algorithm, bool printRequests = false);
     ~CPU();
 
     bool isProcessesComplete() {
