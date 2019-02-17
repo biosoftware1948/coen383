@@ -15,6 +15,7 @@ class Process {
     void allocatePages();
 public:
     Process();
+    ~Process();
 
     unsigned getNumPages() const { return _pages.size(); }
     unsigned getArrivalTime() const;

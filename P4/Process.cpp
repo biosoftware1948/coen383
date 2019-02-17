@@ -14,6 +14,11 @@ Process::Process() : _processId(idCounter++) {
     allocatePages();
 }
 
+Process::~Process() {
+    for (unsigned i = 0; i < _pages.size(); i++) delete _pages[i];
+    delete this;
+}
+
 void Process::allocatePages() {
     unsigned numPages = rand() % 4;
     if (numPages == 0) numPages = 5;

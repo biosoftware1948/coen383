@@ -20,6 +20,17 @@ CPU::CPU(Replacement algorithm) {
     else if (algorithm == RANDOM) requestPage = &CPU::RandomReplacement;
 }
 
+// TODO: Broken - fix seg-faults and duplicated frees
+CPU::~CPU() {
+    // For now just allowing memory leaks
+    /*while (!_runningJobs.empty()) {
+        delete _runningJobs.front();
+        _runningJobs.pop();
+    }
+    for (unsigned i = 0; i < _queuedJobs.size(); i++) delete _queuedJobs[i];
+    delete this; */
+}
+
 void CPU::checkQueue() {
     if (_queuedJobs.size() == 0) return;
 
@@ -59,11 +70,11 @@ void CPU::runProcess(unsigned quantum, Process *process) {
     _clockTime += quantum;
     process->service(quantum);
     if (!process->isCompleted()) _runningJobs.push(process);
+    else delete process;
 }
 
 void CPU::printPageRequest(Page *p, Page *old) {
-    std::string location =
-            _memory.contains(p) ? "In Memory" : "On Disk";
+    std::string location = _memory.contains(p) ? "In Memory" : "On Disk";
 
     std::cout << "<" << _clockTime;
     std::cout << ",    PROC: " << p->getParentId();
@@ -97,7 +108,6 @@ void CPU::MFUReplacement(Page *p) {
 void CPU::RandomReplacement(Page *p) {
     Page *old = nullptr; // Page to be replaced
 
-    // Check for page hit
     if (!_memory.contains(p) && _memory.isFull())
         old = _memory.getPage(rand() % _memory.getNumPages());
 

@@ -29,6 +29,7 @@ class CPU {
 
 public:
     CPU(Replacement algorithm);
+    ~CPU();
 
     bool isProcessesComplete() {
         return _queuedJobs.empty() && _runningJobs.empty();
