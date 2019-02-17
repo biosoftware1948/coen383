@@ -148,10 +148,7 @@ void CPU::LFUReplacement(Page *p) {
       _memory.addPage(p); //space in memory
     }
     else {
-      //Does this branch ever get executed? Feels like 
-      //the rest of the code covers this case...
-      _memory.removeFirstPage();
-      _memory.addPage(p);
+      _memory.replacePage(old, p);
     }
     printPageRequest (p, old);
       
@@ -178,10 +175,7 @@ void CPU::MFUReplacement(Page *p) {
       _memory.addPage(p); //space in memory
     }
     else {
-      //Does this branch ever get executed? Feels like 
-      //the rest of the code covers this case...
-      _memory.removeFirstPage();
-      _memory.addPage(p);
+      _memory.replacePage(old, p);
     }
     printPageRequest (p, old);
 }
