@@ -31,15 +31,7 @@ CPU::CPU(Replacement algorithm, bool printRequests) {
 }
 
 // TODO: Broken - fix seg-faults and duplicated frees
-CPU::~CPU() {
-    // For now just allowing memory leaks
-    /*while (!_runningJobs.empty()) {
-        delete _runningJobs.front();
-        _runningJobs.pop();
-    }
-    for (unsigned i = 0; i < _queuedJobs.size(); i++) delete _queuedJobs[i];
-    delete this; */
-}
+CPU::~CPU() { }
 
 void CPU::checkQueue() {
     if (_queuedJobs.size() == 0) return;
