@@ -1,28 +1,66 @@
-#ifndef SELLER_H
-#define SELLER_H
-
 #include <stdio.h>
-#include <pthread.h>
 #include <stdlib.h>
+#include <string>
+#include <queue>
+#include <iostream>
+#include <pthread.h>
+
+#include "buyer.h"
+#include "auditorium.h"
+
+extern pthread_cond_t cond_go;
+extern pthread_mutex_t mutex_condition;
+extern pthread_mutex_t selling_mutex;
+
+extern volatile int timer;
+extern int MAXIMUM_RUN_TIME;
+
+// create a variable to tell when all the tickets have been sold
+extern volatile int tickets_for_sale;
+extern volatile int TURNED_AWAY;
+extern volatile int H_CURRENT_ROW;
+extern volatile int H_CURRENT_SEAT;
+extern volatile int M_CURRENT_ROW;
+extern volatile int M_CURRENT_SEAT;
+extern volatile int L_CURRENT_ROW;
+extern volatile int L_CURRENT_SEAT;
+extern volatile int H_CUSTOMERS_WITH_SEATS;
+extern volatile int M_CUSTOMERS_WITH_SEATS;
+extern volatile int L_CUSTOMERS_WITH_SEATS;
 
 
-#include "queue.h"
-#include "seats.h"
+class Seller {
+	private:
+		std::priority_queue<Buyer> buyerQueue;
+		// reference to auditorium
+		std::string (*auditorium)[10];
+		// remaining customer service time
+		int service_time;
+        int id;
+        int seats;
+		//returns true if its time for the next buyer, else false
+        bool buyerReady(int timer, int next_buy_time);
+		//returns true if the time is out
+        bool checkIfDone();
+		//Increase the buyer count
+        void increaseBuyerCount();
 
-typedef struct Seller {
-    Queue* customerQueue;
-    int id; //ids 0-9 for the 10 sellers
-    char type; // H, M, L sellers
-    Auditorium* auditorium;
-    int current_row;
-}Seller;
+	public:
+        pthread_t sellerThread;
+		std::string type;         //H, M, or L
+		Seller(std::string auditorium[10][10], std::string type, int N, int id);
+		//holds all the selling logic.
+		void* sell();
+        //create new sell time depending on type H, M, L
+		int sellerRandomSellTime();
+		// get the current row for seating
+		int currentRow();
+		// get the current seat to be used
+		int currentColumn();
+		// gets seller to find new seat to go to
+		void getNewSeat();
+		//start sales
+        void StartSelling();
 
-Seller* createSeller(char type, int id, int starting_row, int num_customers, Auditorium* a);
-void deleteSeller(Seller* s);
-void printSellerCustomers(Seller* s);
-int get_service_time(Seller* seller);
-void reserveSeat(Seller* seller, int column);
-int getNewMRow(int current_row);
 
-
-#endif
+};
