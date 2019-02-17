@@ -7,7 +7,7 @@
 extern const unsigned NUM_PAGES;
 
 class Memory {
-    unsigned _requests = 0, _faults = 0;
+    int _requests = 0, _faults = 0;
     std::deque<Page *> _memory;
 
 public:
@@ -25,10 +25,10 @@ public:
     void replacePage(Page *oldPage, Page *newPage);
     void removePage(Page *oldPage);
     void removeFirstPage() { _memory.pop_front(); }
-    
+
     void fault() { _faults++; }
     void request() { _requests++; }
-    float ratio() { (_reqests - _faults) * 1.0 / _faults; }
+    double ratio() { return 1.0 * (_requests - _faults) / _faults; }
 };
 
 # endif /* MEMORY_H */

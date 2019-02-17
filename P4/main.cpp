@@ -12,10 +12,12 @@ extern const unsigned NUM_PAGES = 100;
 int main() {
     srand(time(NULL));
 
-    CPU cpu = CPU(MFU);
+    CPU cpu = CPU(RANDOM);
     while (!cpu.isProcessesComplete()
             && cpu.getClockTime() <= RUN_TIME) {
         Process *p = cpu.getNextProcess();
         cpu.runProcess(QUANTUM, p);
     }
+
+    std::cout << "Hit/Miss Ratio:  " << cpu.getRatio() << std::endl;
 }
