@@ -12,7 +12,7 @@ extern const unsigned NUM_PAGES = 100;
 int main() {
     srand(time(NULL));
 
-    CPU cpu = CPU(RANDOM);
+    CPU cpu = CPU(LFU);
     while (!cpu.isProcessesComplete()
             && cpu.getClockTime() <= RUN_TIME) {
         Process *p = cpu.getNextProcess();

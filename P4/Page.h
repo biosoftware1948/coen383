@@ -15,7 +15,7 @@ public:
     unsigned getFrequency() { return _frequency; }
     unsigned getAccessTime() { return _lastAccessTime;}
 
-    void setFrequency(unsigned f) {this->_frequency = f; }
+    void incrementFrequency() {++this->_frequency;}
     void setAccessTime(unsigned t) { this->_lastAccessTime = t; }
 };
 

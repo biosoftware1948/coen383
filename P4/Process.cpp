@@ -48,6 +48,10 @@ Page *Process::getNextPage() {
     if (_lastReferencedPage == -1) _lastReferencedPage = 0;
     else _lastReferencedPage = (_lastReferencedPage + delta_i) % getNumPages();
 
+    //increment page frequency
+    _pages[_lastReferencedPage]->incrementFrequency();
+    printf("Page: %d has frequency of %d\n", _pages[_lastReferencedPage]->getLocalId(), _pages[_lastReferencedPage]->getFrequency());
+
     // return global page id
     return _pages[_lastReferencedPage];
 }
