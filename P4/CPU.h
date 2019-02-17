@@ -36,6 +36,7 @@ public:
     }
     unsigned getClockTime() { return _clockTime; }
     Process *getNextProcess();
+    float getRatio() { return _memory.ratio(); }
 
     void runProcess(unsigned quantum, Process *process);
 };

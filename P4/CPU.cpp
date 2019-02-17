@@ -65,6 +65,7 @@ void CPU::runProcess(unsigned quantum, Process *process) {
         return;
     }
 
+    _memory.request(); // incrementing the number of page requests
     (this->*this->requestPage)(process->getNextPage());
 
     _clockTime += quantum;
@@ -144,6 +145,7 @@ void CPU::RandomReplacement(Page *p) {
     printPageRequest(p, old);
 
     if (_memory.contains(p)) return; // Page hit
-    else if (!_memory.isFull()) _memory.addPage(p); // Page fault
+    _memory.fault(); // incrementing page fault count
+    if (!_memory.isFull()) _memory.addPage(p); // Page fault
     else _memory.replacePage(old, p); // Page replacement required
 }
