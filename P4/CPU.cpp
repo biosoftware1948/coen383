@@ -91,6 +91,20 @@ void CPU::printPageRequest(Page *p, Page *old) {
 
 void CPU::FIFOReplacement(Page *p) {
 
+    Page * old = nullptr;
+
+    if (!_memory.contains(p) && _memory.isFull())
+        old = _memory.getPage(0);
+
+    printPageRequest(p, old);
+
+    if (_memory.contains(p)) return; // Page hit
+    else if(!_memory.isFull()) _memory.addPage(p); // Page fault
+    else{
+        _memory.removeFirstPage(); // remove 'first-in' page
+        _memory.addPage(p); // add new page 
+    }
+
 }
 
 void CPU::LRUReplacement(Page *p) {
