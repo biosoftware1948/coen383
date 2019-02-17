@@ -111,7 +111,7 @@ void CPU::LRUReplacement(Page *p) {
     Page *old = nullptr;
 
     if (!_memory.contains(p) && _memory.isFull())
-        old = _memory.getPage(0);
+        old = _memory.getPage(0);   // least recently used page sits in back of deque
 
     printPageRequest(p, old);
 
