@@ -3,6 +3,7 @@
 # include <algorithm>
 # include <deque>
 # include "Page.h"
+# include "Process.h"
 
 extern const unsigned NUM_PAGES;
 
@@ -22,9 +23,11 @@ public:
     bool contains(const Page *page) {
         return std::find(_memory.begin(), _memory.end(), page) != _memory.end();
     }
+    void evictPages(Process *process);
     void replacePage(Page *oldPage, Page *newPage);
     void removePage(Page *oldPage);
     void removeFirstPage() { _memory.pop_front(); }
+    void printMap(Process *process = nullptr);
 
     void fault() { _faults++; }
     void request() { _requests++; }

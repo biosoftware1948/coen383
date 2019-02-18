@@ -17,11 +17,14 @@ public:
     Process();
     ~Process();
 
-    unsigned getNumPages() const { return _pages.size(); }
-    unsigned getArrivalTime() const;
+    unsigned getArrivalTime() const { return _arrivalTime; }
     Page *getNextPage();
+    unsigned getNumPages() const { return _pages.size(); }
+    unsigned getProcessId() const { return _processId; }
+    unsigned getRemainingTime() const { return _serviceDuration - _timeRun; }
+    unsigned getServiceTime() const { return _serviceDuration; }
 
-    bool isCompleted() const;
+    bool isCompleted() const { return _serviceDuration == _timeRun; }
 
     void service(unsigned quantum); // service process for specified process
 

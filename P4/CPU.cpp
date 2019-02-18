@@ -39,16 +39,10 @@ void CPU::checkQueue() {
     Process *process = _queuedJobs[0];
     /* If we can run a job, put at end of running queue. */
     if (process->getArrivalTime() <= _clockTime
-            && (_memory.getNumFreePages() >= 4 || !_atJobCapacity)
-            && _runningJobs.size() < 25 /* questionably necessary. */) {
+            && _memory.getNumFreePages() >= 4) {
         _queuedJobs.erase(_queuedJobs.begin());
         _runningJobs.push(process);
-    }
-
-    /* Set capacity to full if there are less than 4 pages. We can safely set here
-     * because we have already pulled job off queue if capacity wasn't full. */
-    if (!_atJobCapacity && _memory.getNumFreePages() <= 4) {
-        _atJobCapacity = true;
+        printProcess(process, true);
     }
 }
 
@@ -59,6 +53,14 @@ Process *CPU::getNextProcess() {
     Process *nextProcess = _runningJobs.front();
     _runningJobs.pop();
     return nextProcess;
+}
+
+unsigned CPU::getProcessesStarted() {
+    return JOB_COUNT - _queuedJobs.size();
+}
+
+void CPU::finishProcess(Process *process) {
+    _memory.evictPages(process);
 }
 
 void CPU::runProcess(unsigned quantum, Process *process) {
@@ -73,8 +75,12 @@ void CPU::runProcess(unsigned quantum, Process *process) {
     _clockTime += quantum;
     process->service(quantum);
     if (!process->isCompleted()) _runningJobs.push(process);
-    else delete process;
+    else {
+        printProcess(process, false);
+        finishProcess(process);
+    }
 }
+
 
 void CPU::printPageRequest(Page *p, Page *old) {
     if (!_printRequests) return;
@@ -82,12 +88,26 @@ void CPU::printPageRequest(Page *p, Page *old) {
 
     std::cout << "<" << _clockTime;
     std::cout << ",    PROC: " << p->getParentId();
-    std::cout << ",\t" << "PAGE: " << p->getLocalId();
-    std::cout << ",\t" << location;
+    std::cout << ",    " << "PAGE: " << p->getLocalId();
+    std::cout << ",    " << location;
     if (old != nullptr) {
-        std::cout << ",\tReplacing PROC: " << old->getParentId();
+        std::cout << ",    Replacing PROC: " << old->getParentId();
         std::cout << " PAGE: " << old->getLocalId();
     }
+    std::cout << ">" << std::endl;
+}
+
+void CPU::printProcess(Process *process, bool enter) {
+    if (!_printRequests) return;
+
+    std::string enterOrExit = enter ? "enter" : "exit";
+    std::cout << "<" << _clockTime;
+    std::cout << ",    PROC: " << process->getProcessId();
+    std::cout << ",    " << enterOrExit;
+    std::cout << ",    " << process->getNumPages() << " pages";
+    std::cout << ",    " << process->getServiceTime() << "ms";
+    std::cout << ",    ";
+    _memory.printMap(process);
     std::cout << ">" << std::endl;
 }
 
