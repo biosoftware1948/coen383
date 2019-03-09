@@ -27,7 +27,9 @@ class CPU {
     void RandomReplacement(Page *p);
 
     void checkQueue();
+    void finishProcess(Process *process);
     void printPageRequest(Page *p, Page *old);
+    void printProcess(Process *process, bool enter);
 
 public:
     CPU(Replacement algorithm, bool printRequests = false);
@@ -39,6 +41,7 @@ public:
     unsigned getClockTime() { return _clockTime; }
     Process *getNextProcess();
     double getRatio() { return _memory.ratio(); }
+    unsigned getProcessesStarted();
 
     void runProcess(unsigned quantum, Process *process);
 };

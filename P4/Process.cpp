@@ -30,10 +30,6 @@ void Process::allocatePages() {
         _pages.push_back(new Page(i, _processId));
 }
 
-unsigned Process::getArrivalTime() const {
-    return _arrivalTime;
-}
-
 Page *Process::getNextPage() {
     int delta_i;
     unsigned branch = rand() % 10 + 1;
@@ -55,12 +51,8 @@ Page *Process::getNextPage() {
     return _pages[_lastReferencedPage];
 }
 
-bool Process::isCompleted() const {
-    return _serviceDuration == _timeRun;
-}
-
 void Process::service(unsigned quantum) {
-    _serviceDuration += quantum;
+    _timeRun += quantum;
 }
 
 bool Process::CompareArrivalTime(const Process *left, const Process *right) {
