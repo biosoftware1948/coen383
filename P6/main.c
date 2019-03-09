@@ -56,12 +56,12 @@ int main(int argc, char* argv[]) {
         cpid[i] = fork();
         //parent case
         //if (pChildren[i].pid > 0) {
-        if (cpid[i]) {
+        if (cpid[i] > 0) {
             //close(pChildren[i].file_descriptor[WRITE_END]);
             close(fd[i][WRITE_END]);
         }
         //Child case
-        else if (cpid[i]) {
+        else if (cpid[i] ==  0) {
             //close(pChildren[i].file_descriptor[READ_END]);
             close(fd[i][READ_END]);
             if (i == 4) {
@@ -77,6 +77,7 @@ int main(int argc, char* argv[]) {
         }
         //Fatal error, fork failed
         else {
+            printf("fork returned: %d\n", cpid[i]);
             printf("FATAL ERROR: FORK FAILURE\n");
             return 1;
         }
@@ -119,7 +120,7 @@ int main(int argc, char* argv[]) {
 			if(FD_ISSET(fd[0][READ_END], &fdsets)) {
 				int val = read_by_line(fd[0][READ_END], read_msg, MAX_BUFF_SIZE);
 				// check to see if the pipe has been closed by the child
-                //printf("message: %s", read_msg);
+                printf("message: %s", read_msg);
 				if(0 == strcmp("EXIT_COND", read_msg)) {
 					// set the pipe open flag to false and close the pipe
 					p1 = false;
