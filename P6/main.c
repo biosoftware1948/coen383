@@ -14,7 +14,7 @@
 
 #define N_CHILDREN 5
 #define N_FILE_DESCRIPTORS 2 //Read and write
-#define MAX_BUFF_SIZE 128
+#define MAX_BUFF_SIZE 1256
 #define WRITE_END 0
 #define READ_END 1
 

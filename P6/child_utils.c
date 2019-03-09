@@ -3,7 +3,7 @@
 
 #define WRITE_END 0
 #define READ_END 1
-#define MAX_BUFF_SIZE 128
+#define MAX_BUFF_SIZE 1256
 
 child_process* build_children(int num_children) {
     child_process* pcp = (child_process*) calloc(num_children, sizeof(child_process));
@@ -28,10 +28,10 @@ int create_pipes(int num_children, child_process* pChildren) {
 void non_terminal_child(int fd, int child, int start_exec_time) {
     int end_time = start_exec_time + 30;
     int n_messages = 1;
-    char* BUFF = calloc(MAX_BUFF_SIZE, sizeof(char));
     int message_time;
     double message_millis;
     struct timeval tv;
+    char* BUFF = calloc(MAX_BUFF_SIZE, sizeof(char));
     gettimeofday(&tv, NULL);
 
     //close term fds
@@ -51,12 +51,12 @@ void non_terminal_child(int fd, int child, int start_exec_time) {
         snprintf(BUFF, MAX_BUFF_SIZE, "%i:%05.3f: Child %i message %i\n", message_time, message_millis, child, n_messages);
         write(fd, BUFF, strlen(BUFF));
         ++n_messages;
+        //free(BUFF);
     }
     //exit message
     char exit_message[] = "EXIT_COND";
     write(fd, exit_message, sizeof(exit_message));
     close(fd);
-    free(BUFF);
 }
 
 void terminal_child(int fd, int child, int start_exec_time) {
