@@ -65,7 +65,8 @@ void terminal_child(child_process* pChildprocess, int start_exec_time) {
     int message_time;
     double message_millis;
     struct timeval tv;
-    char user_prompt[] = "Enter input: ";
+    char user_prompt[] = "Enter input: \n";
+    bool new_prompt_needed = true;
     //pipe read
     fd_set fdsets;
     struct timeval timeout;
@@ -81,26 +82,34 @@ void terminal_child(child_process* pChildprocess, int start_exec_time) {
         FD_ZERO(&fdsets);
 		FD_SET(STDIN_FILENO, &fdsets);
         //write user prompt
-        write(STDOUT_FILENO, user_prompt, strlen(user_prompt));
-        //monitor for input
-        int retval = select(12, &fdsets, NULL, NULL, &timeout);
-        //error case
+        if (new_prompt_needed) {
+            write(STDOUT_FILENO, user_prompt, strlen(user_prompt));
+            //monitor for input
+            int retval = select(12, &fdsets, NULL, NULL, &timeout);
+            //error case
+            new_prompt_needed = false;
+        }
         if(retval == -1) {
             printf("Select error");
         }
         //input case
         else if (retval) {
-            gettimeofday(&tv, NULL);
-            flush_buff(user_input, MAX_BUFF_SIZE);
-            read(STDOUT_FILENO, user_input, MAX_BUFF_SIZE);
-            //format the message
-            message_time = (int) (tv.tv_sec - start_exec_time);
-            message_millis = (double) (tv.tv_usec / 1000.00);
-            snprintf(BUFF, MAX_BUFF_SIZE, "%i:%05.3f: Child %i: %d message from terminal: %s", message_time, message_millis, pChildprocess->child_number, n_messages, user_input);
-            //write message
-            write(pChildprocess->file_descriptor[WRITE_END], BUFF, strlen(BUFF));
-            ++n_messages;
-            gettimeofday(&tv, NULL);
+            //avoid non stdin inputs
+            if (FD_ISSET(STDIN_FILENO, &fdsets)) {
+                gettimeofday(&tv, NULL);
+                local_flush_buff(user_input, MAX_BUFF_SIZE);
+                read(STDOUT_FILENO, user_input, MAX_BUFF_SIZE);
+                //format the message
+                message_time = (int) (tv.tv_sec - start_exec_time);
+                message_millis = (double) (tv.tv_usec / 1000.00);
+                snprintf(BUFF, MAX_BUFF_SIZE, "%i:%05.3f: Child %i: %d message from terminal: %s", message_time, message_millis, pChildprocess->child_number, n_messages, user_input);
+                //write message
+                write(pChildprocess->file_descriptor[WRITE_END], BUFF, strlen(BUFF));
+                ++n_messages;
+                gettimeofday(&tv, NULL);
+                //we need a new prompt now
+                new_prompt_needed = true;
+            }
         }
         else {
             printf("Terminal timeout after 30 seconds\n");
