@@ -40,6 +40,7 @@ void non_terminal_child(int fd, int child, int start_exec_time) {
     printf("end time: %d\n", end_time);
     srand(time(NULL));
     //30 second loop
+    /*
     while (end_time >= (int)tv.tv_sec) {
         printf("curr time: %d\n", (int)tv.tv_sec);
         //sleep for 0,2 s
@@ -53,6 +54,7 @@ void non_terminal_child(int fd, int child, int start_exec_time) {
         ++n_messages;
         //free(BUFF);
     }
+    */
     //exit message
     char exit_message[] = "EXIT_COND";
     write(fd, exit_message, sizeof(exit_message));
@@ -78,7 +80,7 @@ void terminal_child(int fd, int child, int start_exec_time) {
 	timeout.tv_usec = 0;
 
     gettimeofday(&tv, NULL);
-
+    /*
     while(end_time >= (int)tv.tv_sec && !time_limit_hit) {
         gettimeofday(&tv, NULL);
         //setup terminal env
@@ -120,6 +122,7 @@ void terminal_child(int fd, int child, int start_exec_time) {
         }
         gettimeofday(&tv, NULL);
     }
+    */
     //exit message
     char exit_message[] = "EXIT_COND";
     write(fd, exit_message, sizeof(exit_message));
