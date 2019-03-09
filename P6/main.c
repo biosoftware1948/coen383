@@ -28,31 +28,52 @@ int main(int argc, char* argv[]) {
     gettimeofday(&tv, NULL);
     exec_start_time = tv.tv_sec; 
 
-    //build children and create pipes for them
+    /*//build children and create pipes for them
     child_process* pChildren = build_children(N_CHILDREN);
     pipe_status = create_pipes(N_CHILDREN, pChildren);
     if(pipe_status == -1) {
         printf("FATAL ERROR: PIPE CREATION FAILED\n");
         return 1;
     }
+    */
+   	// variable for child process
+	pid_t cpid[N_CHILDREN];
+	// file descriptors for the pipe for the child
+	int fd[N_CHILDREN][2];
+		
+	// create a set of pipes for each child
+	for(int i = 0; i < N_CHILDREN; i++) {
+		if(pipe(fd[i]) == -1) {
+			fprintf(stderr, "pipe() failed");
+			return 1;
+		}
+	}
 
     //Start the fork process to create subprocesses
     for(int i = 0; i < N_CHILDREN; ++i) {
-        pChildren[i].pid = fork();
+
+        //pChildren[i].pid = fork();
+        cpid[i] = fork();
         //parent case
-        if (pChildren[i].pid > 0) {
-            close(pChildren[i].file_descriptor[WRITE_END]);
+        //if (pChildren[i].pid > 0) {
+        if (cpid[i]) {
+            //close(pChildren[i].file_descriptor[WRITE_END]);
+            close(fd[i][WRITE_END]);
         }
         //Child case
-        else if (pChildren[i].pid == 0) {
+        else if (cpid[i]) {
+            //close(pChildren[i].file_descriptor[READ_END]);
+            close(fd[i][READ_END]);
             if (i == 4) {
-                terminal_child(&pChildren[i], exec_start_time);
+                //terminal_child(pChildren[i], exec_start_time);
+                terminal_child(fd[i][WRITE_END], i, exec_start_time);
             }
             else {
-                non_terminal_child(&pChildren[i], exec_start_time);
+                //non_terminal_child(pChildren[i], exec_start_time);
+                non_terminal_child(fd[i][WRITE_END], i, exec_start_time);
             }
             //Child is done work
-            _exit(EXIT_SUCCESS);
+            exit(0);
         }
         //Fatal error, fork failed
         else {
@@ -83,7 +104,7 @@ int main(int argc, char* argv[]) {
 		FD_ZERO(&fdsets);
 		// set all of the file descriptors
 		for(int i = 0; i < N_CHILDREN; i++) {
-			FD_SET(pChildren[i].file_descriptor[READ_END], &fdsets);
+			FD_SET(fd[i][READ_END], &fdsets);
 		}
 		
 		int retval = select(12, &fdsets, NULL, NULL, &timeout);
@@ -95,10 +116,11 @@ int main(int argc, char* argv[]) {
 			char* read_msg = malloc(sizeof(char) * MAX_BUFF_SIZE);
 			// read from the selected file descriptor and write it to the file
 			// first child's pipe
-			if(FD_ISSET(pChildren[0].file_descriptor[READ_END], &fdsets)) {
-				int val = read_by_line(pChildren[0].file_descriptor[READ_END], read_msg, MAX_BUFF_SIZE);
+			if(FD_ISSET(fd[0][READ_END], &fdsets)) {
+				int val = read_by_line(fd[0][READ_END], read_msg, MAX_BUFF_SIZE);
 				// check to see if the pipe has been closed by the child
-				if(0 == strcmp("END", read_msg)) {
+                printf("message: %s", read_msg);
+				if(0 == strcmp("EXIT_COND", read_msg)) {
 					// set the pipe open flag to false and close the pipe
 					p1 = false;
 				}
@@ -111,10 +133,10 @@ int main(int argc, char* argv[]) {
 				}
 			}
 			// second child's pipe
-			if(FD_ISSET(pChildren[1].file_descriptor[READ_END], &fdsets)) {
-				int val = read_by_line(pChildren[1].file_descriptor[READ_END], read_msg, MAX_BUFF_SIZE);
+			if(FD_ISSET(fd[1][READ_END], &fdsets)) {
+				int val = read_by_line(fd[1][READ_END], read_msg, MAX_BUFF_SIZE);
 				// check to see if the pipe has been closed by the child
-				if(0 == strcmp("END", read_msg)) {
+				if(0 == strcmp("EXIT_COND", read_msg)) {
 					// set the pipe open flag to false and close the pipe
 					p2 = false;
 				}
@@ -127,10 +149,10 @@ int main(int argc, char* argv[]) {
 				}
 			}
 			// third child's pipe
-			if(FD_ISSET(pChildren[2].file_descriptor[READ_END], &fdsets)) {
-				int val = read_by_line(pChildren[2].file_descriptor[READ_END], read_msg, MAX_BUFF_SIZE);
+			if(FD_ISSET(fd[2][READ_END], &fdsets)) {
+				int val = read_by_line(fd[2][READ_END], read_msg, MAX_BUFF_SIZE);
 				// check to see if the pipe has been closed by the child
-				if(0 == strcmp("END", read_msg)) {
+				if(0 == strcmp("EXIT_COND", read_msg)) {
 					// set the pipe open flag to false and close the pipe
 					p3 = false;
 				}
@@ -143,10 +165,10 @@ int main(int argc, char* argv[]) {
 				}
 			}
 			// fourth child's pipe
-			if(FD_ISSET(pChildren[3].file_descriptor[READ_END], &fdsets)) {
-				int val = read_by_line(pChildren[3].file_descriptor[READ_END], read_msg, MAX_BUFF_SIZE);
+			if(FD_ISSET(fd[3][READ_END], &fdsets)) {
+				int val = read_by_line(fd[3][READ_END], read_msg, MAX_BUFF_SIZE);
 				// check to see if the pipe has been closed by the child
-				if(0 == strcmp("END", read_msg)) {
+				if(0 == strcmp("EXIT_COND", read_msg)) {
 					// set the pipe open flag to false and close the pipe
 					p4 = false;
 				}
@@ -159,10 +181,10 @@ int main(int argc, char* argv[]) {
 				}
 			}
 			// fifth child's pipe
-			if(FD_ISSET(pChildren[4].file_descriptor[READ_END], &fdsets)) {
-				int val = read_by_line(pChildren[4].file_descriptor[READ_END], read_msg, MAX_BUFF_SIZE);
+			if(FD_ISSET(fd[4][READ_END], &fdsets)) {
+				int val = read_by_line(fd[4][READ_END], read_msg, MAX_BUFF_SIZE);
 				// check to see if the pipe has been closed by the child
-				if(0 == strcmp("END", read_msg)) {
+				if(0 == strcmp("EXIT_COND", read_msg)) {
 					// set the pipe open flag to false and close the pipe
 					p5 = false;
 				}
@@ -180,7 +202,7 @@ int main(int argc, char* argv[]) {
 	}
 	// close all of the pipes to the children
 	for(int i = 0; i < N_CHILDREN; i++) {
-		close(pChildren[i].file_descriptor[READ_END]);
+		close(fd[i][READ_END]);
 	}
 	
 	// close the output file descriptor

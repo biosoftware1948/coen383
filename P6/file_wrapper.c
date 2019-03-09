@@ -22,6 +22,8 @@ void parent_timestamp(int fd, int baseTime) {
 	snprintf(write_msg, 32, "%i:%05.3f: Parent: ", msg_time, msec);
 	// write the message to the output file
 	write_to_file(fd, write_msg, strlen(write_msg));
+
+    free(write_msg);
 }
 
 // this function will read character by character from the

@@ -25,7 +25,7 @@ int create_pipes(int num_children, child_process* pChildren) {
     return pipe_status;
 }
 
-void non_terminal_child(child_process* pChildprocess, int start_exec_time) {
+void non_terminal_child(int fd, int child, int start_exec_time) {
     int end_time = start_exec_time + 30;
     int n_messages = 1;
     char* BUFF = calloc(MAX_BUFF_SIZE, sizeof(char));
@@ -48,18 +48,18 @@ void non_terminal_child(child_process* pChildprocess, int start_exec_time) {
         message_time = (int) (tv.tv_sec - start_exec_time);
         message_millis = (double) (tv.tv_usec / 1000.00);
         //format message
-        snprintf(BUFF, MAX_BUFF_SIZE, "%i:%05.3f: Child %i message %i\n", message_time, message_millis, pChildprocess->child_number, n_messages);
-        write(pChildprocess->file_descriptor[WRITE_END], BUFF, strlen(BUFF));
+        snprintf(BUFF, MAX_BUFF_SIZE, "%i:%05.3f: Child %i message %i\n", message_time, message_millis, child, n_messages);
+        write(fd, BUFF, strlen(BUFF));
         ++n_messages;
     }
     //exit message
-    char exit_message[] = "Child process exiting...";
-    write(pChildprocess->file_descriptor[WRITE_END], exit_message, sizeof(exit_message));
-    close(pChildprocess->file_descriptor[WRITE_END]);
+    char exit_message[] = "EXIT_COND";
+    write(fd, exit_message, sizeof(exit_message));
+    close(fd);
     free(BUFF);
 }
 
-void terminal_child(child_process* pChildprocess, int start_exec_time) {
+void terminal_child(int fd, int child, int start_exec_time) {
     int end_time = start_exec_time + 30;
     int n_messages = 1;
     char* BUFF = calloc(MAX_BUFF_SIZE, sizeof(char));
@@ -69,6 +69,7 @@ void terminal_child(child_process* pChildprocess, int start_exec_time) {
     struct timeval tv;
     char user_prompt[] = "Enter input: \n";
     bool new_prompt_needed = true;
+    bool time_limit_hit = false;
     //pipe read
     fd_set fdsets;
     struct timeval timeout;
@@ -78,7 +79,7 @@ void terminal_child(child_process* pChildprocess, int start_exec_time) {
 
     gettimeofday(&tv, NULL);
 
-    while(end_time >= (int)tv.tv_sec) {
+    while(end_time >= (int)tv.tv_sec && !time_limit_hit) {
         gettimeofday(&tv, NULL);
         //setup terminal env
         FD_ZERO(&fdsets);
@@ -104,9 +105,9 @@ void terminal_child(child_process* pChildprocess, int start_exec_time) {
                 //format the message
                 message_time = (int) (tv.tv_sec - start_exec_time);
                 message_millis = (double) (tv.tv_usec / 1000.00);
-                snprintf(BUFF, MAX_BUFF_SIZE, "%i:%05.3f: Child %i: %d message from terminal: %s", message_time, message_millis, pChildprocess->child_number, n_messages, user_input);
+                snprintf(BUFF, MAX_BUFF_SIZE, "%i:%05.3f: Child %i: %d message from terminal: %s", message_time, message_millis, child, n_messages, user_input);
                 //write message
-                write(pChildprocess->file_descriptor[WRITE_END], BUFF, strlen(BUFF));
+                write(fd, BUFF, strlen(BUFF));
                 ++n_messages;
                 gettimeofday(&tv, NULL);
                 //we need a new prompt now
@@ -115,13 +116,15 @@ void terminal_child(child_process* pChildprocess, int start_exec_time) {
         }
         else {
             printf("Terminal timeout after 30 seconds\n");
+            time_limit_hit = true;
         }
         gettimeofday(&tv, NULL);
     }
     //exit message
-    char exit_message[] = "Child process exiting...";
-    write(pChildprocess->file_descriptor[WRITE_END], exit_message, sizeof(exit_message));
-    close(pChildprocess->file_descriptor[WRITE_END]);
+    char exit_message[] = "EXIT_COND";
+    write(fd, exit_message, sizeof(exit_message));
+    close(fd);
     free(BUFF);
     free(user_input);
+    printf("terminal child exiting\n");
 }
