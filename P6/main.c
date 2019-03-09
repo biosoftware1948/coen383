@@ -119,7 +119,7 @@ int main(int argc, char* argv[]) {
 			if(FD_ISSET(fd[0][READ_END], &fdsets)) {
 				int val = read_by_line(fd[0][READ_END], read_msg, MAX_BUFF_SIZE);
 				// check to see if the pipe has been closed by the child
-                printf("message: %s", read_msg);
+                //printf("message: %s", read_msg);
 				if(0 == strcmp("EXIT_COND", read_msg)) {
 					// set the pipe open flag to false and close the pipe
 					p1 = false;
