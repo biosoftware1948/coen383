@@ -1,8 +1,8 @@
 #include "child_utils.h"
 #include "file_wrapper.h"
 
-#define WRITE_END 0
-#define READ_END 1
+#define WRITE_END 1
+#define READ_END 0
 #define MAX_BUFF_SIZE 1256
 
 child_process* build_children(int num_children) {

@@ -58,12 +58,12 @@ int main(int argc, char* argv[]) {
         //if (pChildren[i].pid > 0) {
         if (cpid[i] > 0) {
             //close(pChildren[i].file_descriptor[WRITE_END]);
-            close(fd[i][WRITE_END]);
+            //close(fd[i][WRITE_END]);
         }
         //Child case
         else if (cpid[i] ==  0) {
             //close(pChildren[i].file_descriptor[READ_END]);
-            close(fd[i][READ_END]);
+            //close(fd[i][READ_END]);
             if (i == 4) {
                 //terminal_child(pChildren[i], exec_start_time);
                 terminal_child(fd[i], i, exec_start_time);
