@@ -1,4 +1,5 @@
 #include "child_utils.h"
+#include "file_wrapper.h"
 
 #define WRITE_END 0
 #define READ_END 1
@@ -36,10 +37,11 @@ void non_terminal_child(child_process* pChildprocess, int start_exec_time) {
     //close term fds
     close(STDOUT_FILENO);
     close(STDIN_FILENO);
-
+    printf("end time: %d\n", end_time);
     srand(time(NULL));
     //30 second loop
     while (end_time >= (int)tv.tv_sec) {
+        printf("curr time: %d\n", (int)tv.tv_sec);
         //sleep for 0,2 s
         sleep(rand() % 3);
         gettimeofday(&tv, NULL);
@@ -85,10 +87,10 @@ void terminal_child(child_process* pChildprocess, int start_exec_time) {
         if (new_prompt_needed) {
             write(STDOUT_FILENO, user_prompt, strlen(user_prompt));
             //monitor for input
-            int retval = select(12, &fdsets, NULL, NULL, &timeout);
             //error case
             new_prompt_needed = false;
         }
+        int retval = select(12, &fdsets, NULL, NULL, &timeout);
         if(retval == -1) {
             printf("Select error");
         }
@@ -114,6 +116,7 @@ void terminal_child(child_process* pChildprocess, int start_exec_time) {
         else {
             printf("Terminal timeout after 30 seconds\n");
         }
+        gettimeofday(&tv, NULL);
     }
     //exit message
     char exit_message[] = "Child process exiting...";

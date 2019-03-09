@@ -8,6 +8,7 @@
 #include <sys/time.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 typedef struct _child_process {
     int file_descriptor[2];
