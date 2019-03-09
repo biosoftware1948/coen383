@@ -57,7 +57,7 @@ void non_terminal_child(int fd, int child, int start_exec_time) {
     */
     //exit message
     char exit_message[] = "EXIT_COND";
-    write(fd, exit_message, sizeof(exit_message));
+    write(fd, "EXIT_COND", strlen("EXIT_COND"));
     close(fd);
 }
 
@@ -125,7 +125,7 @@ void terminal_child(int fd, int child, int start_exec_time) {
     */
     //exit message
     char exit_message[] = "EXIT_COND";
-    write(fd, exit_message, sizeof(exit_message));
+    write(fd, "EXIT_COND", strlen("EXIT_COND"));
     close(fd);
     free(BUFF);
     free(user_input);
