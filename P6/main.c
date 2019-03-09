@@ -15,8 +15,8 @@
 #define N_CHILDREN 5
 #define N_FILE_DESCRIPTORS 2 //Read and write
 #define MAX_BUFF_SIZE 1256
-#define WRITE_END 0
-#define READ_END 1
+#define WRITE_END 1
+#define READ_END 0
 
 
 int main(int argc, char* argv[]) {
@@ -66,11 +66,11 @@ int main(int argc, char* argv[]) {
             close(fd[i][READ_END]);
             if (i == 4) {
                 //terminal_child(pChildren[i], exec_start_time);
-                terminal_child(fd[i][WRITE_END], i, exec_start_time);
+                terminal_child(fd[i], i, exec_start_time);
             }
             else {
                 //non_terminal_child(pChildren[i], exec_start_time);
-                non_terminal_child(fd[i][WRITE_END], i, exec_start_time);
+                non_terminal_child(fd[i], i, exec_start_time);
             }
             //Child is done work
             exit(0);
