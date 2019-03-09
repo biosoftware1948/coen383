@@ -18,8 +18,9 @@ typedef struct _child_process {
 
 child_process* build_children(int num_children);
 int create_pipes(int num_children, child_process* pChildren);
-void non_terminal_child(int fd, int child, int start_exec_time);
-void terminal_child(int fd, int child, int start_exec_time);
+void non_terminal_child(child_process child, int start_exec_time);
+void terminal_child(child_process child_obj, int start_exec_time);
+bool read_pipe(child_process child_obj, int file_desc, fd_set* fdsets, int exec_start_time);
 
 
 

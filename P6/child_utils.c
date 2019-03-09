@@ -25,7 +25,10 @@ int create_pipes(int num_children, child_process* pChildren) {
     return pipe_status;
 }
 
-void non_terminal_child(int fd, int child, int start_exec_time) {
+void non_terminal_child(child_process child_obj, int start_exec_time) {
+    int fd = child_obj.file_descriptor[WRITE_END];
+    int child = child_obj.child_number;
+
     int end_time = start_exec_time + 30;
     int n_messages = 1;
     int message_time;
@@ -40,9 +43,8 @@ void non_terminal_child(int fd, int child, int start_exec_time) {
     printf("end time: %d\n", end_time);
     srand(time(NULL));
     //30 second loop
-    /*
+    
     while (end_time >= (int)tv.tv_sec) {
-        printf("curr time: %d\n", (int)tv.tv_sec);
         //sleep for 0,2 s
         sleep(rand() % 3);
         gettimeofday(&tv, NULL);
@@ -54,14 +56,18 @@ void non_terminal_child(int fd, int child, int start_exec_time) {
         ++n_messages;
         //free(BUFF);
     }
-    */
+    
     //exit message
     char exit_message[] = "EXIT_COND";
-    write(fd, "EXIT_COND", strlen("EXIT_COND")+1);
+    write(fd, exit_message, strlen(exit_message)+1);
     close(fd);
+    free(BUFF);
 }
 
-void terminal_child(int fd, int child, int start_exec_time) {
+void terminal_child(child_process child_obj, int start_exec_time) {
+    int fd = child_obj.file_descriptor[WRITE_END];
+    int child = child_obj.child_number;
+
     int end_time = start_exec_time + 30;
     int n_messages = 1;
     char* BUFF = calloc(MAX_BUFF_SIZE, sizeof(char));
@@ -80,7 +86,7 @@ void terminal_child(int fd, int child, int start_exec_time) {
 	timeout.tv_usec = 0;
 
     gettimeofday(&tv, NULL);
-    /*
+    
     while(end_time >= (int)tv.tv_sec && !time_limit_hit) {
         gettimeofday(&tv, NULL);
         //setup terminal env
@@ -122,12 +128,33 @@ void terminal_child(int fd, int child, int start_exec_time) {
         }
         gettimeofday(&tv, NULL);
     }
-    */
+    
     //exit message
     char exit_message[] = "EXIT_COND";
-    write(fd, "EXIT_COND", strlen("EXIT_COND")+1);
+    write(fd, exit_message, strlen(exit_message)+1);
     close(fd);
     free(BUFF);
     free(user_input);
-    printf("terminal child exiting\n");
+}
+
+bool read_pipe(child_process child_obj, int file_desc, fd_set* fdsets, int exec_start_time) {
+    char read_msg[MAX_BUFF_SIZE];
+
+    // first child's pipe
+	if(FD_ISSET(child_obj.file_descriptor[READ_END], fdsets)) {
+	    int val = read_by_line(child_obj.file_descriptor[READ_END], read_msg, MAX_BUFF_SIZE);
+	    // check to see if the pipe has been closed by the child
+		if(0 == strcmp("EXIT_COND", read_msg)) {
+            //close the pipe 
+			return false;
+	    }
+		// otherwise write the data to the file
+		else {
+			if('\0' != read_msg[0]) {
+				parent_timestamp(file_desc, exec_start_time);
+				write_to_file(file_desc, read_msg, val);
+			}
+		}
+	}
+    return true;
 }
