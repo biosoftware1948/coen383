@@ -127,7 +127,7 @@ void terminal_child(child_process child_obj, int start_exec_time) {
             }
         }
         else {
-            printf("Terminal timeout after 30 seconds\n");
+            printf("\nTerminal timeout after 30 seconds\n");
             time_limit_hit = true;
         }
         gettimeofday(&tv, NULL);
