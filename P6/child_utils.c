@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "child_utils.h"
 #include "file_wrapper.h"
 
@@ -43,20 +44,23 @@ void non_terminal_child(child_process child_obj, int start_exec_time) {
     printf("end time: %d\n", end_time);
     srand(time(NULL));
     //30 second loop
-    
+
     while (end_time >= (int)tv.tv_sec) {
-        //sleep for 0,2 s
-        sleep(rand() % 3);
-        gettimeofday(&tv, NULL);
-        message_time = (int) (tv.tv_sec - start_exec_time);
-        message_millis = (double) (tv.tv_usec / 1000.00);
         //format message
+        if (message_time >= 30) break;
         snprintf(BUFF, MAX_BUFF_SIZE, "%i:%05.3f: Child %i message %i\n", message_time, message_millis, child, n_messages);
         write(fd, BUFF, strlen(BUFF));
         ++n_messages;
+
+        //sleep for 0,2 s
+        sleep(rand() % 3);
         //free(BUFF);
+
+        gettimeofday(&tv, NULL);
+        message_time = (int) (tv.tv_sec - start_exec_time);
+        message_millis = (double) (tv.tv_usec / 1000.00);
     }
-    
+
     //exit message
     char exit_message[] = "EXIT_COND";
     write(fd, exit_message, strlen(exit_message)+1);
@@ -86,7 +90,7 @@ void terminal_child(child_process child_obj, int start_exec_time) {
 	timeout.tv_usec = 0;
 
     gettimeofday(&tv, NULL);
-    
+
     while(end_time >= (int)tv.tv_sec && !time_limit_hit) {
         gettimeofday(&tv, NULL);
         //setup terminal env
@@ -128,7 +132,7 @@ void terminal_child(child_process child_obj, int start_exec_time) {
         }
         gettimeofday(&tv, NULL);
     }
-    
+
     //exit message
     char exit_message[] = "EXIT_COND";
     write(fd, exit_message, strlen(exit_message)+1);
@@ -145,7 +149,7 @@ bool read_pipe(child_process child_obj, int file_desc, fd_set* fdsets, int exec_
 	    int val = read_by_line(child_obj.file_descriptor[READ_END], read_msg, MAX_BUFF_SIZE);
 	    // check to see if the pipe has been closed by the child
 		if(0 == strcmp("EXIT_COND", read_msg)) {
-            //close the pipe 
+            //close the pipe
 			return false;
 	    }
 		// otherwise write the data to the file

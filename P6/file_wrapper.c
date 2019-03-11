@@ -15,10 +15,10 @@ void parent_timestamp(int fd, int baseTime) {
 
 	int message_time = (int)(tv.tv_sec - baseTime);
 	double message_millis = (double)(tv.tv_usec/1000.00);
-	
+
 	char* BUFF = calloc(MAX_BUFF_SIZE, sizeof(char));
 	// format the message
-	snprintf(BUFF, 32, "%i:%05.3f: Parent: ", message_time,message_millis);
+	snprintf(BUFF, 32, "%i:%05.3f: Parent - ", message_time,message_millis);
 	// write the message to the output file
 	write_to_file(fd, BUFF, strlen(BUFF));
 
@@ -30,7 +30,7 @@ int read_by_line(int fd, char* msg, int size) {
 	int value_read = 0;
 	// clear the buffer prior to reading
 	local_flush_buff(msg, size);
-	
+
 	// read no more than the size of the char array
 	for(int i = 0; i < size; i++) {
 		char c;

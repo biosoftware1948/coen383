@@ -25,10 +25,7 @@ int main(int argc, char* argv[]) {
     int pipe_status = 0;
     int exec_start_time;
     struct timeval tv;
-    
-    //get base time of program execution
-    gettimeofday(&tv, NULL);
-    exec_start_time = tv.tv_sec; 
+
     //build children and create pipes for them
     child_process* pChildren = build_children(N_CHILDREN);
     pipe_status = create_pipes(N_CHILDREN, pChildren);
@@ -36,8 +33,11 @@ int main(int argc, char* argv[]) {
         printf("FATAL ERROR: PIPE CREATION FAILED\n");
         return 1;
     }
-    
+
     //Start the fork process to create subprocesses
+    //get base time of program execution
+    gettimeofday(&tv, NULL);
+    exec_start_time = tv.tv_sec; 
     for(int i = 0; i < N_CHILDREN; ++i) {
 
         pChildren[i].pid = fork();
@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
             return 1;
         }
     }
-    
+
     // read from all of the pipes and write to a file
 	fd_set fdsets;
 	struct timeval timeout;
@@ -93,7 +93,7 @@ int main(int argc, char* argv[]) {
 		for(int i = 0; i < N_CHILDREN; i++) {
 			FD_SET(pChildren[i].file_descriptor[READ_END], &fdsets);
 		}
-		
+
 		int retval = select(12, &fdsets, NULL, NULL, &timeout);
 		if(-1 == retval) {
 			perror("select()");
@@ -112,15 +112,15 @@ int main(int argc, char* argv[]) {
             }
         }
     }
-        
+
     //close pipes
 	for(int i = 0; i < N_CHILDREN; i++) {
 		close(pChildren[i].file_descriptor[READ_END]);
 	}
-	
+
 	// close file descriptor
 	close(file_desc);
-	
+
 	return 0;
 
 
